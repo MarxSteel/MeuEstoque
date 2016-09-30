@@ -121,21 +121,13 @@ $F3->execute();
    <?php if ($VerProdutos === "PP") { ?>
      <div class="col-md-4">
       <div class="info-box">
-      <?php if ($VProd === "PP") { ?>
-       <a href="lProduto.php" >
-        <span class="info-box-icon bg-olive">
-         <i class="fa fa-puzzle-piece"></i>
-        </span>
-       </a>
-       <div class="info-box-content"><h4>Itens de produção</h4></div>
-      <?php } else { } ?>
       </div>
      </div>
      <div class="col-md-4"> 
       <div class="info-box">
       <?php 
       if ($VArPro === "PP") { ?>
-       <a href="Transporte.php" >
+       <a href="ArvoreProduto.php" >
         <span class="info-box-icon bg-black">
          <i class="fa fa-tree"></i>
         </span>
