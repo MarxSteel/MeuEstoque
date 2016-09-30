@@ -17,14 +17,7 @@ $PDO = db_connect();
   $CadProd = $cp['cIProd'];       //CADASTRAR ITENS DE PRODUÇÃO
   $VArPro = $cp['lisArPro'];      //LISTAR ARVORE DE PRODUTO
   $CriArvore = $cp['cArPro'];
-  if ($CriArvore === "PP") {
-    $Botao1 = 'btn btn-default btn-sm';
-    $Botao2 = '<a href="http://www.endereço.com.br" class="btn btn-sm bg-navy" target="_blank"><i class="fa fa-pencil"></i> Editar</a>';
-  }
-  else{
-  $Botao1 = 'btn btn-default btn-sm btn-block';
-  $Botao2 = '';
-  }
+
 
 
 $dt = date("d/m/Y - H:i:s");
@@ -226,6 +219,14 @@ $F3->execute();
             echo '<td>' . $VCat['es_cat'] . '</td>';
             echo '<td>' . $VCat['es_cat'] . '</td>';
             echo '<td>' . $VCat['es_un'] . '</td>';
+              if ($CriArvore === "PP") {
+           $Botao1 = 'btn btn-default btn-sm';
+           $Botao2 = '<a href="VerProjeto.php?ID=' . $VCat['id'] . '" class="btn btn-sm bg-navy" target="_blank"><i class="fa fa-pencil"></i> Editar</a>';
+              }
+              else{
+              $Botao1 = 'btn btn-default btn-sm btn-block';
+              $Botao2 = '';
+              }
             echo '<td>';
             echo '<a class="' . $Botao1 . '"  href="';
             echo "javascript:abrir('AtCat.php?ID=" . $VCat['id'] . "');";
