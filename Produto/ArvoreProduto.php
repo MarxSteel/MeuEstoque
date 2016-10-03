@@ -21,9 +21,12 @@ $PDO = db_connect();
 
 
 $dt = date("d/m/Y - H:i:s");
-$ChamaCat = "SELECT * FROM cad_estoque";
+$ChamaCat = "SELECT * FROM arvore_prod WHERE Status='1'";
 $Catt = $PDO->prepare($ChamaCat);
 $Catt->execute();
+//CHAMANDO STATUS:
+// 1 - ATIVO
+// 2 - INATIVO
 
 $QryCategoria = "SELECT * FROM categoria WHERE Status='1'";
 // seleciona os registros
@@ -43,6 +46,7 @@ $F3->execute();
 <html>
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="pt-br">  
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo $Titulo; ?></title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -198,47 +202,36 @@ $F3->execute();
         <table id="example1" class="table table-bordered table-striped">
          <thead>
          <tr>
-          <th style="width: 10px">#</th>
-          <th style="width: 10%">Cd. Almox.</th>
-          <th style="width: 10%">Cd. Eng.</th>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th style="width: 15px">Categoria</th>
-          <th style="width: 60px">UN</th>
-          <th style="width: 14%"></th>
+          <th style="width: 5%">#</th>
+          <th style="width: 25%">Nome do Produto</th>
+          <th style="width: 50%">Descrição</th>
+          <th style="width: 20%"></th>
          </tr>
         </thead>
         <tbody>
          <?php 
           while ($VCat = $Catt->fetch(PDO::FETCH_ASSOC)): 
            echo '<tr>';
-            echo '<td>' . $VCat['id'] . '</td>';
-            echo '<td>' . $VCat['es_c2'] . '</td>';
-            echo '<td>' . $VCat['es_c1'] . '</td>';
-            echo '<td>' . $VCat['es_nome'] . '</td>';
-            echo '<td>' . $VCat['es_cat'] . '</td>';
-            echo '<td>' . $VCat['es_cat'] . '</td>';
-            echo '<td>' . $VCat['es_un'] . '</td>';
+            echo '<td>' . $VCat['ap_id'] . '</td>';
+            echo '<td>' . $VCat['ap_id'] . '</td>';
+            echo '<td>' . $VCat['ap_id'] . '</td>';
               if ($CriArvore === "PP") {
-           $Botao1 = 'btn btn-default btn-sm';
-           $Botao2 = '<a href="VerProjeto.php?ID=' . $VCat['id'] . '" class="btn btn-sm bg-navy" target="_blank"><i class="fa fa-pencil"></i> Editar</a>';
+              echo '<td>';
+              echo '<a class="btn btn-danger btn-sm" href="';
+              echo "javascript:abrir('DelArvore.php?ID=" . $VCat['ap_id'] . "');";
+              echo '"><i class="fa fa-remove"> </i> REMOVER</a> ';
+
+              echo '<a href="VerArvore.php?ID=' . $VCat['ap_id'] . '" class="btn btn-sm bg-navy" target="_blank">';
+              echo '<i class="fa fa-search"></i> DETALHES</a>';
+              echo '</td>';
               }
               else{
-              $Botao1 = 'btn btn-default btn-sm btn-block';
-              $Botao2 = '';
+              echo '<td>';
+              echo '<a href="VerArvore.php?ID=' . $VCat['ap_id'] . '" class="btn btn-sm bg-navy btn-block" target="_blank">';
+              echo '<i class="fa fa-search"></i> DETALHES</a>';
+              echo '</td>';
               }
-            echo '<td>';
-            echo '<a class="' . $Botao1 . '"  href="';
-            echo "javascript:abrir('AtCat.php?ID=" . $VCat['id'] . "');";
-            echo '"><i class="fa fa-search"> </i></a> ';
-            echo $Botao2;
-            echo '</td>';
            echo '</tr>';
-
-
-             
-
-
            endwhile;
          ?>
         </tbody>
