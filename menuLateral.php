@@ -45,19 +45,19 @@ $endereco = $_SERVER ['REQUEST_URI'];
    </a>
    <ul class="treeview-menu">
     <li>
-     <a href="pages/charts/chartjs.html">
+     <a href="<?php echo $server; ?>/estoque/dashboard.php">
       <i class="fa fa-list"></i> 
       Controle de Estoque
      </a>
     </li>
     <li>
-     <a href="pages/charts/chartjs.html">
+     <a href="<?php echo $server; ?>/Produto/dashboard.php">
       <i class="fa a-plus-square"></i>
       Cadastro de Produtos
      </a>
     </li>
     <li>
-     <a href="pages/charts/chartjs.html">
+     <a href="<?php echo $server; ?>/Produto/ArvoreProduto.php">
       <i class="fa fa-puzzle-piece"></i>
       Árvore de Produtos
      </a>
