@@ -1,4 +1,10 @@
 <?php
+//MENU LATERAL ATIVO
+
+$cLogistica = "active";
+$cFornecedor = "active";
+
+
 require("../restritos.php"); 
 require_once '../init.php';
 $PDO = db_connect();
@@ -52,7 +58,7 @@ $Forn->execute();
   <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 </head>
-<body class="hold-transition skin-red-light fixed sidebar-mini">
+<body class="hold-transition <?php echo $cor; ?> fixed sidebar-mini">
  <div class="wrapper">
   <header class="main-header">
    <a href="#" class="logo">
