@@ -1,6 +1,6 @@
 <?php
 //MENU LATERAL ATIVO
-$cSuporte = "active";
+$cNotas = "active";
 
 
 require("../restritos.php"); 
@@ -100,81 +100,10 @@ $PDO = db_connect();
   </aside>
   <div class="content-wrapper">
    <section class="content-header">
-    <h1>Suporte Técnico<small><?php echo $Titulo; ?></small></h1>
+    <h1>Controle de Notas<small><?php echo $Titulo; ?></small></h1>
    </section>
    <section class="content">
    <div class="row">
-    <div class="col-md-4 col-sm-6 col-xs-12">
-     <div class="info-box">
-      <a data-toggle="modal" data-target="#myModal"">
-       <span class="info-box-icon btn-primary">
-        <i class="fa fa-plus"></i>
-       </span>
-      </a>ADICIONAR ATENDIMENTO
-     </div>
-    </div>
-    <div class="col-md-4 col-sm-6 col-xs-12">
-     <div class="info-box">
-      <a data-toggle="modal" data-target="#myModal"">
-       <span class="info-box-icon btn-primary">
-        <i class="fa fa-plus"></i>
-       </span>
-      </a>ADICIONAR EQUIPAMENTO
-     </div>
-    </div>
-    <div class="col-md-4 col-sm-6 col-xs-12">
-     <div class="info-box">
-      <a data-toggle="modal" data-target="#myModal"">
-       <span class="info-box-icon btn-primary">
-        <i class="fa fa-plus"></i>
-       </span>
-      </a>NOVO FIRMWARE
-     </div>
-    </div>
-   <div class="col-md-8">
-    <div class="nav-tabs-custom">
-     <div class="box-header with-border">
-      <i class="fa fa-warning"></i>
-       <h3 class="box-title">Suporte Técnico</h3>
-     </div>
-     <ul class="nav nav-tabs">
-      <li class="active"><a href="#geral" data-toggle="tab">Geral</a></li>
-      <li><a href="#atp" data-toggle="tab">Atend. Pendentes</a></li>
-      <li><a href="#atf" data-toggle="tab">Atend. Finalizados</a></li>
-     </ul>
-     <div class="tab-content">
-      <div class="tab-pane active" id="geral">
-      TELA DE ATENDIMENTO GERAL
-      </div>
-      <div class="tab-pane" id="atp">
-      TELA DE ATENDIMENTOS PENDENTES
-      </div>
-      <div class="tab-pane" id="atf">
-      TELA DE ATENDIMENTOS FINALIZADOS
-      </div>
-     </div>
-    </div>
-   </div>
-   <div class="col-md-4">
-    <div class="nav-tabs-custom">
-     <div class="box-header with-border">
-      <i class="fa fa-warning"></i>
-      <h3 class="box-title">Controle de Firmware</h3>
-     </div>
-     <ul class="nav nav-tabs">
-      <li class="active"><a href="#linha" data-toggle="tab">Linha</a></li>
-      <li><a href="#fesp" data-toggle="tab">Especial</a></li>
-     </ul>
-     <div class="tab-content">
-      <div class="tab-pane active" id="linha">
-      TELA DE FIRMWARE DE LINHA
-      </div>
-      <div class="tab-pane" id="fesp">
-      TELA DE FIRMWARE ESPECIAL
-      </div>
-     </div>
-    </div>
-   </div>
   </div>
  </section>
 </div>

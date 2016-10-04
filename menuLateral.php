@@ -52,7 +52,7 @@ $endereco = $_SERVER ['REQUEST_URI'];
     </li>
     <li class="<?php echo $cProdutos; ?>">
      <a href="<?php echo $server; ?>/Produto/dashboard.php">
-      <i class="fa a-plus-square"></i>
+      <i class="fa fa-plus-square"></i>
       Cadastro de Produtos
      </a>
     </li>
@@ -69,8 +69,8 @@ $endereco = $_SERVER ['REQUEST_URI'];
     <i class="fa fa-file"></i> <span>Controle de Notas</span>
    </a>
   </li>
-  <li class="<?php echo $cNotas; ?>">
-   <a href="<?php echo $server; ?>/fornecedor/tabela.php">
+  <li class="<?php echo $cTabela; ?>">
+   <a href="<?php echo $server; ?>/Produto/tabela.php">
     <i class="fa fa-sort-amount-desc"></i> <span>Tabela de Produtos</span>
    </a>
   </li>
