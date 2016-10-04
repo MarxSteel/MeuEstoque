@@ -122,7 +122,7 @@ $PDO = db_connect();
      </div>
      <div class="col-md-4">
       <div class="info-box">
-       <a href="fw/dashboard.php" >
+       <a href="suporte/dashboard.php" >
         <span class="info-box-icon bg-orange">
          <i class="fa fa-list"></i>
         </span>
