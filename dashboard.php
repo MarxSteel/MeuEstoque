@@ -7,6 +7,7 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
+  $cHome = "active";
 ?>
 <!DOCTYPE html>
 <html>
