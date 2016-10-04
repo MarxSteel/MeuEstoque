@@ -16,25 +16,6 @@ $PDO = db_connect();
   $VProd = $cp['vIP'];            //VER ITENS DE PRODUÇÃO
   $CadProd = $cp['cIProd'];       //CADASTRAR ITENS DE PRODUÇÃO
   $VArPro = $cp['lisArPro'];      //LISTAR ARVORE DE PRODUTO
-
-$dt = date("d/m/Y - H:i:s");
-$ChamaCat = "SELECT * FROM cad_estoque";
-$Catt = $PDO->prepare($ChamaCat);
-$Catt->execute();
-
-$QryCategoria = "SELECT * FROM categoria WHERE Status='1'";
-// seleciona os registros
-$stmt4 = $PDO->prepare($QryCategoria);
-$stmt4->execute();
-
-
-$ChamaFornecedor = "SELECT * FROM fornecedor";
-$F1 = $PDO->prepare($ChamaFornecedor);
-$F2 = $PDO->prepare($ChamaFornecedor);
-$F3 = $PDO->prepare($ChamaFornecedor);
-$F1->execute();
-$F2->execute();
-$F3->execute();
 ?>
 <!DOCTYPE html>
 <html>
@@ -119,83 +100,87 @@ $F3->execute();
    </section>
    <section class="content">
    <div class="row">
-   <div class="col-md-6">
-    <div class="box box-default">
+    <div class="col-md-4 col-sm-6 col-xs-12">
+     <div class="info-box">
+      <a data-toggle="modal" data-target="#myModal"">
+       <span class="info-box-icon btn-primary">
+        <i class="fa fa-plus"></i>
+       </span>
+      </a>ADICIONAR ATENDIMENTO
+     </div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+     <div class="info-box">
+      <a data-toggle="modal" data-target="#myModal"">
+       <span class="info-box-icon btn-primary">
+        <i class="fa fa-plus"></i>
+       </span>
+      </a>ADICIONAR EQUIPAMENTO
+     </div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+     <div class="info-box">
+      <a data-toggle="modal" data-target="#myModal"">
+       <span class="info-box-icon btn-primary">
+        <i class="fa fa-plus"></i>
+       </span>
+      </a>NOVO FIRMWARE
+     </div>
+    </div>
+   <div class="col-md-8">
+    <div class="nav-tabs-custom">
      <div class="box-header with-border">
       <i class="fa fa-warning"></i>
        <h3 class="box-title">Suporte Técnico</h3>
      </div>
-     <div class="box-body">
-      AQUI TEXTO DE SUPORTE
+     <ul class="nav nav-tabs">
+      <li class="active"><a href="#geral" data-toggle="tab">Geral</a></li>
+      <li><a href="#atp" data-toggle="tab">Atend. Pendentes</a></li>
+      <li><a href="#atf" data-toggle="tab">Atend. Finalizados</a></li>
+     </ul>
+     <div class="tab-content">
+      <div class="tab-pane active" id="geral">
+      TELA DE ATENDIMENTO GERAL
+      </div>
+      <div class="tab-pane" id="atp">
+      TELA DE ATENDIMENTOS PENDENTES
+      </div>
+      <div class="tab-pane" id="atf">
+      TELA DE ATENDIMENTOS FINALIZADOS
+      </div>
      </div>
     </div>
    </div>
-        <div class="col-md-6">
-          <!-- Custom Tabs -->
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab_1" data-toggle="tab">Tab 1</a></li>
-              <li><a href="#tab_2" data-toggle="tab">Tab 2</a></li>
-              <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  Dropdown <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                  <li role="presentation" class="divider"></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                </ul>
-              </li>
-              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane active" id="tab_1">
-                <b>How to use:</b>
-
-TEXTO 3
-              </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_2">
-TEXTO 2
-              </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_3">
-TEXTO 1
-              </div>
-              <!-- /.tab-pane -->
-            </div>
-            <!-- /.tab-content -->
-          </div>
-          <!-- nav-tabs-custom -->
-        </div>
-
-
-
-
-
-
-
+   <div class="col-md-4">
+    <div class="nav-tabs-custom">
+     <div class="box-header with-border">
+      <i class="fa fa-warning"></i>
+      <h3 class="box-title">Controle de Firmware</h3>
+     </div>
+     <ul class="nav nav-tabs">
+      <li class="active"><a href="#linha" data-toggle="tab">Linha</a></li>
+      <li><a href="#fesp" data-toggle="tab">Especial</a></li>
+     </ul>
+     <div class="tab-content">
+      <div class="tab-pane active" id="linha">
+      TELA DE FIRMWARE DE LINHA
+      </div>
+      <div class="tab-pane" id="fesp">
+      TELA DE FIRMWARE ESPECIAL
+      </div>
+     </div>
     </div>
-
-   </section>
+   </div>
   </div>
+ </section>
+</div>
   <?php include_once '../footer.php'; ?>
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery 2.2.3 -->
 <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
 <script src="../bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables -->
 <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
 <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
 <script src="../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/app.min.js"></script>
