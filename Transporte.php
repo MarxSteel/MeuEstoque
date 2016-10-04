@@ -112,7 +112,7 @@ $Forn->execute();
    ?>
    <div class="row">
     <?php
-    if ($aFornece === "PP") {
+    if ($aTransp === "PP") {
     ?>
     <div class="col-md-4 col-sm-6 col-xs-12">
      <div class="info-box">
