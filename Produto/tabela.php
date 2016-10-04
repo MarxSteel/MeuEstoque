@@ -18,6 +18,7 @@ $PDO = db_connect();
   $VProd = $cp['vIP'];            //VER ITENS DE PRODUÇÃO
   $CadProd = $cp['cIProd'];       //CADASTRAR ITENS DE PRODUÇÃO
   $VArPro = $cp['lisArPro'];      //LISTAR ARVORE DE PRODUTO
+  $vTabela = $cp['TabelaProdutos'];      //LISTAR ARVORE DE PRODUTO
 
 $dt = date("d/m/Y - H:i:s");
 $ChamaCat = "SELECT * FROM cad_estoque";
@@ -121,162 +122,18 @@ $F3->execute();
    </section>
    <section class="content">
    <div class="row">
-   <?php if ($VerProdutos === "PP") { ?>
-     <div class="col-md-4">
-      <div class="info-box">
+   <?php 
+   if ($vTabela === "PP") {
+   ?>
+    <div class="col-md-12">
+     <div class="nav-tabs-custom">
+      <div class="box-header with-border">
+       <!--<i class="fa fa-warning"></i>
+       <h3 class="box-title">Tabela de produtos</h3>-->
       </div>
-     </div>
-     <div class="col-md-4"> 
-      <div class="info-box">
-      <?php 
-      if ($VArPro === "PP") { ?>
-       <a href="ArvoreProduto.php" >
-        <span class="info-box-icon bg-black">
-         <i class="fa fa-tree"></i>
-        </span>
-       </a>
-       <div class="info-box-content"><h4>Árvore de Produto</h4></div>
-      <?php } else { } ?>
-      </div>
-     </div>
-     <div class="col-md-4">
-      <div class="info-box">
-      <?php if ($CadProd === "PP") { ?>
-      <a data-toggle="modal" data-target="#myModal"">
-       <span class="info-box-icon btn-danger">
-        <i class="fa fa-plus"></i>
-       </span>
-      </a>
-      <div class="info-box-content"><br /><h4>Cadastrar Produto</h4></div>
-      <!-- MODAL DE CADASTRO DE FORNECEDOR -->
-      <div id="myModal" class="modal fade" role="dialog">
-       <div class="modal-dialog">
-        <div class="modal-content">
-         <div class="modal-header bg-green-gradient">
-          <button type="button" class="close" data-dismiss="modal">X</button>
-           <h4 class="modal-title">Cadastrar Produto</h4>
-         </div>
-         <div class="modal-body">
-         <form name="itemNovo" id="name" method="post" action="" enctype="multipart/form-data">
-          <div class="col-xs-7 form-group">Nome do item
-            <input class="form-control" type="text" name="ni" required="required">
-          </div>
-          <div class="col-xs-5 form-group">Data de Cadastro
-           <input class="form-control" type="text" disabled="disabled" placeholder="<?php echo $dt; ?>">
-          </div>
-          <div class="col-xs-4">Categoria
-           <select class="form-control" name="cat" required="required">
-            <option value="" selected="selected">SELECIONE</option>
-            <?php while ($user3 = $stmt4->fetch(PDO::FETCH_ASSOC)): ?>
-            <option value="<?php echo $user3['cat_id'] ?>"><?php echo $user3['Categoria'] ?>
-            </option>
-            <?php endwhile; ?>
-           </select>
-          </div>
-          <div class="col-xs-4">Und. de Medida
-          <select class="form-control" name="un" required="required">
-           <option value="" selected="selected">SELECIONE</option>
-           <option value="P">PESO</option>
-           <option value="U">UNIDADE</option>s
-           <option value="L">LITRO</option>
-          </select>
-          </div>
-          <div class="col-xs-4">Quantidade Mínima
-           <input class="form-control" type="text" name="qmin">
-          </div>
-          <div class="col-xs-3">Cod. Comercial
-           <input class="form-control" type="text" name="ccom">
-          </div>
-          <div class="col-xs-3">Cod. Projetos
-           <input class="form-control" type="text" name="cpro">
-          </div>
-          <div class="col-xs-3">Cod. Almox
-           <input class="form-control" type="text" name="calm">
-          </div>  
-          <div class="col-xs-3">Cod. Engenharia
-           <input class="form-control" type="text" name="ceng">
-          </div>
-          <div class="col-xs-4">Fornecedor Padrão
-           <select class="form-control" name="f1" required="required">
-            <option value="" selected="selected">SELECIONE</option>
-            <?php while ($ff1 = $F1->fetch(PDO::FETCH_ASSOC)): ?>
-            <option value="<?php echo $ff1['f_id'] ?>"><?php echo $ff1['f_id'] ?>
-            </option>
-            <?php endwhile; ?>
-            <option value="0">Não informado</option>
-           </select>
-          </div>
-          <div class="col-xs-4">Fornecedor2
-           <select class="form-control" name="f2" required="required">
-            <option value="" selected="selected">SELECIONE</option>
-            <?php while ($ff2 = $F2->fetch(PDO::FETCH_ASSOC)): ?>
-            <option value="<?php echo $ff2['f_id'] ?>"><?php echo $ff2['f_id'] ?>
-            </option>
-            <?php endwhile; ?>
-            <option value="0">Não informado</option>
-           </select>
-          </div>
-          <div class="col-xs-4">Fornecedor Padrão
-           <select class="form-control" name="f3" required="required">
-            <option value="" selected="selected">SELECIONE</option>
-            <?php while ($ff3 = $F3->fetch(PDO::FETCH_ASSOC)): ?>
-            <option value="<?php echo $ff3['f_id'] ?>"><?php echo $ff3['f_id'] ?>
-            </option>
-            <?php endwhile; ?>
-            <option value="0">Não informado</option>
-           </select>
-          </div>
-          <div class="col-xs-12">Observações
-           <textarea name="obs" cols="45" rows="3" class="form-control" id="obs"></textarea><hr>
-          </div>
-          <input name="nitem" type="submit" class="btn btn-success btn-block" id="nitem" value="Finalizar Cadastro Inicial"  />
-         </form>
-          <?php
-          if(@$_POST["nitem"])
-          {
-            $NomItem = $_POST['ni'];          //NOME DO ITEM
-            $UniMedida = $_POST['un'];        //Unidade de Medida
-            $QuantMinima = $_POST['qmin'];    //Unidade de Medida
-            $CodCom = $_POST['ccom'];         //(es_c4)CÓD. DO COMERCIAL
-            $CodPro = $_POST['cpro'];         //(es_c3)CÓD. DO PROJETOS 
-            $CodAlm = $_POST['calm'];         //(es_c2)CÓD. DO ALMOXARIFADO
-            $CodEng = $_POST['ceng'];         //(es_c1)CÓD. DA ENGENHARIA
-            $For1 = $_POST['f1'];             //(es_f1)FORNECEDOR1
-            $For2 = $_POST['f2'];             //(es_f2)FORNECEDOR2
-            $For3 = $_POST['f3'];             //(es_f3)FORNECEDOR3
-            $Categ = $_POST['cat'];           //categoria
-            $Obs = str_replace("\r\n", "<br/>", strip_tags($_POST["obs"]));
-
-            $Campos = "es_nome, es_DataCadastro, es_c1, es_c2, es_c3, es_c4, es_f1, es_f2, es_f3, es_cat, es_obs";
-            
-            $AddItem = $PDO->query("INSERT INTO cad_estoque ($Campos) VALUES ('$NomItem', '$dt', '$CodEng', '$CodAlm', '$CodPro', '$CodCom', '$For1', '#$For2', '$For3', '$Categ', '$Obs')");
-             if($AddItem)
-             {
-              echo '
-              <script type="text/JavaScript">alert("Peça Adicionada Com sucesso");
-              location.href="dashboard.php"</script>';
-             }
-             else
-             {
-             echo '<script type="text/javascript">alert("Não foi possível. Erro: 0x03");</script>';
-             }
-          }
-          ?>
-         </div>
-         <div class="modal-footer">
-         </div>
-        </div>
-       </div>
-      </div>
-           <? } else { } ?>
- 
-      </div>
-     </div>
-     <div class="col-md-12">
-      <div class="info-box">
-       <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
-         <thead>
+      <div class="tab-content">
+       <table id="listaProdutos" class="table table-bordered table-striped table-responsive">
+        <thead>
          <tr>
           <th style="width: 10px">#</th>
           <th style="width: 10%">Cd. Almox.</th>
@@ -306,16 +163,15 @@ $F3->execute();
            endwhile;
          ?>
         </tbody>
-        </table>
-       </div>
+       </table>
       </div>
      </div>
     </div>
-    <?php } else { ?>
+   <?php } else{ ?>
     <div class="col-md-12 col-sm-6 col-xs-12">
      <div class="info-box">
       <a data-toggle="modal" data-target="#myModal"">
-       <span class="info-box-icon bg-black">
+       <span class="info-box-icon bg-red">
         <i class="fa fa-exclamation-triangle"></i>
        </span>
       </a>
@@ -325,40 +181,23 @@ $F3->execute();
       </div>
      </div>
     </div>
-  <?php } ?>
+    <?php } ?>
+   </div>
    </section>
-  </div>
+ </div>
   <?php include_once '../footer.php'; ?>
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery 2.2.3 -->
 <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
 <script src="../bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables -->
 <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
 <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
 <script src="../plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
 <script src="../dist/js/app.min.js"></script>
-<!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
-<!-- page script -->
 <script>
   $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
+    $("#listaProdutos").DataTable();
   });
 </script>
 <script language="JavaScript">
