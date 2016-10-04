@@ -13,31 +13,12 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
-
-
- $privilegio = $PDO->prepare("SELECT * FROM privilegio WHERE idUser='$login'");
- $privilegio->execute();
-  $cp = $privilegio->fetch();
-  $VerTela = $cp['pFornecedor'];
-  $AddFornecedor = $cp['pAddFornecedor'];
-
-
-
-
-
+  include_once '../privilegios.php';
 $dt = date("d/m/Y - H:i:s");
 
 $ChamaFornecedor = "SELECT * FROM fornecedor";
 $Forn = $PDO->prepare($ChamaFornecedor);
 $Forn->execute();
-
-
-$ChamaFornecedor = "SELECT * FROM cadVacina";
-$Forn = $PDO->prepare($ChamaFornecedor);
-$Forn->execute();
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -121,11 +102,11 @@ $Forn->execute();
    </section>
    <section class="content">
    <?php 
-   if ($VerTela === "PP") {
+   if ($vFornecedor === "PP") {
    ?>
    <div class="row">
     <?php
-    if ($AddFornecedor === "PP") {
+    if ($aFornecedor === "PP") {
     ?>
     <div class="col-md-4 col-sm-6 col-xs-12">
      <div class="info-box">

@@ -1,6 +1,7 @@
 <?php 
 $server = 'http://localhost:8888/MeuEstoque';
 $endereco = $_SERVER ['REQUEST_URI']; 
+
 ?>
 <ul class="sidebar-menu">
  <li class="header"></li>
@@ -17,18 +18,21 @@ $endereco = $_SERVER ['REQUEST_URI'];
     </span>
    </a>
    <ul class="treeview-menu">
+    <?php if ($vFornecedor === "PP") { ?>
     <li class="<?php echo $cFornecedor; ?>">
      <a href="<?php echo $server; ?>/fornecedor/dashboard.php">
       <i class="fa fa-briefcase"></i> 
       Fornecedores
      </a>
     </li>
+    <?php } else{ } if ($vTransp === "PP") { ?>
     <li class="<?php echo $cTransportadora; ?>">
      <a href="<?php echo $server; ?>/Transporte.php">
       <i class="fa fa-truck"></i>
       Transportadoras
      </a>
     </li>
+    <?php } else{ } ?>
    </ul>
   </li>
   <li class="<?php echo $cSuporte; ?>">

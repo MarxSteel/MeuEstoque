@@ -12,13 +12,11 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
+  include_once 'privilegios.php';
 
 
- $privilegio = $PDO->prepare("SELECT * FROM privilegio WHERE idUser='$login'");
- $privilegio->execute();
-  $cp = $privilegio->fetch();
-  $VerTela = $cp['pTransportador'];
-  $AddFornecedor = $cp['pAddTransportador'];
+  
+
 
 
 $dt = date("d/m/Y - H:i:s");
@@ -110,11 +108,11 @@ $Forn->execute();
    </section>
    <section class="content">
    <?php 
-   if ($VerTela === "PP") {
+   if ($vTransp === "PP") {
    ?>
    <div class="row">
     <?php
-    if ($AddFornecedor === "PP") {
+    if ($aFornece === "PP") {
     ?>
     <div class="col-md-4 col-sm-6 col-xs-12">
      <div class="info-box">
