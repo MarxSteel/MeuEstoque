@@ -33,4 +33,35 @@ ativo: 		"active"
 inativo:	""
 
 
+4 - ESTOQUE & PRODUTOS
+páginas:
+	fornecedores
+	transportadoras
 
+classes:
+    <li class="treeview <?php echo $cEstoque; ?>">
+ativo:		"active"
+inativo:	""
+
+	- controle de estoque:
+	 <li class="<li class="<?php echo $cContEstoque; ?>">">
+	 ativo:			"active"
+	 inativo:		""
+	- Produtos:
+	 <li class="<?php echo $cProdutos; ?>">
+	 ativo:			"active"
+	 inativo:		""
+	- Produtos:
+	 <li class="<?php echo $cArvore; ?>">
+	 ativo:			"active"
+	 inativo:		""
+
+5 - Cadastro de Notas
+<li class="<?php echo $cNotas; ?>">	
+ativo: 		"active"
+inativo:	""	 
+
+6 - Tabela de produtos
+<li class="<?php echo $cTabela; ?>">	
+ativo: 		"active"
+inativo:	""	 

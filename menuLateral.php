@@ -31,12 +31,12 @@ $endereco = $_SERVER ['REQUEST_URI'];
     </li>
    </ul>
   </li>
-  <li>
+  <li class="<?php echo $cSuporte; ?>">
    <a href="<?php echo $server; ?>/suporte/dashboard.php">
     <i class="fa fa-wrench"></i> <span>Suporte</span>
    </a>
   </li>
-  <li class="treeview">
+  <li class="treeview <?php echo $cEstoque; ?>">
    <a href="#">
     <i class="fa fa-industry"></i><span>Estoque & Produtos</span>
     <span class="pull-right-container">
@@ -44,19 +44,19 @@ $endereco = $_SERVER ['REQUEST_URI'];
     </span>
    </a>
    <ul class="treeview-menu">
-    <li>
+    <li class="<?php echo $cContEstoque; ?>">
      <a href="<?php echo $server; ?>/estoque/dashboard.php">
-      <i class="fa fa-list"></i> 
+     <i class="fa fa-list"></i> 
       Controle de Estoque
      </a>
     </li>
-    <li>
+    <li class="<?php echo $cProdutos; ?>">
      <a href="<?php echo $server; ?>/Produto/dashboard.php">
       <i class="fa a-plus-square"></i>
       Cadastro de Produtos
      </a>
     </li>
-    <li>
+    <li class="<?php echo $cArvore; ?>">
      <a href="<?php echo $server; ?>/Produto/ArvoreProduto.php">
       <i class="fa fa-puzzle-piece"></i>
       Árvore de Produtos
@@ -64,13 +64,13 @@ $endereco = $_SERVER ['REQUEST_URI'];
     </li>
    </ul>
   </li>
-  <li>
-   <a href="<?php echo $server; ?>/fornecedor/dashboard.php">
+  <li class="<?php echo $cNotas; ?>">
+   <a href="<?php echo $server; ?>/notas/dashboard.php">
     <i class="fa fa-file"></i> <span>Controle de Notas</span>
    </a>
   </li>
-  <li>
-   <a href="<?php echo $server; ?>/fornecedor/dashboard.php">
+  <li class="<?php echo $cNotas; ?>">
+   <a href="<?php echo $server; ?>/fornecedor/tabela.php">
     <i class="fa fa-sort-amount-desc"></i> <span>Tabela de Produtos</span>
    </a>
   </li>
