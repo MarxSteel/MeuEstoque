@@ -14,11 +14,13 @@ $PDO = db_connect();
  $privilegio = $PDO->prepare("SELECT * FROM privilegio WHERE idUser='$login'");
  $privilegio->execute();
   $cp = $privilegio->fetch();
+  $vTabela = $cp['TabelaProdutos'];      //VER TABELA DE PRODUTOS (PREF. COM)
+
+
   $VerProdutos = $cp['pProduto'];
   $VProd = $cp['vIP'];            //VER ITENS DE PRODUÇÃO
   $CadProd = $cp['cIProd'];       //CADASTRAR ITENS DE PRODUÇÃO
   $VArPro = $cp['lisArPro'];      //LISTAR ARVORE DE PRODUTO
-  $vTabela = $cp['TabelaProdutos'];      //LISTAR ARVORE DE PRODUTO
 
 $dt = date("d/m/Y - H:i:s");
 $ChamaCat = "SELECT * FROM cad_estoque";
@@ -135,29 +137,25 @@ $F3->execute();
        <table id="listaProdutos" class="table table-bordered table-striped table-responsive">
         <thead>
          <tr>
-          <th style="width: 10px">#</th>
-          <th style="width: 10%">Cd. Almox.</th>
-          <th style="width: 10%">Cd. Eng.</th>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th style="width: 15px">Categoria</th>
-          <th style="width: 60px">UN</th>
-          <th style="width: 50px"></th>
+          <th style="width: 5%">Código</th>
+          <th style="width: 7%">Tipo</th>
+          <th style="width: 35%">Produto</th>
+          <th style="width: 35%">Descrição</th>
+          <th style="width: 10%">Valor</th>
+          <th style="width: 4%"></th>
          </tr>
         </thead>
         <tbody>
          <?php 
           while ($VCat = $Catt->fetch(PDO::FETCH_ASSOC)): 
            echo '<tr>';
-            echo '<td>' . $VCat['id'] . '</td>';
             echo '<td>' . $VCat['es_c2'] . '</td>';
             echo '<td>' . $VCat['es_c1'] . '</td>';
             echo '<td>' . $VCat['es_nome'] . '</td>';
             echo '<td>' . $VCat['es_cat'] . '</td>';
-            echo '<td>' . $VCat['es_cat'] . '</td>';
-            echo '<td>' . $VCat['es_un'] . '</td>';
+            echo '<td>R$' . $VCat['es_preco'] . '</td>';
             echo '<td><a class="btn btn-success btn-block btn-xs" href="';
-            echo "javascript:abrir('AtCat.php?ID=" . $VCat['id'] . "');";
+            echo "javascript:abrir('DetalheProd.php?ID=" . $VCat['id'] . "');";
             echo '"><i class="fa fa-search"> </i></a></td>';
            echo '</tr>';
            endwhile;
