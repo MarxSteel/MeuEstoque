@@ -19,7 +19,7 @@ $endereco = $_SERVER ['REQUEST_URI'];
    <ul class="treeview-menu">
     <li class="<?php echo $cFornecedor; ?>">
      <a href="<?php echo $server; ?>/fornecedor/dashboard.php">
-      <i class="fa fa-briefcase text-red"></i> 
+      <i class="fa fa-briefcase"></i> 
       Fornecedores
      </a>
     </li>
