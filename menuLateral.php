@@ -18,13 +18,13 @@ $endereco = $_SERVER ['REQUEST_URI'];
    </a>
    <ul class="treeview-menu">
     <li class="<?php echo $cFornecedor; ?>">
-     <a href="pages/charts/chartjs.html">
-      <i class="fa fa-briefcase text-red"></i> 
+     <a href="<?php echo $server; ?>/fornecedor/dashboard.php">
+      <i class="fa fa-briefcase"></i> 
       Fornecedores
      </a>
     </li>
     <li class="<?php echo $cTransportadora; ?>">
-     <a href="pages/charts/chartjs.html">
+     <a href="<?php echo $server; ?>/Transporte.php">
       <i class="fa fa-truck"></i>
       Transportadoras
      </a>
