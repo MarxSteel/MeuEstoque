@@ -1,6 +1,7 @@
 <?php
 //MENU LATERAL ATIVO
-$cNotas = "active";
+$cEstoque = "active";
+$cContEstoque = "active";
 
 
 require("../restritos.php"); 
