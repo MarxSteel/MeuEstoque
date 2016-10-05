@@ -23,11 +23,7 @@
     $CEP = $campo['CEP'];
     $Cidade = $campo['Cidade'];
     $Estado = $campo['UF'];
-    $Obs = $campo['Nome'];
-
-
-
-
+    $Obs = $campo['Obs'];
 ?>
 <!DOCTYPE html>
 <html>
