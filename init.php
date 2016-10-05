@@ -30,7 +30,7 @@ error_reporting(E_ALL);
 
 date_default_timezone_set('America/Sao_Paulo');
 
-$cor = "skin-red";
+$cor = "skin-blue";
 $Titulo = "Henry Controle de Estoque";
 // MENSAGENS DE PROTOCOLO
  //ERRO AO CRIAR SOCKET
