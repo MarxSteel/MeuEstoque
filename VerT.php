@@ -9,24 +9,21 @@
    $foto = $row['Foto'];
 
    $cF = $_GET['ID'];
-   $dFor = $PDO->prepare("SELECT * FROM fornecedor WHERE f_id='$cF'");
+   $dFor = $PDO->prepare("SELECT * FROM transporte WHERE id_transp='$cF'");
    $dFor->execute();
     $campo = $dFor->fetch();
-    $NomeCompleto = $campo['f_Nome'];
-    $Doc = $campo['f_CNPJ'];
-    $Tipo = $campo['f_Tipo'];
+    $NomeCompleto = $campo['Nome'];
+    $Doc = $campo['Nome'];
+    $Tipo = $campo['Tipo'];
     $DtCadastro = $campo['DataCadastro'];
     //DADOS DE ENDEREÇO
-    $End = $campo['f_End'];
-    $Num = $campo['f_Num'];
-    $Bairro = $campo['f_Bairro'];
-    $CEP = $campo['f_CEP'];
-    $Cidade = $campo['f_Cidade'];
-    $Estado = $campo['f_UF'];
-    $Mail = $campo['f_Mail'];
-    $F1 = $campo['f_Fone'];
-    $F2 = $campo['f_Celular'];
-    $Obs = $campo['Obs'];
+    $End = $campo['End'];
+    $Num = $campo['Num'];
+    $Bairro = $campo['Bairro'];
+    $CEP = $campo['CEP'];
+    $Cidade = $campo['Cidade'];
+    $Estado = $campo['UF'];
+    $Obs = $campo['Nome'];
 
 
 
@@ -90,11 +87,15 @@
        <?php 
         if ($Tipo === "1") {
           echo '<button href="#" class="btn bg-olive btn-block">
-          FORNECEDOR NACIONAL</button>';
+          AÉREO</button>';
         }
         elseif ($Tipo === "2") {
           echo '<button href="#" class="btn bg-aqua btn-block">
-          FORNECEDOR INTERNACIONAL</button>';
+          MARÍTIMO</button>';
+        }
+        elseif ($Tipo === "3") {
+          echo '<button href="#" class="btn bg-black btn-block">
+          TERRESTRE</button>';
         }
         else{
         }
@@ -109,17 +110,12 @@
        <b>Bairro / CEP:</b>
        <a class="pull-right"><?php echo $Bairro . ' / '. $CEP; ?></a>
        <br />
+       <b>CEP:</b>
+       <a class="pull-right"><?php echo $CEP; ?></a>
+       <br />
        <b>Cidade:</b>
        <a class="pull-right"><?php echo $Cidade . ' - ' . $Estado; ?></a>
        <br />
-       <b>E-Mail:</b>
-       <a class="pull-right"><?php echo $Mail; ?></a>
-       <br />
-       <b>Telefone 1:</b>
-       <a class="pull-right"><?php echo $F1; ?></a>
-       <br />
-       <b>Telefone 2:</b>
-       <a class="pull-right"><?php echo $F2; ?></a>
       </li>
      </div>
      <div class="col-xs-12"><h4>Observações</h4></div>
