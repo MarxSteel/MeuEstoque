@@ -7,6 +7,18 @@
    $row = $query->fetch();
    $NomeUserLogado = $row['Nome'];
    $foto = $row['Foto'];
+
+   $cF = $_GET['ID'];
+   $dFor = $PDO->prepare("SELECT * FROM fornecedor WHERE f_id='$cF'");
+   $dFor->execute();
+    $campo = $dFor->fetch();
+    $NomeCompleto = $campo['f_Nome'];
+    $Doc = $campo['f_CNPJ'];
+    $Tipo = $campo['f_Tipo'];
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,7 +64,29 @@
        <small><?php echo $Titulo; ?></small>
      </div>
      <div class="box-body">
-     Corpo de Conteúdo
+     <div class="col-xs-12"><h3><?php echo $NomeCompleto; ?></h3></div>
+     <div class="col-xs-6">
+      <li class="list-group-item">
+       <b>Documento:</b><a class="pull-right"><?php echo $Doc; ?></a>
+      </li>
+     </div>
+     <div class="col-xs-6">
+      <li class="list-group-item">
+       <b>Tipo:</b>
+       <a class="pull-right">
+       <?php 
+        if ($Tipo === "1") {
+          echo '<button href="#" class="btn btn-danger disabled">NACIONAL</button>';
+        }
+        elseif ($Tipo === "2") {
+          echo '<button href="#" class="btn btn-primary disabled">INTERNACIONAL</button>';
+        }
+        else{
+        }
+       ?>
+       </a>
+
+      </li>
      </div>
     </div>
    </section>
