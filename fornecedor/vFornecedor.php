@@ -15,6 +15,18 @@
     $NomeCompleto = $campo['f_Nome'];
     $Doc = $campo['f_CNPJ'];
     $Tipo = $campo['f_Tipo'];
+    $DtCadastro = $campo['DataCadastro'];
+    //DADOS DE ENDEREÇO
+    $End = $campo['f_End'];
+    $Num = $campo['f_Num'];
+    $Bairro = $campo['f_Bairro'];
+    $CEP = $campo['f_CEP'];
+    $Cidade = $campo['f_Cidade'];
+    $Estado = $campo['f_UF'];
+    $Mail = $campo['f_Mail'];
+    $F1 = $campo['f_Fone'];
+    $F2 = $campo['f_Celular'];
+    $Obs = $campo['Obs'];
 
 
 
@@ -67,25 +79,53 @@
      <div class="col-xs-12"><h3><?php echo $NomeCompleto; ?></h3></div>
      <div class="col-xs-6">
       <li class="list-group-item">
-       <b>Documento:</b><a class="pull-right"><?php echo $Doc; ?></a>
+       <b>Documento:</b>
+        <a class="pull-right"><?php echo $Doc; ?></a><br />
       </li>
-     </div>
-     <div class="col-xs-6">
       <li class="list-group-item">
-       <b>Tipo:</b>
-       <a class="pull-right">
+       <b>Data de Cadastro:</b>
+        <a class="pull-right"><?php echo $DtCadastro; ?></a>
+      </li>
+      <li class="list-group-item">
        <?php 
         if ($Tipo === "1") {
-          echo '<button href="#" class="btn btn-danger disabled">NACIONAL</button>';
+          echo '<button href="#" class="btn bg-olive btn-block">
+          FORNECEDOR NACIONAL</button>';
         }
         elseif ($Tipo === "2") {
-          echo '<button href="#" class="btn btn-primary disabled">INTERNACIONAL</button>';
+          echo '<button href="#" class="btn bg-aqua btn-block">
+          FORNECEDOR INTERNACIONAL</button>';
         }
         else{
         }
        ?>
-       </a>
-
+      </li>
+     </div>
+     <div class="col-xs-6">
+      <li class="list-group-item">
+       <b>Endereço:</b>
+       <a class="pull-right"><?php echo $End . ', ' . $Num; ?></a>
+       <br />
+       <b>Bairro / CEP:</b>
+       <a class="pull-right"><?php echo $Bairro . ' / '. $CEP; ?></a>
+       <br />
+       <b>Cidade:</b>
+       <a class="pull-right"><?php echo $Cidade . ' - ' . $Estado; ?></a>
+       <br />
+       <b>E-Mail:</b>
+       <a class="pull-right"><?php echo $Mail; ?></a>
+       <br />
+       <b>Telefone 1:</b>
+       <a class="pull-right"><?php echo $F1; ?></a>
+       <br />
+       <b>Telefone 2:</b>
+       <a class="pull-right"><?php echo $F2; ?></a>
+      </li>
+     </div>
+     <div class="col-xs-12"><h4>Observações</h4></div>
+     <div class="col-xs-12">
+      <li class="list-group-item">
+      <?php echo $Obs; ?>
       </li>
      </div>
     </div>
