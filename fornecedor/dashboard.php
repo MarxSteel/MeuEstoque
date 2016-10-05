@@ -1,10 +1,7 @@
 <?php
 //MENU LATERAL ATIVO
-
 $cLogistica = "active";
 $cFornecedor = "active";
-
-
 require("../restritos.php"); 
 require_once '../init.php';
 $PDO = db_connect();
@@ -13,7 +10,7 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
-  include_once '../privilegios.php';
+include_once '../privilegios.php';
 $dt = date("d/m/Y - H:i:s");
 
 $ChamaFornecedor = "SELECT * FROM fornecedor";
@@ -210,7 +207,7 @@ $Forn->execute();
             }
             ?>
             <td>
-            <a class="btn btn-default btn-xs btn-block" href="javascript:abrir('CadFornecedor.php?ID=<?php echo $VFor['f_id']; ?>');">
+            <a class="btn btn-default btn-xs btn-block" href="javascript:abrir('vFornecedor.php?ID=<?php echo $VFor['f_id']; ?>');">
              <i class="fa fa-search"> Visualizar</i>
             </a>
             </td>

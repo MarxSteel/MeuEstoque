@@ -8,6 +8,8 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
+require_once 'privilegios.php';
+
 ?>
 <!DOCTYPE html>
 <html>
