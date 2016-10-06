@@ -11,15 +11,9 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
+  $dt = date('d/m/Y H:i:s');
+  require_once '../privilegios.php';
 
-
- $privilegio = $PDO->prepare("SELECT * FROM privilegio WHERE idUser='$login'");
- $privilegio->execute();
-  $cp = $privilegio->fetch();
-  $VerProdutos = $cp['pProduto'];
-  $VProd = $cp['vIP'];            //VER ITENS DE PRODUÇÃO
-  $CadProd = $cp['cIProd'];       //CADASTRAR ITENS DE PRODUÇÃO
-  $VArPro = $cp['lisArPro'];      //LISTAR ARVORE DE PRODUTO
 ?>
 <!DOCTYPE html>
 <html>
@@ -110,32 +104,19 @@ $PDO = db_connect();
        <span class="info-box-icon btn-primary">
         <i class="fa fa-plus"></i>
        </span>
-      </a>ADICIONAR ATENDIMENTO
+      </a>
+      <div class="info-box-content"><br /><h4>Cadastrar Atendimento</h4></div>
      </div>
     </div>
-    <div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="col-md-8">
      <div class="info-box">
-      <a data-toggle="modal" data-target="#myModal"">
-       <span class="info-box-icon btn-primary">
-        <i class="fa fa-plus"></i>
-       </span>
-      </a>ADICIONAR EQUIPAMENTO
      </div>
     </div>
-    <div class="col-md-4 col-sm-6 col-xs-12">
-     <div class="info-box">
-      <a data-toggle="modal" data-target="#myModal"">
-       <span class="info-box-icon btn-primary">
-        <i class="fa fa-plus"></i>
-       </span>
-      </a>NOVO FIRMWARE
-     </div>
-    </div>
-   <div class="col-md-6">
+   <div class="col-md-12">
     <div class="nav-tabs-custom">
      <div class="box-header with-border">
       <i class="fa fa-warning"></i>
-       <h3 class="box-title">Suporte Técnico</h3>
+       <h3 class="box-title">Histórico de Atendimentos</h3>
      </div>
      <ul class="nav nav-tabs">
       <li class="active"><a href="#geral" data-toggle="tab">Geral</a></li>
@@ -155,26 +136,69 @@ $PDO = db_connect();
      </div>
     </div>
    </div>
-   <div class="col-md-6">
-    <div class="nav-tabs-custom">
-     <div class="box-header with-border">
-      <i class="fa fa-warning"></i>
-      <h3 class="box-title">Controle de Firmware</h3>
-     </div>
-     <ul class="nav nav-tabs">
-      <li class="active"><a href="#linha" data-toggle="tab">Linha</a></li>
-      <li><a href="#fesp" data-toggle="tab">Especial</a></li>
-     </ul>
-     <div class="tab-content">
-      <div class="tab-pane active" id="linha">
-      <?php include_once'tabelaFwLinha.php'; ?>
+      <!-- MODAL DE CADASTRO DE ATENDIMENTO -->
+      <div id="myModal" class="modal fade" role="dialog">
+       <div class="modal-dialog">
+        <div class="modal-content">
+         <div class="modal-header bg-aqua-gradient">
+          <button type="button" class="close" data-dismiss="modal">X</button>
+           <h4 class="modal-title">Cadastrar Atendimento</h4>
+         </div>
+         <div class="modal-body">
+          <form name="EdCad" id="name" method="post" action="" enctype="multipart/form-data">
+           <div class="col-xs-12 form-group">Nome da Revenda
+            <input class="form-control" type="text" name="nm" required="required">
+           </div>
+           <div class="col-xs-7 form-group">Status do Atendimento
+            <select class="form-control" name="status" required="required">
+             <option value="" selected="selected">SELECIONE</option>
+             <option value="1">Solucionado</option>
+             <option value="2">Não Solucionado (encaminhado à Henry)</option>
+             <option value="3">Pendente</option>
+             <option value="4">Não Solucionado</option>
+            </select>
+           </div>
+           <div class="col-xs-5 form-group">Data de Cadastro
+            <input class="form-control" type="text" disabled="disabled" placeholder="<?php echo $dt; ?>">
+           </div>
+           <div class="col-xs-12"><strong>Atendimento</strong>
+            <textarea name="obs" cols="45" rows="3" class="form-control"></textarea>
+           </div>
+           <div class="col-xs-12"><strong>Solução</strong>
+            <textarea name="obs" cols="45" rows="3" class="form-control"></textarea><hr>
+           </div>
+           <div class="pull-right">
+            <input name="Tsenha" type="submit" class="btn bg-aqua" id="Tsenha" value="CADASTRAR ATENDIMENTO"  /> 
+            <button type="button" class="btn btn-danger" data-dismiss="modal">FECHAR</button>
+           </div>
+          </form>
+          <?php
+           if(@$_POST["Tsenha"]){
+            $nomeCat = $_POST["nm"];
+            $tipo = $_POST["tp"];
+            $Obs = str_replace("\r\n", "<br/>", strip_tags($_POST["obs"]));
+            $AddCat = $PDO->query("INSERT INTO fornecedor (f_Nome, Obs, DataCadastro, f_Tipo) VALUES ('$nomeCat', '$Obs', '$dt', '$tipo')");
+            if($AddCat)
+             {
+              echo '
+              <script type="text/JavaScript">alert("Fornecedor Cadastrado com Sucesso");
+              location.href="dashboard.php"</script>';
+             }
+             else{
+             echo '<script type="text/javascript">alert("Não foi possível. Erro: 0x03");</script>';
+             }
+           }
+          ?>
+         </div>
+         <div class="modal-footer">
+         </div>
+        </div>
+       </div>
       </div>
-      <div class="tab-pane" id="fesp">
-      <?php include_once'tabelaFwEsp.php'; ?>
-      </div>
-     </div>
-    </div>
-   </div>
+      <!-- FIM DO MODAL DE CADASTRO DE ATENDIMENTO -->
+
+
+
   </div>
  </section>
 </div>
