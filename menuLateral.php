@@ -48,7 +48,7 @@ $endereco = $_SERVER ['REQUEST_URI'];
    </a>
   </li>
   <?php } else{ } ?>
-  <li class="treeview <?php echo $cEngenharia; ?>">
+  <li class="treeview <?php echo $cEstoque; ?>">
    <a href="#">
     <i class="fa fa-industry"></i><span>Estoque & Produtos</span>
     <span class="pull-right-container">
