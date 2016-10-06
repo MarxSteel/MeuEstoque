@@ -40,7 +40,7 @@ echo '<thead>
   }
   ?>
   <td>
-   <a class="btn btn-info btn-sm" href="javascript:abrir('VEst.php?ID=<?php echo $R["id"]; ?>');">
+   <a class="btn btn-info btn-sm" href="javascript:abrir('vAtend.php?ID=<?php echo $R["id"]; ?>');">
     <i class="fa fa-search"> Visualizar</i>
    </a>
   </td>
