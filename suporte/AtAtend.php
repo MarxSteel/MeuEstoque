@@ -20,6 +20,8 @@
     $St = $campo['Status'];
     $Obs = $campo['Atendimento'];
     $Sol = $campo['Solucao'];
+    $dt = date('d/m/Y H:i:s');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,70 +66,115 @@
       <h3 class="box-title">Suporte Técnico - Detalhes de Atendimento: <code><strong><?php echo $CodAt; ?></strong></code></h3>
      </div>
      <div class="box-body">
-     <div class="col-xs-6">
-      <li class="list-group-item">
-       <b>Revenda:</b>
-        <a class="pull-right"><?php echo $Revenda; ?></a><br />
-      </li>
-      <li class="list-group-item">
-       <b>Atendente:</b>
-        <a class="pull-right"><?php echo $Atendente; ?></a><br />
-      </li>
-      <li class="list-group-item">
-       <b>Data de Cadastro:</b>
-        <a class="pull-right"><?php echo $DtCadastro; ?></a>
-      </li>
-     </div>
-     <div class="col-xs-6">
-      <li class="list-group-item">
-       <?php 
-       if ($TipoSuporte === "1") {
-         echo '<button class="btn btn-sm bg-purple btn-flat btn-block" href="#">ATENDIMENTO</button>';
-       }
-       elseif ($TipoSuporte === "2") {
-         echo '<button class="btn btn-sm bg-navy btn-flat btn-block" href="#">RETORNO DE ASSISTENCIA</button>';
-       }
-       elseif ($TipoSuporte === "3") {
-         echo '<button class="btn btn-sm bg-default btn-flat btn-block" href="#">RETORNO DE ASSISTENCIA</button>';
-       }
-       else{
-
-       }
-       ?>
-      </li>
-      <li class="list-group-item">
-      </li>
-      <li class="list-group-item">
+     <?php
+     if ($CodAt === '1') {
+       echo $NAtAtend;
+     }
+     else{
+     ?>
+      <div class="col-xs-8"><strong>Revenda:</strong>
+      <?php echo $Revenda; ?>
+      </div>
+      <div class="col-xs-4"><strong>Data de Cadastro:</strong>
+      <?php echo $DtCadastro; ?>
+      </div>
+      <div class="col-xs-4"><strong>Atendente:</strong>
+      <?php echo $Atendente; ?>
+      </div>
+      <div class="col-xs-3"><strong>Tipo:</strong>
       <?php 
-      if ($St === "1") {
-        echo '<button class="btn bg-green btn-sm btn-block btn-flat" href="#">SOLUCIONADO</button>';
-      }
-      elseif ($St === "2") {
-        echo '<button class="btn btn-primary btn-sm btn-block btn-flat" href="#">ENCAMINHADO À HENRY</button>';
-      }
-      elseif ($St === "3") {
-        echo '<button class="btn bg-orange btn-sm btn-block btn-flat" href="#">PENDENTE</button>';
-      }
-      elseif ($St === "4") {
-        echo '<button class="btn bg-red btn-sm btn-block btn-flat" href="#">NÃO SOLUCIONADO</button>';
-      } 
-      else{
-      }
+        if ($TipoSuporte === "1") {
+          echo "ATENDIMENTO";
+        }
+        elseif ($TipoSuporte === "2") {
+          echo "RETORNO DE ASSISTENCIA";
+        }
+        elseif ($TipoSuporte === "3") {
+          echo "PEÇA";
+        } 
+        else{
+
+        }
       ?>
-      </li>
-     </div>
-     <div class="col-xs-12"><h4>Descrição do Problema</h4></div>
-     <div class="col-xs-12">
-      <li class="list-group-item">
-      <?php echo $Obs; ?>
-      </li>
-     </div>
-     <div class="col-xs-12"><h4>Orientação do Suporte</h4></div>
-     <div class="col-xs-12">
-      <li class="list-group-item">
-      <?php echo $Sol; ?>
-      </li>
-     </div>
+      </div>
+      <div class="col-xs-5"><strong>Status de Atend.:</strong>
+      <?php 
+        if ($St === "1") {
+          echo "SOLUCIONADO";
+        }
+        elseif ($St === "2") {
+          echo "NÃO SOLUCIONADO (ENVIADO À HENRY)";
+        }
+        elseif ($St === "3") {
+          echo "PENDENTE";
+        } 
+        elseif ($St === "4") {
+          echo "NÃO SOLUCIONADO";
+        } 
+        else{
+
+        }
+      ?>
+      </div>
+      <div class="col-xs-12">
+        <h3>Atendimento</h3>
+      </div>
+      <div class="col-xs-6">Descrição
+       <li class="list-group-item">
+        <?php echo $Obs; ?>
+       </li>
+      </div>
+      <div class="col-xs-6">Atendimento
+       <li class="list-group-item">
+        <?php echo $Sol; ?>
+       </li>
+      </div>
+      <div class="col-xs-12">
+        <h3>Revisão</h3>
+      </div>
+     <form name="AttAtend" id="AtAtend" method="post" action="" enctype="multipart/form-data">
+      <div class="col-xs-7 form-group">Status do Atendimento
+       <select class="form-control" name="status" required="required">
+        <option value="" selected="selected">SELECIONE</option>
+        <option value="1">Solucionado</option>
+        <option value="2">Não Solucionado (encaminhado à Henry)</option>
+        <option value="3">Pendente</option>
+        <option value="4">Não Solucionado</option>
+       </select>
+      </div>
+      <div class="col-xs-5">Nova Data
+      <input type="text" class="form-control" disabled placeholder="<?php echo $dt; ?>">
+      </div>
+      <div class="col-xs-12"><strong>Descrição</strong>
+       <textarea name="sol" cols="45" rows="3" class="form-control"></textarea><hr>
+      </div>
+      <div class="pull-right">
+       <input name="Tsenha" type="submit" class="btn bg-aqua" id="Tsenha" value="ATUALIZAR ATENDIMENTO"  /> 
+      </div>
+     </form>
+     <?php 
+      if(@$_POST["Tsenha"]){
+       $nRevenda = $_POST["nm"];
+        $novoStatus = $_POST["status"];
+        $Dado = "<br /><strong>Novo Atendimento: </strong><br />Data: " . $dt . " <code>" . $NomeUserLogado . "</code>: <br /> ";
+        $NovaObs = str_replace("\r\n", "<br/>", strip_tags($_POST["sol"]));
+        $Valor = $Sol . $Dado . $NovaObs;
+        $Atualiza = $PDO->query("UPDATE suporte SET Status='$novoStatus', solucao='$Valor' WHERE id='$CodAt'");  
+         if ($Atualiza) {
+           echo '<script type="text/javascript">alert("Atualizado!");</script>';
+           echo '<script type="text/javascript">window.close();</script>';
+          }
+          else{
+           echo '<script type="text/javascript">alert("NÃO FOI POSSÍVEL ATUALIZAR");</script>';
+          }
+
+
+      }
+
+
+
+
+     } ?>
     </div>
    </section>
   </div>
