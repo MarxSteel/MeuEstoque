@@ -9,6 +9,7 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
+  $dt = date('d/m/Y H:i:s');
   require_once '../privilegios.php';
 ?>
 <!DOCTYPE html>
@@ -90,10 +91,141 @@ $PDO = db_connect();
   </aside>
   <div class="content-wrapper">
    <section class="content-header">
-    <h1>Engenharia<small><?php echo $Titulo; ?></small></h1>
+    <h1>Engenharia > Controle de Firmware<small><?php echo $Titulo; ?></small></h1>
    </section>
    <section class="content">
    <div class="row">
+   <?php
+    if ($aSuporte === "PP") {
+   ?>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+     <div class="info-box">
+      <a data-toggle="modal" data-target="#myModal"">
+       <span class="info-box-icon bg-red">
+        <i class="fa fa-plus"></i>
+       </span>
+      </a>
+      <div class="info-box-content"><br /><h4>Firmware de Linha</h4></div>
+     </div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+     <div class="info-box">
+      <a data-toggle="modal" data-target="#myModal"">
+       <span class="info-box-icon bg-yellow">
+        <i class="fa fa-plus"></i>
+       </span>
+      </a>
+      <div class="info-box-content"><br /><h4>Firmware Especial</h4></div>
+     </div>
+    </div>
+    <div class="col-md-4">
+     <div class="info-box">
+     <center>
+      <img src="../dist/img/logo/logoBlack.png" width="210">
+     </center>
+     </div>
+    </div>
+   <div class="col-md-12">
+    <div class="nav-tabs-custom">
+     <div class="box-header with-border">
+      <i class="fa fa-warning"></i>
+       <h3 class="box-title">Histórico de Cadastros</h3>
+     </div>
+     <ul class="nav nav-tabs">
+      <li class="active"><a href="#geral" data-toggle="tab">Firmware de Linha</a></li>
+      <li><a href="#atp" data-toggle="tab">Firmware Especial</a></li>
+     </ul>
+     <div class="tab-content">
+      <div class="tab-pane active" id="geral">
+      <?php include_once'tabelaFwLinha.php'; ?>
+      </div>
+      <div class="tab-pane" id="atp">
+      <?php include_once'tabelaFwEspecial.php'; ?>
+      </div>
+     </div>
+    </div>
+   </div>
+    <?php } else{ echo $SemPrivilegio; } ?><!-- validando privilegio -->
+      <!-- MODAL DE CADASTRO DE ATENDIMENTO -->
+      <div id="myModal" class="modal fade" role="dialog">
+       <div class="modal-dialog">
+        <div class="modal-content">
+         <div class="modal-header bg-aqua-gradient">
+          <button type="button" class="close" data-dismiss="modal">X</button>
+           <h4 class="modal-title">Cadastrar Firmware de Linha</h4>
+         </div>
+         <div class="modal-body">
+          <form name="EdCad" id="name" method="post" action="" enctype="multipart/form-data">
+           <div class="col-xs-8 form-group">Nome da Revenda
+            <input class="form-control" type="text" name="nm" required="required">
+           </div>
+           <div class="col-xs-4 form-group">Tipo de Atendimento
+            <select class="form-control" name="tipoat" required="required">
+             <option value="" selected="selected">SELECIONE</option>
+             <option value="1">ATENDIMENTO</option>
+             <option value="2">RETORNO DE ASSIST.</option>
+             <option value="3">PEÇA</option>
+            </select>
+           </div>
+           <div class="col-xs-7 form-group">Status do Atendimento
+            <select class="form-control" name="status" required="required">
+             <option value="" selected="selected">SELECIONE</option>
+             <option value="1">Solucionado</option>
+             <option value="2">Não Solucionado (encaminhado à Henry)</option>
+             <option value="3">Pendente</option>
+             <option value="4">Não Solucionado</option>
+            </select>
+           </div>
+           <div class="col-xs-5 form-group">Data de Cadastro
+            <input class="form-control" type="text" disabled="disabled" placeholder="<?php echo $dt; ?>">
+           </div>
+           <div class="col-xs-12"><strong>Atendimento</strong>
+            <textarea name="obs" cols="45" rows="3" class="form-control"></textarea>
+           </div>
+           <div class="col-xs-12"><strong>Solução</strong>
+            <textarea name="sol" cols="45" rows="3" class="form-control"></textarea><hr>
+           </div>
+           <div class="pull-right">
+            <input name="Tsenha" type="submit" class="btn bg-aqua" id="Tsenha" value="CADASTRAR ATENDIMENTO"  /> 
+            <button type="button" class="btn btn-danger" data-dismiss="modal">FECHAR</button>
+           </div>
+          </form>
+          <?php
+           if(@$_POST["Tsenha"]){
+            $nRevenda = $_POST["nm"];
+            $nStatus = $_POST["status"];
+            $nTipo = $_POST["tipoat"];
+            $Obs = str_replace("\r\n", "<br/>", strip_tags($_POST["obs"]));
+            $Sol = str_replace("\r\n", "<br/>", strip_tags($_POST["sol"]));
+            $Atend = "Descr.:" . $Obs . "<br/>Atend.: " . $Sol; 
+            $vLog = "NOVO ATENDIMENTO:<br />" . $Valor;
+
+
+            $AddCat = $PDO->query("INSERT INTO suporte (NomeTec, Revenda, Atendimento, Solucao, Status, DataCadastro, TipoSup) VALUES ('$NomeUserLogado', '$nRevenda', '$Obs', '$Sol', '$nStatus', '$dt', '$nTipo')");
+            if($AddCat)
+             {
+              $SalvaLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '101', '$dt', '$vLog')");
+              if ($SalvaLog) {
+              echo '
+              <script type="text/JavaScript">alert("Atendimento Cadatrado com Sucesso!");
+              location.href="dashboard.php"</script>';
+              }
+              else{
+                echo '<script type="text/javascript">alert("ERRO AO SALVAR LOG");</script>';
+              }
+             }
+             else{
+             echo '<script type="text/javascript">alert("Não foi possível. Erro: 0x03");</script>';
+             }
+           }
+          ?>
+         </div>
+         <div class="modal-footer">
+         </div>
+        </div>
+       </div>
+      </div>
+      <!-- FIM DO MODAL DE CADASTRO DE ATENDIMENTO -->
   </div>
  </section>
 </div>
@@ -112,7 +244,9 @@ $PDO = db_connect();
 <!-- page script -->
 <script>
   $(function () {
-    $("#example1").DataTable();
+    $("#tabEstr").DataTable();
+    $("#tabFinal").DataTable();
+    $("#tabGeral").DataTable();
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
