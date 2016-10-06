@@ -8,22 +8,18 @@
    $NomeUserLogado = $row['Nome'];
    $foto = $row['Foto'];
 
-   $cF = $_GET['ID'];
-   $dFor = $PDO->prepare("SELECT * FROM transporte WHERE id_transp='$cF'");
+   $CodAt = $_GET['ID'];
+   $dFor = $PDO->prepare("SELECT * FROM suporte WHERE id='$CodAt'");
    $dFor->execute();
     $campo = $dFor->fetch();
-    $NomeCompleto = $campo['Nome'];
-    $Doc = $campo['Nome'];
-    $Tipo = $campo['Tipo'];
+    $Atendente = $campo['NomeTec'];
+    $Revenda = $campo['Revenda'];
+    $Tipo = $campo['NomeTec'];
     $DtCadastro = $campo['DataCadastro'];
-    //DADOS DE ENDEREÇO
-    $End = $campo['End'];
-    $Num = $campo['Num'];
-    $Bairro = $campo['Bairro'];
-    $CEP = $campo['CEP'];
-    $Cidade = $campo['Cidade'];
-    $Estado = $campo['UF'];
-    $Obs = $campo['Obs'];
+    $TipoSuporte = $campo['TipoSup'];
+    $St = $campo['Status'];
+    $Obs = $campo['Atendimento'];
+    $Sol = $campo['Solucao'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,59 +61,71 @@
    <section class="content">
     <div class="box box-default">
      <div class="box-header with-border">
-      <h3 class="box-title">Fornecedores > Ver Fornecedor</h3>
-       <small><?php echo $Titulo; ?></small>
+      <h3 class="box-title">Suporte Técnico - Detalhes de Atendimento: <code><strong><?php echo $CodAt; ?></strong></code></h3>
      </div>
      <div class="box-body">
-     <div class="col-xs-12"><h3><?php echo $NomeCompleto; ?></h3></div>
      <div class="col-xs-6">
       <li class="list-group-item">
-       <b>Documento:</b>
-        <a class="pull-right"><?php echo $Doc; ?></a><br />
+       <b>Revenda:</b>
+        <a class="pull-right"><?php echo $Revenda; ?></a><br />
+      </li>
+      <li class="list-group-item">
+       <b>Atendente:</b>
+        <a class="pull-right"><?php echo $Atendente; ?></a><br />
       </li>
       <li class="list-group-item">
        <b>Data de Cadastro:</b>
         <a class="pull-right"><?php echo $DtCadastro; ?></a>
       </li>
-      <li class="list-group-item">
-       <?php 
-        if ($Tipo === "1") {
-          echo '<button href="../#" class="btn bg-olive btn-block">
-          AÉREO</button>';
-        }
-        elseif ($Tipo === "2") {
-          echo '<button href="../#" class="btn bg-aqua btn-block">
-          MARÍTIMO</button>';
-        }
-        elseif ($Tipo === "3") {
-          echo '<button href="../#" class="btn bg-black btn-block">
-          TERRESTRE</button>';
-        }
-        else{
-        }
-       ?>
-      </li>
      </div>
      <div class="col-xs-6">
       <li class="list-group-item">
-       <b>Endereço:</b>
-       <a class="pull-right"><?php echo $End . ', ' . $Num; ?></a>
-       <br />
-       <b>Bairro / CEP:</b>
-       <a class="pull-right"><?php echo $Bairro . ' / '. $CEP; ?></a>
-       <br />
-       <b>CEP:</b>
-       <a class="pull-right"><?php echo $CEP; ?></a>
-       <br />
-       <b>Cidade:</b>
-       <a class="pull-right"><?php echo $Cidade . ' - ' . $Estado; ?></a>
-       <br />
+       <?php 
+       if ($TipoSuporte === "1") {
+         echo '<button class="btn btn-sm bg-purple btn-flat btn-block" href="#">ATENDIMENTO</button>';
+       }
+       elseif ($TipoSuporte === "2") {
+         echo '<button class="btn btn-sm bg-navy btn-flat btn-block" href="#">RETORNO DE ASSISTENCIA</button>';
+       }
+       elseif ($TipoSuporte === "3") {
+         echo '<button class="btn btn-sm bg-default btn-flat btn-block" href="#">RETORNO DE ASSISTENCIA</button>';
+       }
+       else{
+
+       }
+       ?>
+      </li>
+      <li class="list-group-item">
+      </li>
+      <li class="list-group-item">
+      <?php 
+      if ($St === "1") {
+        echo '<button class="btn bg-green btn-sm btn-block btn-flat" href="#">SOLUCIONADO</button>';
+      }
+      elseif ($St === "2") {
+        echo '<button class="btn btn-primary btn-sm btn-block btn-flat" href="#">ENCAMINHADO À HENRY</button>';
+      }
+      elseif ($St === "3") {
+        echo '<button class="btn bg-orange btn-sm btn-block btn-flat" href="#">PENDENTE</button>';
+      }
+      elseif ($St === "4") {
+        echo '<button class="btn bg-red btn-sm btn-block btn-flat" href="#">NÃO SOLUCIONADO</button>';
+      } 
+      else{
+      }
+      ?>
       </li>
      </div>
-     <div class="col-xs-12"><h4>Observações</h4></div>
+     <div class="col-xs-12"><h4>Descrição do Problema</h4></div>
      <div class="col-xs-12">
       <li class="list-group-item">
       <?php echo $Obs; ?>
+      </li>
+     </div>
+     <div class="col-xs-12"><h4>Orientação do Suporte</h4></div>
+     <div class="col-xs-12">
+      <li class="list-group-item">
+      <?php echo $Sol; ?>
       </li>
      </div>
     </div>
