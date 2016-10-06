@@ -32,8 +32,12 @@ inativo:	""
 ativo: 		"active"
 inativo:	""
 
+4 - Engenharia
+<li class="<?php echo $cEngenharia; ?>">	
+ativo: 		"active"
+inativo:	""
 
-4 - ESTOQUE & PRODUTOS
+5 - ESTOQUE & PRODUTOS
 páginas:
 	fornecedores
 	transportadoras
@@ -56,12 +60,12 @@ inativo:	""
 	 ativo:			"active"
 	 inativo:		""
 
-5 - Cadastro de Notas
+6 - Cadastro de Notas
 <li class="<?php echo $cNotas; ?>">	
 ativo: 		"active"
 inativo:	""	 
 
-6 - Tabela de produtos
+7 - Tabela de produtos
 <li class="<?php echo $cTabela; ?>">	
 ativo: 		"active"
 inativo:	""	 

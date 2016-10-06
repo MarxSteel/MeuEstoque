@@ -35,17 +35,21 @@ $endereco = $_SERVER ['REQUEST_URI'];
     <?php } else{ } ?>
    </ul>
   </li>
+  <?php if ($aSuporte === "PP") { ?>
   <li class="<?php echo $cSuporte; ?>">
    <a href="<?php echo $server; ?>/suporte/dashboard.php">
     <i class="fa fa-wrench"></i> <span>Suporte</span>
    </a>
   </li>
+  <?php } else{ } if ($aEngenharia === "PP") { ?>
   <li class="<?php echo $cSuporte; ?>">
    <a href="<?php echo $server; ?>/suporte/engenharia.php">
     <i class="fa fa-hdd-o"></i> <span>Engenharia</span>
    </a>
   </li>
-  <li class="treeview <?php echo $cEstoque; ?>">
+    <?php } else{ } ?>
+
+  <li class="treeview <?php echo $cEngenharia; ?>">
    <a href="#">
     <i class="fa fa-industry"></i><span>Estoque & Produtos</span>
     <span class="pull-right-container">
