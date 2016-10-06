@@ -1,6 +1,6 @@
 <?php
 //MENU LATERAL ATIVO
-$cSuporte = "active";
+$vSup = "active";
 require("../restritos.php"); 
 require_once '../init.php';
 $PDO = db_connect();
@@ -139,24 +139,7 @@ $PDO = db_connect();
      </div>
     </div>
    </div>
-    <?php
-    }
-    else{
-    ?>
-    <div class="col-md-12 col-sm-6 col-xs-12">
-     <div class="info-box">
-      <a data-toggle="modal" data-target="#myModal"">
-       <span class="info-box-icon bg-red">
-        <i class="fa fa-exclamation-triangle"></i>
-       </span>
-      </a>
-      <div class="info-box-content">
-       <h4><strong><i>Atenção!</i></strong></h4>
-       <h4>Você não possui privilégios suficientes para abrir esta página. Contate o Administrador!</h4>
-      </div>
-     </div>
-    </div>
-    <?php } ?>
+    <?php } else{ echo $SemPrivilegio; } ?><!-- validando privilegio -->
       <!-- MODAL DE CADASTRO DE ATENDIMENTO -->
       <div id="myModal" class="modal fade" role="dialog">
        <div class="modal-dialog">
@@ -167,8 +150,16 @@ $PDO = db_connect();
          </div>
          <div class="modal-body">
           <form name="EdCad" id="name" method="post" action="" enctype="multipart/form-data">
-           <div class="col-xs-12 form-group">Nome da Revenda
+           <div class="col-xs-8 form-group">Nome da Revenda
             <input class="form-control" type="text" name="nm" required="required">
+           </div>
+           <div class="col-xs-4 form-group">Tipo de Atendimento
+            <select class="form-control" name="tipoat" required="required">
+             <option value="" selected="selected">SELECIONE</option>
+             <option value="1">ATENDIMENTO</option>
+             <option value="2">RETORNO DE ASSIST.</option>
+             <option value="3">PEÇA</option>
+            </select>
            </div>
            <div class="col-xs-7 form-group">Status do Atendimento
             <select class="form-control" name="status" required="required">
@@ -197,11 +188,12 @@ $PDO = db_connect();
            if(@$_POST["Tsenha"]){
             $nRevenda = $_POST["nm"];
             $nStatus = $_POST["status"];
+            $nTipo = $_POST["tipoat"];
             $Obs = str_replace("\r\n", "<br/>", strip_tags($_POST["obs"]));
             $Sol = str_replace("\r\n", "<br/>", strip_tags($_POST["sol"]));
 
 
-            $AddCat = $PDO->query("INSERT INTO suporte (NomeTec, Revenda, Atendimento, Solucao, Status, DataCadastro) VALUES ('$NomeUserLogado', '$nRevenda', '$Obs', '$Sol', '$nStatus', '$dt')");
+            $AddCat = $PDO->query("INSERT INTO suporte (NomeTec, Revenda, Atendimento, Solucao, Status, DataCadastro, TipoSup) VALUES ('$NomeUserLogado', '$nRevenda', '$Obs', '$Sol', '$nStatus', '$dt', '$nTipo')");
             if($AddCat)
              {
               echo '
