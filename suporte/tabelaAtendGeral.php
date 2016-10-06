@@ -24,10 +24,10 @@ echo '<thead>
   echo '<td>' . $R["Atendimento"] . '</td>';
   $Status = $R["Status"];
   if ($Status === "1") {
-    echo '<td><button class="btn bg-lime btn-sm btn-block btn-flat" href="#">SOLUCIONADO</button></td>';
+    echo '<td><button class="btn bg-green btn-sm btn-block btn-flat" href="#">SOLUCIONADO</button></td>';
   }
   elseif ($Status === "2") {
-    echo '<td><button class="btn bg-fuchsia btn-sm btn-block btn-flat" href="#">ENCAMINHADO À HENRY</button></td>';
+    echo '<td><button class="btn btn-primary btn-sm btn-block btn-flat" href="#">ENCAMINHADO À HENRY</button></td>';
   }
   elseif ($Status === "3") {
     echo '<td><button class="btn bg-orange btn-sm btn-block btn-flat" href="#">PENDENTE</button></td>';
