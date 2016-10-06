@@ -159,21 +159,22 @@
         $Dado = "<br /><strong>Novo Atendimento: </strong><br />Data: " . $dt . " <code>" . $NomeUserLogado . "</code>: <br /> ";
         $NovaObs = str_replace("\r\n", "<br/>", strip_tags($_POST["sol"]));
         $Valor = $Sol . $Dado . $NovaObs;
+        $vLog = "ATUALIZADO ATENDIMENTO:<br />" . $Valor;
         $Atualiza = $PDO->query("UPDATE suporte SET Status='$novoStatus', solucao='$Valor' WHERE id='$CodAt'");  
          if ($Atualiza) {
            echo '<script type="text/javascript">alert("Atualizado!");</script>';
+           $SalvaLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '102', '$dt', '$vLog')");
+           if ($SalvaLog) {
            echo '<script type="text/javascript">window.close();</script>';
+           }
+           else{
+            echo '<script type="text/javascript">alert("ERRO AO SALVAR LOG");</script>';
+           }
           }
           else{
            echo '<script type="text/javascript">alert("NÃO FOI POSSÍVEL ATUALIZAR");</script>';
           }
-
-
       }
-
-
-
-
      } ?>
     </div>
    </section>
