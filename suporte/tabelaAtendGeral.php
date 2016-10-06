@@ -1,15 +1,17 @@
 <?php
-$ChPlaca = "SELECT * FROM cad_estoque WHERE es_cat='est'";
+$ChPlaca = "SELECT * FROM suporte";
 $Cpl = $PDO->prepare($ChPlaca);
 $Cpl->execute();
 
-echo '<table id="tabEstr" class="table table-hover" cellspacing="0">';
+echo '<table id="tabEstr" class="table table-hover table-responsive" cellspacing="0">';
 echo '<thead>
        <tr>
-        <th width="10px">#</th>
-        <th width="250px">Nome</th>
-        <th width="250px">Descrição</th>
-        <th></th>
+        <th>#</th>
+        <th>Atendente</th>
+        <th>Revenda</th>
+        <th>Descrição</th>
+        <th width="5px">Status</th>
+        <th width="5px"></th>
        </tr>
       </thead>
       <tbody>';
@@ -17,8 +19,25 @@ echo '<thead>
   while ($R = $Cpl->fetch(PDO::FETCH_ASSOC)): 
   echo '<tr>';
   echo '<td>' . $R["id"] . '</td>';
-  echo '<td>' . $R["es_nome"] . '</td>';
-  echo '<td>' . $R["id"] . '</td>';
+  echo '<td>' . $R["NomeTec"] . '</td>';
+  echo '<td>' . $R["Revenda"] . '</td>';
+  echo '<td>' . $R["Atendimento"] . '</td>';
+  $Status = $R["Status"];
+  if ($Status === "1") {
+    echo '<td><button class="btn bg-lime btn-sm btn-block btn-flat" href="#">SOLUCIONADO</button></td>';
+  }
+  elseif ($Status === "2") {
+    echo '<td><button class="btn bg-fuchsia btn-sm btn-block btn-flat" href="#">ENCAMINHADO À HENRY</button></td>';
+  }
+  elseif ($Status === "3") {
+    echo '<td><button class="btn bg-orange btn-sm btn-block btn-flat" href="#">PENDENTE</button></td>';
+  }
+  elseif ($Status === "4") {
+    echo '<td><button class="btn bg-red btn-sm btn-block btn-flat" href="#">NÃO SOLUCIONADO</button></td>';
+  }
+  else{
+    echo '<td></td>';
+  }
   ?>
   <td>
    <a class="btn btn-info btn-sm" href="javascript:abrir('VEst.php?ID=<?php echo $R["id"]; ?>');">
