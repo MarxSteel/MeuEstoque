@@ -11,7 +11,6 @@ $PDO = db_connect();
   $foto = $row['Foto'];
   $dt = date('d/m/Y H:i:s');
   require_once '../privilegios.php';
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -96,6 +95,9 @@ $PDO = db_connect();
    </section>
    <section class="content">
    <div class="row">
+   <?php
+    if ($aSuporte === "PP") {
+   ?>
     <div class="col-md-4 col-sm-6 col-xs-12">
      <div class="info-box">
       <a data-toggle="modal" data-target="#myModal"">
@@ -137,6 +139,24 @@ $PDO = db_connect();
      </div>
     </div>
    </div>
+    <?php
+    }
+    else{
+    ?>
+    <div class="col-md-12 col-sm-6 col-xs-12">
+     <div class="info-box">
+      <a data-toggle="modal" data-target="#myModal"">
+       <span class="info-box-icon bg-red">
+        <i class="fa fa-exclamation-triangle"></i>
+       </span>
+      </a>
+      <div class="info-box-content">
+       <h4><strong><i>Atenção!</i></strong></h4>
+       <h4>Você não possui privilégios suficientes para abrir esta página. Contate o Administrador!</h4>
+      </div>
+     </div>
+    </div>
+    <?php } ?>
       <!-- MODAL DE CADASTRO DE ATENDIMENTO -->
       <div id="myModal" class="modal fade" role="dialog">
        <div class="modal-dialog">
