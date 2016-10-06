@@ -3,7 +3,7 @@ $ChPlaca = "SELECT * FROM suporte";
 $Cpl = $PDO->prepare($ChPlaca);
 $Cpl->execute();
 
-echo '<table id="tabEstr" class="table table-hover table-responsive" cellspacing="0">';
+echo '<table id="tabGeral" class="table table-hover table-responsive" cellspacing="0">';
 echo '<thead>
        <tr>
         <th>#</th>
