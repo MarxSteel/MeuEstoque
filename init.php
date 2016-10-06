@@ -87,5 +87,21 @@ $Titulo = "Henry Controle de Estoque";
      </div>
     </div>';
 
+    $NAtAtend = '
+    <div class="col-md-12 col-sm-6 col-xs-12">
+     <div class="info-box">
+      <a data-toggle="modal" data-target="#myModal"">
+       <span class="info-box-icon bg-red">
+        <i class="fa fa-exclamation-triangle"></i>
+       </span>
+      </a>
+      <div class="info-box-content">
+       <h4><strong><i>Atenção!</i></strong></h4>
+       <h4>Você não pode editar esse atendimento pois ja foi finalizado!</h4>
+      </div>
+     </div>
+    </div>';
+
+
 
 require_once 'functions.php';
