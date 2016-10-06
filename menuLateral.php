@@ -40,6 +40,11 @@ $endereco = $_SERVER ['REQUEST_URI'];
     <i class="fa fa-wrench"></i> <span>Suporte</span>
    </a>
   </li>
+  <li class="<?php echo $cSuporte; ?>">
+   <a href="<?php echo $server; ?>/suporte/engenharia.php">
+    <i class="fa fa-hdd-o"></i> <span>Engenharia</span>
+   </a>
+  </li>
   <li class="treeview <?php echo $cEstoque; ?>">
    <a href="#">
     <i class="fa fa-industry"></i><span>Estoque & Produtos</span>
