@@ -1,8 +1,6 @@
 <?php
 //MENU LATERAL ATIVO
-$cNotas = "active";
-
-
+$cEng = "active";
 require("../restritos.php"); 
 require_once '../init.php';
 $PDO = db_connect();
@@ -92,7 +90,7 @@ $PDO = db_connect();
   </aside>
   <div class="content-wrapper">
    <section class="content-header">
-    <h1>Controle de Notas<small><?php echo $Titulo; ?></small></h1>
+    <h1>Engenharia<small><?php echo $Titulo; ?></small></h1>
    </section>
    <section class="content">
    <div class="row">

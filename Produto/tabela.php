@@ -9,18 +9,7 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
-
-
- $privilegio = $PDO->prepare("SELECT * FROM privilegio WHERE idUser='$login'");
- $privilegio->execute();
-  $cp = $privilegio->fetch();
-  $vTabela = $cp['TabelaProdutos'];      //VER TABELA DE PRODUTOS (PREF. COM)
-
-
-  $VerProdutos = $cp['pProduto'];
-  $VProd = $cp['vIP'];            //VER ITENS DE PRODUÇÃO
-  $CadProd = $cp['cIProd'];       //CADASTRAR ITENS DE PRODUÇÃO
-  $VArPro = $cp['lisArPro'];      //LISTAR ARVORE DE PRODUTO
+  require_once '../privilegios.php';
 
 $dt = date("d/m/Y - H:i:s");
 $ChamaCat = "SELECT * FROM cad_estoque";

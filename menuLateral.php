@@ -42,7 +42,7 @@ $endereco = $_SERVER ['REQUEST_URI'];
    </a>
   </li>
   <?php } else{ } if ($aEngenharia === "PP") { ?>
-  <li class="<?php echo $vEng; ?>">
+  <li class="<?php echo $cEng; ?>">
    <a href="<?php echo $server; ?>/engenharia/dashboard.php">
     <i class="fa fa-hdd-o"></i> <span>Engenharia</span>
    </a>
