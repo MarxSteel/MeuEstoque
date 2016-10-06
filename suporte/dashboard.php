@@ -131,7 +131,7 @@ $PDO = db_connect();
       </a>NOVO FIRMWARE
      </div>
     </div>
-   <div class="col-md-8">
+   <div class="col-md-6">
     <div class="nav-tabs-custom">
      <div class="box-header with-border">
       <i class="fa fa-warning"></i>
@@ -144,18 +144,18 @@ $PDO = db_connect();
      </ul>
      <div class="tab-content">
       <div class="tab-pane active" id="geral">
-      TELA DE ATENDIMENTO GERAL
+      <?php include_once'tabelaAtendGeral.php'; ?>
       </div>
       <div class="tab-pane" id="atp">
-      TELA DE ATENDIMENTOS PENDENTES
+      <?php include_once'tabelaAtendPendente.php'; ?>
       </div>
       <div class="tab-pane" id="atf">
-      TELA DE ATENDIMENTOS FINALIZADOS
+      <?php include_once'tabelaAtendFinal.php'; ?>
       </div>
      </div>
     </div>
    </div>
-   <div class="col-md-4">
+   <div class="col-md-6">
     <div class="nav-tabs-custom">
      <div class="box-header with-border">
       <i class="fa fa-warning"></i>
@@ -167,10 +167,10 @@ $PDO = db_connect();
      </ul>
      <div class="tab-content">
       <div class="tab-pane active" id="linha">
-      TELA DE FIRMWARE DE LINHA
+      <?php include_once'tabelaFwLinha.php'; ?>
       </div>
       <div class="tab-pane" id="fesp">
-      TELA DE FIRMWARE ESPECIAL
+      <?php include_once'tabelaFwEsp.php'; ?>
       </div>
      </div>
     </div>

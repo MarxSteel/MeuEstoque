@@ -135,22 +135,32 @@ require_once 'privilegios.php';
      </div>
      <div class="col-md-4">
       <div class="info-box">
-       <a href="fw/dashboard.php" >
-        <span class="info-box-icon bg-orange">
-         <i class="fa fa-list"></i>
+       <a href="suporte/dashboard.php" >
+        <span class="info-box-icon bg-purple">
+         <i class="fa fa-tty"></i>
         </span>
        </a>
-       <div class="info-box-content"><h4>Controle de Firmware</h4></div>
+       <div class="info-box-content"><h4>Suporte Técnico</h4></div>
       </div>
      </div>
      <div class="col-md-4">
       <div class="info-box">
-       <a href="fw/dashboard.php" >
-        <span class="info-box-icon bg-orange">
-         <i class="fa fa-list"></i>
+       <a href="suporte/engenharia.php" >
+        <span class="info-box-icon bg-olive">
+         <i class="fa fa-hdd-o"></i>
         </span>
        </a>
-       <div class="info-box-content"><h4>Suporte Técnico</h4></div>
+       <div class="info-box-content"><h4>Engenharia</h4></div>
+      </div>
+     </div>
+     <div class="col-md-4">
+      <div class="info-box">
+       <a href="notas/dashboard.php" >
+        <span class="info-box-icon bg-black">
+         <i class="fa fa-file"></i>
+        </span>
+       </a>
+       <div class="info-box-content"><h4>Notas Fiscais</h4></div>
       </div>
      </div>
    </div>
