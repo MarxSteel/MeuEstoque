@@ -162,7 +162,7 @@ $F3->execute();
            <select class="form-control" name="cat" required="required">
             <option value="" selected="selected">SELECIONE</option>
             <?php while ($user3 = $stmt4->fetch(PDO::FETCH_ASSOC)): ?>
-            <option value="<?php echo $user3['cat_id'] ?>"><?php echo $user3['Categoria'] ?>
+            <option value="<?php echo $user3['Categoria'] ?>"><?php echo $user3['Categoria'] ?>
             </option>
             <?php endwhile; ?>
            </select>
@@ -194,7 +194,7 @@ $F3->execute();
            <select class="form-control" name="f1" required="required">
             <option value="" selected="selected">SELECIONE</option>
             <?php while ($ff1 = $F1->fetch(PDO::FETCH_ASSOC)): ?>
-            <option value="<?php echo $ff1['f_id'] ?>"><?php echo $ff1['f_id'] ?>
+            <option value="<?php echo $ff1['f_id'] ?>"><?php echo $ff1['f_Nome'] ?>
             </option>
             <?php endwhile; ?>
             <option value="0">Não informado</option>
@@ -204,7 +204,7 @@ $F3->execute();
            <select class="form-control" name="f2" required="required">
             <option value="" selected="selected">SELECIONE</option>
             <?php while ($ff2 = $F2->fetch(PDO::FETCH_ASSOC)): ?>
-            <option value="<?php echo $ff2['f_id'] ?>"><?php echo $ff2['f_id'] ?>
+            <option value="<?php echo $ff2['f_id'] ?>"><?php echo $ff2['f_Nome'] ?>
             </option>
             <?php endwhile; ?>
             <option value="0">Não informado</option>
@@ -214,7 +214,7 @@ $F3->execute();
            <select class="form-control" name="f3" required="required">
             <option value="" selected="selected">SELECIONE</option>
             <?php while ($ff3 = $F3->fetch(PDO::FETCH_ASSOC)): ?>
-            <option value="<?php echo $ff3['f_id'] ?>"><?php echo $ff3['f_id'] ?>
+            <option value="<?php echo $ff3['f_id'] ?>"><?php echo $ff3['f_Nome'] ?>
             </option>
             <?php endwhile; ?>
             <option value="0">Não informado</option>
@@ -294,7 +294,7 @@ $F3->execute();
             echo '<td>' . $VCat['es_cat'] . '</td>';
             echo '<td>' . $VCat['es_un'] . '</td>';
             echo '<td><a class="btn btn-success btn-block btn-xs" href="';
-            echo "javascript:abrir('AtCat.php?ID=" . $VCat['id'] . "');";
+            echo "javascript:abrir('vProduto.php?ID=" . $VCat['id'] . "');";
             echo '"><i class="fa fa-search"> </i></a></td>';
            echo '</tr>';
            endwhile;
