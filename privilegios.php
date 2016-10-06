@@ -7,6 +7,8 @@
   $vTransp = $cp['pTransportador'];      //VER TELA DE TRANSPORTADORA
   $aTransp = $cp['pAddTransportador'];   //ADICIONAR TRANSPORTADORA
   $aFornecedor = $cp['pAddFornecedor'];  //ADICIONAR FORNECEDOR
-
-
+  $aSuporte = $cp['aSuporte'];			 //ADICIONAR ITENS SUPORTE
+  $aEngenharia = $cp['aEngenharia'];	 //ADICIONAR ITENS ENGENHARIA
+  $pSuporte = $cp['pSuporte'];			 //VER TELA DO SUPORTE
+  $pEngenharia = $cp['pEngenharia'];	 //VER TELA DA ENGENHARIA
 ?>
