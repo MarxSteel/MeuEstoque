@@ -11,4 +11,9 @@
   $aEngenharia = $cp['aEngenharia'];	 //ADICIONAR ITENS ENGENHARIA
   $pSuporte = $cp['pSuporte'];			 //VER TELA DO SUPORTE
   $pEngenharia = $cp['pEngenharia'];	 //VER TELA DA ENGENHARIA
+  $vProduto = $cp['pProduto'];
+  $vItens = $cp['vIP'];            //VER ITENS DE PRODUÇÃO
+  $aItens = $cp['cIProd'];       //CADASTRAR ITENS DE PRODUÇÃO
+  $vArvore = $cp['lisArPro']; 
+  $aArvore = $cp['cArPro']; 
 ?>

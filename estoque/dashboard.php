@@ -1,8 +1,7 @@
 <?php
 //MENU LATERAL ATIVO
-$cNotas = "active";
-
-
+$cEstoque = "active";
+$cContEstoque = "active";
 require("../restritos.php"); 
 require_once '../init.php';
 $PDO = db_connect();
@@ -11,6 +10,7 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
+require_once '../privilegios.php';
 
 
  $privilegio = $PDO->prepare("SELECT * FROM privilegio WHERE idUser='$login'");

@@ -10,15 +10,8 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
+  require_once '../privilegios.php';
 
-
- $privilegio = $PDO->prepare("SELECT * FROM privilegio WHERE idUser='$login'");
- $privilegio->execute();
-  $cp = $privilegio->fetch();
-  $VerProdutos = $cp['pProduto'];
-  $VProd = $cp['vIP'];            //VER ITENS DE PRODUÇÃO
-  $CadProd = $cp['cIProd'];       //CADASTRAR ITENS DE PRODUÇÃO
-  $VArPro = $cp['lisArPro'];      //LISTAR ARVORE DE PRODUTO
 
 $dt = date("d/m/Y - H:i:s");
 $ChamaCat = "SELECT * FROM cad_estoque";
@@ -122,7 +115,7 @@ $F3->execute();
    </section>
    <section class="content">
    <div class="row">
-   <?php if ($VerProdutos === "PP") { ?>
+   <?php if ($vProduto === "PP") { ?>
      <div class="col-md-4">
       <div class="info-box">
       </div>
@@ -130,7 +123,7 @@ $F3->execute();
      <div class="col-md-4"> 
       <div class="info-box">
       <?php 
-      if ($VArPro === "PP") { ?>
+      if ($vItens === "PP") { ?>
        <a href="ArvoreProduto.php" >
         <span class="info-box-icon bg-black">
          <i class="fa fa-tree"></i>
@@ -142,7 +135,7 @@ $F3->execute();
      </div>
      <div class="col-md-4">
       <div class="info-box">
-      <?php if ($CadProd === "PP") { ?>
+      <?php if ($aItens === "PP") { ?>
       <a data-toggle="modal" data-target="#myModal"">
        <span class="info-box-icon btn-danger">
         <i class="fa fa-plus"></i>

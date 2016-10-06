@@ -10,16 +10,7 @@ $PDO = db_connect();
   $row = $query->fetch();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
-
-
- $privilegio = $PDO->prepare("SELECT * FROM privilegio WHERE idUser='$login'");
- $privilegio->execute();
-  $cp = $privilegio->fetch();
-  $VerProdutos = $cp['pProduto'];
-  $VProd = $cp['vIP'];            //VER ITENS DE PRODUÇÃO
-  $CadProd = $cp['cIProd'];       //CADASTRAR ITENS DE PRODUÇÃO
-  $VArPro = $cp['lisArPro'];      //LISTAR ARVORE DE PRODUTO
-  $CriArvore = $cp['cArPro'];
+  require_once '../privilegios.php';
 
 
 
@@ -128,10 +119,10 @@ $F3->execute();
    </section>
    <section class="content">
    <div class="row">
-   <?php if ($VerProdutos === "PP") { ?>
+   <?php if ($vProduto === "PP") { ?>
      <div class="col-md-4">
       <div class="info-box">
-      <?php if ($CriArvore === "PP") { ?>
+      <?php if ($aArvore === "PP") { ?>
       <a data-toggle="modal" data-target="#myModal"">
        <span class="info-box-icon btn-danger">
         <i class="fa fa-plus"></i>
@@ -218,7 +209,7 @@ $F3->execute();
             echo '<td>' . $VCat['ap_id'] . '</td>';
             echo '<td>' . $VCat['ap_id'] . '</td>';
             echo '<td>' . $VCat['ap_id'] . '</td>';
-              if ($CriArvore === "PP") {
+              if ($aArvore === "PP") {
               echo '<td>';
               echo '<a class="btn btn-danger btn-sm" href="';
               echo "javascript:abrir('DelArvore.php?ID=" . $VCat['ap_id'] . "');";
