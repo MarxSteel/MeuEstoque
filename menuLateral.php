@@ -36,14 +36,14 @@ $endereco = $_SERVER ['REQUEST_URI'];
    </ul>
   </li>
   <?php if ($aSuporte === "PP") { ?>
-  <li class="<?php echo $cSuporte; ?>">
+  <li class="<?php echo $vSup; ?>">
    <a href="<?php echo $server; ?>/suporte/dashboard.php">
     <i class="fa fa-wrench"></i> <span>Suporte</span>
    </a>
   </li>
   <?php } else{ } if ($aEngenharia === "PP") { ?>
-  <li class="<?php echo $cSuporte; ?>">
-   <a href="<?php echo $server; ?>/suporte/engenharia.php">
+  <li class="<?php echo $vEng; ?>">
+   <a href="<?php echo $server; ?>/engenharia/dashboard.php">
     <i class="fa fa-hdd-o"></i> <span>Engenharia</span>
    </a>
   </li>
