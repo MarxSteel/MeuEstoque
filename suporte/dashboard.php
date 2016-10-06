@@ -1,8 +1,6 @@
 <?php
 //MENU LATERAL ATIVO
 $cSuporte = "active";
-
-
 require("../restritos.php"); 
 require_once '../init.php';
 $PDO = db_connect();
@@ -110,6 +108,9 @@ $PDO = db_connect();
     </div>
     <div class="col-md-8">
      <div class="info-box">
+     <center>
+      <img src="../dist/img/logo/logoBlack.png" width="210">
+     </center>
      </div>
     </div>
    <div class="col-md-12">
@@ -165,7 +166,7 @@ $PDO = db_connect();
             <textarea name="obs" cols="45" rows="3" class="form-control"></textarea>
            </div>
            <div class="col-xs-12"><strong>Solução</strong>
-            <textarea name="obs" cols="45" rows="3" class="form-control"></textarea><hr>
+            <textarea name="sol" cols="45" rows="3" class="form-control"></textarea><hr>
            </div>
            <div class="pull-right">
             <input name="Tsenha" type="submit" class="btn bg-aqua" id="Tsenha" value="CADASTRAR ATENDIMENTO"  /> 
@@ -174,14 +175,17 @@ $PDO = db_connect();
           </form>
           <?php
            if(@$_POST["Tsenha"]){
-            $nomeCat = $_POST["nm"];
-            $tipo = $_POST["tp"];
+            $nRevenda = $_POST["nm"];
+            $nStatus = $_POST["status"];
             $Obs = str_replace("\r\n", "<br/>", strip_tags($_POST["obs"]));
-            $AddCat = $PDO->query("INSERT INTO fornecedor (f_Nome, Obs, DataCadastro, f_Tipo) VALUES ('$nomeCat', '$Obs', '$dt', '$tipo')");
+            $Sol = str_replace("\r\n", "<br/>", strip_tags($_POST["sol"]));
+
+
+            $AddCat = $PDO->query("INSERT INTO suporte (NomeTec, Revenda, Atendimento, Solucao, Status, DataCadastro) VALUES ('$NomeUserLogado', '$nRevenda', '$Obs', '$Sol', '$nStatus', '$dt')");
             if($AddCat)
              {
               echo '
-              <script type="text/JavaScript">alert("Fornecedor Cadastrado com Sucesso");
+              <script type="text/JavaScript">alert("Atendimento Cadatrado com Sucesso!");
               location.href="dashboard.php"</script>';
              }
              else{
@@ -196,9 +200,6 @@ $PDO = db_connect();
        </div>
       </div>
       <!-- FIM DO MODAL DE CADASTRO DE ATENDIMENTO -->
-
-
-
   </div>
  </section>
 </div>
@@ -217,7 +218,9 @@ $PDO = db_connect();
 <!-- page script -->
 <script>
   $(function () {
-    $("#example1").DataTable();
+    $("#tabEstr").DataTable();
+    $("#tabFinal").DataTable();
+    $("#tabGeral").DataTable();
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
