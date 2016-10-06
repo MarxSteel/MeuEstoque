@@ -191,14 +191,22 @@ $PDO = db_connect();
             $nTipo = $_POST["tipoat"];
             $Obs = str_replace("\r\n", "<br/>", strip_tags($_POST["obs"]));
             $Sol = str_replace("\r\n", "<br/>", strip_tags($_POST["sol"]));
+            $Atend = "Descr.:" . $Obs . "<br/>Atend.: " . $Sol; 
+            $vLog = "NOVO ATENDIMENTO:<br />" . $Valor;
 
 
             $AddCat = $PDO->query("INSERT INTO suporte (NomeTec, Revenda, Atendimento, Solucao, Status, DataCadastro, TipoSup) VALUES ('$NomeUserLogado', '$nRevenda', '$Obs', '$Sol', '$nStatus', '$dt', '$nTipo')");
             if($AddCat)
              {
+              $SalvaLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '101', '$dt', '$vLog')");
+              if ($SalvaLog) {
               echo '
               <script type="text/JavaScript">alert("Atendimento Cadatrado com Sucesso!");
               location.href="dashboard.php"</script>';
+              }
+              else{
+                echo '<script type="text/javascript">alert("ERRO AO SALVAR LOG");</script>';
+              }
              }
              else{
              echo '<script type="text/javascript">alert("Não foi possível. Erro: 0x03");</script>';
