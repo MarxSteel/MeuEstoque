@@ -132,7 +132,7 @@ $PDO = db_connect();
     <div class="nav-tabs-custom">
      <div class="box-header with-border">
       <i class="fa fa-warning"></i>
-       <h3 class="box-title">Histórico de Cadastros</h3>
+       <h3 class="box-title">Lista de Firmware</h3>
      </div>
      <ul class="nav nav-tabs">
       <li class="active"><a href="#geral" data-toggle="tab">Firmware de Linha</a></li>
