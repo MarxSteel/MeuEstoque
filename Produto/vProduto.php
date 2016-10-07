@@ -8,17 +8,31 @@
    $NomeUserLogado = $row['Nome'];
    $foto = $row['Foto'];
    $CodAt = $_GET['ID'];
-   $dFor = $PDO->prepare("SELECT * FROM suporte WHERE id='$CodAt'");
+   $dFor = $PDO->prepare("SELECT * FROM cad_estoque WHERE id='$CodAt'");
    $dFor->execute();
     $campo = $dFor->fetch();
-    $Atendente = $campo['NomeTec'];
-    $Revenda = $campo['Revenda'];
-    $Tipo = $campo['NomeTec'];
-    $DtCadastro = $campo['DataCadastro'];
-    $TipoSuporte = $campo['TipoSup'];
-    $St = $campo['Status'];
-    $Obs = $campo['Atendimento'];
-    $Sol = $campo['Solucao'];
+    $nomeProduto = $campo['es_nome'];
+    $Atendente = $campo['es_nome'];
+    $For1 = $campo['es_f1'];
+    $For2 = $campo['es_f2'];
+    $For3 = $campo['es_f3'];
+    $Revisao = $campo['es_rev'];
+    $Categoria = $campo['es_cat'];
+    $fto = $campo['es_img'];
+    $C1 = $campo['es_c1'];
+    $C2 = $campo['es_c2'];
+    $C3 = $campo['es_c3'];
+    $C4 = $campo['es_c4'];
+    $DataCad = $campo['es_DataCadastro'];
+    $EstoqueMinimo = $campo['es_minimo'];
+    $Obs = $campo['es_obs'];
+
+    $Revenda = $campo['es_nome'];
+    $Tipo = $campo['es_nome'];
+    $DtCadastro = $campo['es_nome'];
+    $TipoSuporte = $campo['es_nome'];
+    $St = $campo['es_nome'];
+    $Sol = $campo['es_nome'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,74 +74,81 @@
    <section class="content">
     <div class="box box-default">
      <div class="box-header with-border">
-      <h3 class="box-title">Suporte Técnico - Detalhes de Atendimento: <code><strong><?php echo $CodAt; ?></strong></code></h3>
+      <h3 class="box-title">Detalhe do Produto: 
+      <code><?php echo $CodAt; ?></code>
+      <strong><?php echo $nomeProduto; ?></strong></h3>
+      <small class="pull-right">Data de Cadastro: <?php echo $DataCad; ?></small>
+
      </div>
      <div class="box-body">
      <div class="col-xs-4">
       <li class="list-group-item">
-       <b>Revenda:</b>
+       <b>Produto:</b>
         <a class="pull-right"><?php echo $Revenda; ?></a><br />
       </li>
       <li class="list-group-item">
-       <b>Atendente:</b>
-        <a class="pull-right"><?php echo $Atendente; ?></a><br />
+       <b>Revisão:</b>
+        <a class="pull-right"><?php echo $Revisao; ?></a><br />
       </li>
       <li class="list-group-item">
-       <b>Data de Cadastro:</b>
-        <a class="pull-right"><?php echo $DtCadastro; ?></a>
+       <b>Categoria:</b>
+        <a class="pull-right"><?php echo $Categoria; ?></a>
+      </li>
+     </div>
+     <div class="col-xs-5">
+      <li class="list-group-item">
+       <b>Fornecedor 1:</b>
+        <a class="pull-right"><?php echo $For1; ?></a><br />
+      </li>
+      <li class="list-group-item">
+       <b>Fornecedor 2:</b>
+        <a class="pull-right"><?php echo $For2; ?></a><br />
+      </li>
+      <li class="list-group-item">
+       <b>Fornecedor 3:</b>
+        <a class="pull-right"><?php echo $For3; ?></a>
+      </li>
+     </div>
+     <div class="col-xs-3">
+      <li class="list-group-item">
+       <img src="imagens/<?php echo $fto; ?>" width="150" />
+      </li>
+     </div>
+     <div class="col-xs-12"><h4>Lista de Códigos</h4></div>
+     <div class="col-xs-4">
+      <li class="list-group-item">
+       <b>Cod. Engenharia</b>
+        <a class="pull-right"><?php echo $C1; ?></a><br />
+      </li>
+      <li class="list-group-item">
+       <b>Cod. Almoxarifado:</b>
+        <a class="pull-right"><?php echo $C2; ?></a>
       </li>
      </div>
      <div class="col-xs-4">
       <li class="list-group-item">
-       <?php 
-       if ($TipoSuporte === "1") {
-         echo '<button class="btn btn-sm bg-purple btn-flat btn-block" href="#">ATENDIMENTO</button>';
-       }
-       elseif ($TipoSuporte === "2") {
-         echo '<button class="btn btn-sm bg-navy btn-flat btn-block" href="#">RETORNO DE ASSISTENCIA</button>';
-       }
-       elseif ($TipoSuporte === "3") {
-         echo '<button class="btn btn-sm bg-default btn-flat btn-block" href="#">RETORNO DE ASSISTENCIA</button>';
-       }
-       else{
-       }
-       ?>
+       <b>Cod. Comercial:</b>
+        <a class="pull-right"><?php echo $C4; ?></a><br />
       </li>
       <li class="list-group-item">
-      </li>
-      <li class="list-group-item">
-      <?php 
-      if ($St === "1") {
-        echo '<button class="btn bg-green btn-sm btn-block btn-flat" href="#">SOLUCIONADO</button>';
-      }
-      elseif ($St === "2") {
-        echo '<button class="btn btn-primary btn-sm btn-block btn-flat" href="#">ENCAMINHADO À HENRY</button>';
-      }
-      elseif ($St === "3") {
-        echo '<button class="btn bg-orange btn-sm btn-block btn-flat" href="#">PENDENTE</button>';
-      }
-      elseif ($St === "4") {
-        echo '<button class="btn bg-red btn-sm btn-block btn-flat" href="#">NÃO SOLUCIONADO</button>';
-      } 
-      else{
-      }
-      ?>
+       <b>Estoque Mínimo</b>
+        <a class="pull-right"><?php echo $EstoqueMinimo; ?></a><br />
       </li>
      </div>
      <div class="col-xs-4">
-           <li class="list-group-item">FOTO</li>
-
+      <li class="list-group-item">
+       <b>Cod. Projetos:</b>
+        <a class="pull-right"><?php echo $C3; ?></a>
+      </li>
+      <li class="list-group-item">
+       <b>Preço:</b>
+        <a class="pull-right"><?php echo $C4; ?></a><br />
+      </li>
      </div>
-     <div class="col-xs-12"><h4>Descrição do Problema</h4></div>
+     <div class="col-xs-12"><h4>Detalhes do Produto</h4></div>
      <div class="col-xs-12">
       <li class="list-group-item">
       <?php echo $Obs; ?>
-      </li>
-     </div>
-     <div class="col-xs-12"><h4>Orientação do Suporte</h4></div>
-     <div class="col-xs-12">
-      <li class="list-group-item">
-      <?php echo $Sol; ?>
       </li>
      </div>
     </div>
