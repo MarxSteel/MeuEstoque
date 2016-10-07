@@ -115,12 +115,18 @@
        <b>Forn. 3:</b>
         <a class="pull-right"><?php echo $For3; ?></a>
       </li>
-      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalFoto">
-      PROJETO
-      </button>
-      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalFoto">
-      ENGENHARIA
-      </button>
+      <li class="list-group-item">
+       <div class="col-md-6 col-xs-12">
+        <button type="button" class="btn btn-danger btn-xs btn-block" data-toggle="modal" data-target="#modalFoto">
+        PROJETO
+        </button>
+       </div>
+       <div class="col-md-6 col-xs-12">
+        <button type="button" class="btn btn-danger btn-xs btn-block" data-toggle="modal" data-target="#modalFoto">
+        ENGENHARIA
+        </button>
+       </div><br />
+      </li>
      </div>
      <div class="col-md-3 col-xs-12">
       <li class="list-group-item">
