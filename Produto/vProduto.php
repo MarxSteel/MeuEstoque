@@ -157,7 +157,9 @@
       </li>
       <li class="list-group-item">
        <b>Cod. Comercial:</b>
-        <a class="pull-right"><?php echo $C4; ?></a><br />
+        <a class="pull-right"><?php echo $C4; ?>
+         <button type="button" class="btn bg-maroon btn-xs pull-right" data-toggle="modal" data-target="#codCom"><i class="fa fa-refresh"></i> </button>
+        </a><br />
       </li>
      </div>
      <div class="col-xs-12 col-md-6">
