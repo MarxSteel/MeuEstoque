@@ -145,7 +145,9 @@
      <div class="col-xs-12 col-md-6">
       <li class="list-group-item">
        <b>Cod. Engenharia</b>
-        <a class="pull-right"><?php echo $C1; ?></a><br />
+        <a class="pull-right"><?php echo $C1; ?>
+         <button type="button" class="btn bg-olive btn-xs pull-right" data-toggle="modal" data-target="#codEng"><i class="fa fa-refresh"></i> </button>
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Cod. Almoxarifado:</b>
