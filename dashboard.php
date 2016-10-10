@@ -13,7 +13,7 @@ require_once 'privilegios.php';
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
   <meta http-equiv="Content-Language" content="pt-br">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo $Titulo; ?></title>

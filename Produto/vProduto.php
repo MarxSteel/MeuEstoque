@@ -25,22 +25,29 @@
     $C4 = $campo['es_c4'];
     $DataCad = $campo['es_DataCadastro'];
     $EstoqueMinimo = $campo['es_minimo'];
+    $valor = $campo['es_preco'];
     $Obs = $campo['es_obs'];
+    $dataAtual = date('d/m/Y H:i:s');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="pt-br">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo $Titulo; ?></title>
-  <meta http-equiv="Content-Language" content="pt-br">  
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css" />
+  <link rel="stylesheet" href="../plugins/iCheck/flat/blue.css">
+  <link rel="stylesheet" href="../plugins/morris/morris.css">
+  <link rel="stylesheet" href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 <style type="text/css">
     a.fancybox img {
         border: none;
@@ -138,29 +145,43 @@
      <div class="col-xs-12 col-md-6">
       <li class="list-group-item">
        <b>Cod. Engenharia</b>
-        <a class="pull-right"><?php echo $C1; ?></a><br />
+        <a class="pull-right"><?php echo $C1; ?>
+         <button type="button" class="btn bg-olive btn-xs pull-right" data-toggle="modal" data-target="#codEng"><i class="fa fa-refresh"></i> </button>
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Cod. Almoxarifado:</b>
-        <a class="pull-right"><?php echo $C2; ?></a>
+        <a class="pull-right"><?php echo $C2; ?>
+         <button type="button" class="btn bg-purple btn-xs pull-right" data-toggle="modal" data-target="#codAlm"><i class="fa fa-refresh"></i> </button>
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Cod. Comercial:</b>
-        <a class="pull-right"><?php echo $C4; ?></a><br />
+        <a class="pull-right"><?php echo $C4; ?>
+         <button type="button" class="btn bg-maroon btn-xs pull-right" data-toggle="modal" data-target="#codCom"><i class="fa fa-refresh"></i> </button>
+        </a><br />
       </li>
      </div>
      <div class="col-xs-12 col-md-6">
       <li class="list-group-item">
        <b>Estoque Mínimo</b>
-        <a class="pull-right"><?php echo $EstoqueMinimo; ?></a><br />
+        <a class="pull-right"><?php echo $EstoqueMinimo; ?>
+         <button type="button" class="btn bg-black btn-xs pull-right" data-toggle="modal" data-target="#trocaEstoque"><i class="fa fa-refresh"></i> </button>
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Cod. Projetos:</b>
-        <a class="pull-right"><?php echo $C3; ?></a>
+        <a class="pull-right"><?php echo $C3; ?>
+         <button type="button" class="btn bg-orange btn-xs pull-right" data-toggle="modal" data-target="#codProj"><i class="fa fa-refresh"></i> </button>
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Preço:</b>
-        <a class="pull-right"><?php echo $C4; ?></a><br />
+        <a class="pull-right">
+         <code><?php echo number_format($valor, 2, ',', '.'); ?></code>
+          <button type="button" class="btn btn-info btn-xs pull-right" data-toggle="modal" data-target="#trocaPreco"><i class="fa fa-refresh"></i> </button>
+        </a>
+       <br />
       </li>
      </div>
      <div class="col-xs-12"><h4>Detalhes do Produto</h4></div>
@@ -267,6 +288,7 @@ else
   </div>
 </div>  
 <!-- Fim do modal de cadastro de foto -->
+<?php include_once 'ModalEdita.php'; ?>
     </div>
    </section>
   </div>
