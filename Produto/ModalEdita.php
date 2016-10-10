@@ -258,7 +258,58 @@
   </div>
  </div>
 </div>
-<!-- ALTERA CÓDIGO DO ALMOXARIFADO -->
+<!-- ALTERA CÓDIGO DO COMERCIAL -->
+<!-- ALTERA CÓDIGO DO PROJETOS -->
+<div id="codProj" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header bg-orange">
+    <button type="button" class="close" data-dismiss="modal">X</button>
+     <h4 class="modal-title">Atualizar Código do Projetos</h4>
+   </div>
+   <div class="modal-body">
+    <form name="codCom" id="name" method="post" action="" enctype="multipart/form-data">
+     <div class="col-xs-12">
+     <h3>Código atual: <?php echo $C3; ?></h3>
+     </div>
+      <div class="col-xs-12">Novo Código
+       <div class="input-group">
+        <span class="input-group-addon"><strong>Código Projetos</strong></span>
+        <input type="text" name="proj" required="required" class="form-control">
+       </div>
+      </div>
+     <div class="pull-right"><br />
+      <input name="codCom" type="submit" class="btn bg-orange btn-flat" id="codCom" value="ATUALIZAR CÓDIGO DO COMERCIAL"  /> 
+      <button type="button" class="btn btn-danger btn-flat" data-dismiss="modal">FECHAR</button>
+     </div>
+    </form>
+    <?php
+     if(@$_POST["codCom"]){
+     $novoProj = $_POST['proj'];
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c3='$novoProj'");
+       if ($atEstoque) {
+        $Det1 = "<strong>Nova Atulização de Preço: </strong><br />";
+        $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
+        $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
+        $Det3 = "Cód. Evento: 306 (Alterado Código do Projetos)";
+        $Det4 = "<strong> Código Anterior: </strong>" . $C3 . "<br />";
+        $Det5 = "<strong> Novo Código: </strong>" . $novoProj . "<br />";
+        $nOb = $Det1 . $Det2 . $Det3 . $Det4 . $Det5;
+         $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '306', '$dataAtual', '$nOb')");
+          if ($NovoLog)
+          {
+           echo '<script type="text/JavaScript">alert("Código Atualizado com Sucesso!");
+              location.href="vProduto.php?ID=' . $CodAt . '"</script>';
+          }
+        }
+       } 
+      ?>
+   </div>
+   <div class="modal-footer"></div>
+  </div>
+ </div>
+</div>
+<!-- ALTERA CÓDIGO DO COMERCIAL -->
 <!-- MODAL DE EXEMPLO -->
 <div id="modalnovo" class="modal fade" role="dialog">
  <div class="modal-dialog">
