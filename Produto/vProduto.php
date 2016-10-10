@@ -58,6 +58,11 @@
         position: relative; z-index: 999; -o-transform: scale(1.03,1.03); -ms-transform: scale(1.03,1.03); -moz-transform: scale(1.03,1.03); -webkit-transform: scale(1.03,1.03); transform: scale(1.03,1.03);
     }
 </style>
+<style type="text/css">
+.texto {
+word-wrap: break-word;
+}
+</style>
 </head>
 <body class="hold-transition <?php echo $cor; ?> layout-top-nav">
 <div class="wrapper">
@@ -101,18 +106,16 @@
       <li class="list-group-item">
        <b>Revisão:</b>
         <a class="pull-right"><?php echo $Revisao; ?>
-        <button type="button" class="btn bg-teal btn-xs pull-right" data-toggle="modal" data-target="#Revisao"><i class="fa fa-refresh"></i> </button>  
+        <button type="button" class="btn bg-fuchsia btn-xs pull-right" data-toggle="modal" data-target="#Revisao"><i class="fa fa-refresh"></i> </button>  
         </a><br />
       </li>
       <li class="list-group-item">
        <b>Categoria:</b>
         <a class="pull-right"><?php echo $Categoria; ?>
-        <button type="button" class="btn bg-fuchsia btn-xs pull-right" data-toggle="modal" data-target="#Categoria"><i class="fa fa-refresh"></i> </button>  
+        <button type="button" class="btn bg-teal btn-xs pull-right" data-toggle="modal" data-target="#Categoria"><i class="fa fa-refresh"></i> </button>  
         </a>
       </li>
-      <li class="list-group-item">
-       BOTÃO DE DOCUMENTO DO PROJETOS
-      </li>
+      <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">DOWNLOAD DOCUMENTAÇÃO DA ENGENHARIA</button>
      </div>
      <div class="col-md-5 col-xs-12">
       <li class="list-group-item">
@@ -133,9 +136,9 @@
         <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#For3"><i class="fa fa-refresh"></i> </button> 
         </a>
       </li>
-      <li class="list-group-item">
-       BOTÃO DE DOCUMENTO DA ENGENHARIA
-      </li>
+      
+      <button type="button" class="btn bg-navy btn-block" data-dismiss="modal">DOWNLOAD DOCUMENTAÇÃO DE PROJETO</button>
+      
      </div>
      <div class="col-md-2 col-xs-12">
       <li class="list-group-item">
@@ -153,7 +156,7 @@
       </li>
       <li class="list-group-item">
        <b>Cod. Comercial:</b>
-        <a class="pull-right"><?php echo $C3; ?>
+        <a class="pull-right"><?php echo $C4; ?>
          <button type="button" class="btn bg-maroon btn-xs pull-right" data-toggle="modal" data-target="#codCom"><i class="fa fa-refresh"></i> </button>
         </a><br />
       </li>
@@ -174,7 +177,7 @@
       <li class="list-group-item">
        <b>Cod. Projetos:</b>
         <a class="pull-right"><?php echo $C3; ?>
-         <button type="button" class="btn bg-maroon btn-xs pull-right" data-toggle="modal" data-target="#codProj"><i class="fa fa-refresh"></i> </button>
+         <button type="button" class="btn bg-orange btn-xs pull-right" data-toggle="modal" data-target="#codProj"><i class="fa fa-refresh"></i> </button>
         </a><br />
       </li>
       <li class="list-group-item">
@@ -189,7 +192,9 @@
      <div class="col-xs-12"><h4>Detalhes do Produto</h4></div>
      <div class="col-xs-12">
       <li class="list-group-item">
+       <i class="texto">
       <?php echo $Obs; ?>
+      </i>
       </li>
      </div>
      <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
