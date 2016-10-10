@@ -9,7 +9,6 @@ $PDO = db_connect();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
 require_once 'privilegios.php';
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,12 +23,6 @@ require_once 'privilegios.php';
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
-  <link rel="stylesheet" href="plugins/morris/morris.css">
-  <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-  <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 </head>
 <body class="hold-transition skin-red fixed sidebar-mini">
  <div class="wrapper">
@@ -104,15 +97,17 @@ require_once 'privilegios.php';
        <div class="info-box-content"><h4>Estoque</h4></div>
       </div>
      </div>
-    <div class="col-md-4">
-     <div class="info-box">
-      <a href="fornecedor/dashboard.php" >
-       <span class="info-box-icon btn-danger">
-        <i class="fa fa-briefcase"></i></span>
-      </a>
-      <div class="info-box-content"><h4>Fornecedor</h4></div>
+     <?php if ($vFornecedor === "PP") { ?>
+     <div class="col-md-4">
+      <div class="info-box">
+       <a href="fornecedor/dashboard.php" >
+        <span class="info-box-icon btn-danger">
+         <i class="fa fa-briefcase"></i></span>
+       </a>
+       <div class="info-box-content"><h4>Fornecedor</h4></div>
+      </div>
      </div>
-     </div>
+     <?php } else { } if ($vTransp === "P") { ?>
      <div class="col-md-4"> 
       <div class="info-box">
        <a href="Transporte.php" >
@@ -123,6 +118,7 @@ require_once 'privilegios.php';
        <div class="info-box-content"><h4>Transportadoras</h4></div>
       </div>
      </div>
+     <?php } else { } if ($permProdutos === "PP") { ?>
      <div class="col-md-4">
       <div class="info-box">
        <a href="Produto/dashboard.php" >
@@ -133,6 +129,7 @@ require_once 'privilegios.php';
        <div class="info-box-content"><h4>Tabela de itens</h4></div>
       </div>
      </div>
+     <?php } else { } if ($aSuporte === "PP") { ?>
      <div class="col-md-4">
       <div class="info-box">
        <a href="suporte/dashboard.php" >
@@ -143,6 +140,7 @@ require_once 'privilegios.php';
        <div class="info-box-content"><h4>Suporte Técnico</h4></div>
       </div>
      </div>
+     <?php } else { } if ($aEngenharia === "P") { ?>
      <div class="col-md-4">
       <div class="info-box">
        <a href="suporte/engenharia.php" >
@@ -153,6 +151,7 @@ require_once 'privilegios.php';
        <div class="info-box-content"><h4>Engenharia</h4></div>
       </div>
      </div>
+     <?php } else { } if ($vNota === "PP") { ?>
      <div class="col-md-4">
       <div class="info-box">
        <a href="notas/dashboard.php" >
@@ -163,49 +162,18 @@ require_once 'privilegios.php';
        <div class="info-box-content"><h4>Notas Fiscais</h4></div>
       </div>
      </div>
+     <?php } else {  } ?>
    </div>
    </section>
   </div>
   <?php include_once 'footer.php'; ?>
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
-<!-- Bootstrap 3.3.6 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="plugins/morris/morris.min.js"></script>
-<!-- Sparkline -->
-<script src="plugins/sparkline/jquery.sparkline.min.js"></script>
-<!-- jvectormap -->
-<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="plugins/knob/jquery.knob.js"></script>
-<!-- daterangepicker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
-<!-- datepicker -->
-<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- Slimscroll -->
 <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
 </body>
 </html>
