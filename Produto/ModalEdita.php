@@ -38,7 +38,7 @@
        	 $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
        	 $Det3 = "Cód. Evento: 301 (Alteração de Preço)";
        	 $Det4 = "<strong> Preço Anterior: </strong>" . $prAnt . "<br />";
-       	 $Det5 = "<strong> Preço Anterior: </strong>" . $prNovo . "<br />";
+       	 $Det5 = "<strong> Preço Novo: </strong>" . $prNovo . "<br />";
        	 $nOb = $Det1 . $Det2 . $Det3 . $Det4 . $Det5;
       	 $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '301', '$dataAtual', '$nOb')");
       	  if ($NovoLog)
@@ -208,7 +208,57 @@
  </div>
 </div>
 <!-- ALTERA CÓDIGO DO ALMOXARIFADO -->
-
+<!-- ALTERA CÓDIGO DO COMERCIAL -->
+<div id="codCom" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header bg-maroon">
+    <button type="button" class="close" data-dismiss="modal">X</button>
+     <h4 class="modal-title">Atualizar Código do Comercial</h4>
+   </div>
+   <div class="modal-body">
+    <form name="codCom" id="name" method="post" action="" enctype="multipart/form-data">
+     <div class="col-xs-12">
+     <h3>Código atual: <?php echo $C4; ?></h3>
+     </div>
+      <div class="col-xs-12">Novo Código
+       <div class="input-group">
+        <span class="input-group-addon"><strong>Código Comercial</strong></span>
+        <input type="text" name="calm" required="required" class="form-control">
+       </div>
+      </div>
+     <div class="pull-right"><br />
+      <input name="codCom" type="submit" class="btn bg-maroon btn-flat" id="codCom" value="ATUALIZAR CÓDIGO DO COMERCIAL"  /> 
+      <button type="button" class="btn btn-danger btn-flat" data-dismiss="modal">FECHAR</button>
+     </div>
+    </form>
+    <?php
+     if(@$_POST["codCom"]){
+     $novoCom = $_POST['calm'];
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c4='$novoCom'");
+       if ($atEstoque) {
+        $Det1 = "<strong>Nova Atulização de Preço: </strong><br />";
+        $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
+        $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
+        $Det3 = "Cód. Evento: 305 (Alterado Código do Comercial)";
+        $Det4 = "<strong> Código Anterior: </strong>" . $C4 . "<br />";
+        $Det5 = "<strong> Novo Código: </strong>" . $novoCom . "<br />";
+        $nOb = $Det1 . $Det2 . $Det3 . $Det4 . $Det5;
+         $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '305', '$dataAtual', '$nOb')");
+          if ($NovoLog)
+          {
+           echo '<script type="text/JavaScript">alert("Código Atualizado com Sucesso!");
+              location.href="vProduto.php?ID=' . $CodAt . '"</script>';
+          }
+        }
+       } 
+      ?>
+   </div>
+   <div class="modal-footer"></div>
+  </div>
+ </div>
+</div>
+<!-- ALTERA CÓDIGO DO ALMOXARIFADO -->
 <!-- MODAL DE EXEMPLO -->
 <div id="modalnovo" class="modal fade" role="dialog">
  <div class="modal-dialog">
