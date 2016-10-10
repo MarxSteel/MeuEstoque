@@ -151,7 +151,9 @@
       </li>
       <li class="list-group-item">
        <b>Cod. Almoxarifado:</b>
-        <a class="pull-right"><?php echo $C2; ?></a>
+        <a class="pull-right"><?php echo $C2; ?>
+         <button type="button" class="btn bg-purple btn-xs pull-right" data-toggle="modal" data-target="#codAlm"><i class="fa fa-refresh"></i> </button>
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Cod. Comercial:</b>
