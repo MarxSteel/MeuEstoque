@@ -20,4 +20,5 @@
   $permProdutos = $cp['estoqueProdutos']; //PERMISSÃO PARA VER ESTOQUE
   $vNota = $cp['pNotas'];                 //PERMISSÃO PARA VER NOTAS
   $cNota = $cp['cNotas'];                 //PERMISSÃO PARA CADASTRAR NOTAS
+  $Almox = $cp['almoxarifado'];           //PRIVILEGIOS DO ALMOX
 ?>
