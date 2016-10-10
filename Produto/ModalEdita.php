@@ -94,7 +94,7 @@
       	 $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '302', '$dataAtual', '$nOb')");
       	  if ($NovoLog)
           {
-           echo '<script type="text/JavaScript">alert("Peça Adicionada Com sucesso");
+           echo '<script type="text/JavaScript">alert("Estoque Mínimo Atualizado!");
               location.href="vProduto.php?ID=' . $CodAt . '"</script>';
           }
        	}
@@ -145,7 +145,7 @@
          $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '303', '$dataAtual', '$nOb')");
           if ($NovoLog)
           {
-           echo '<script type="text/JavaScript">alert("Atualizado com Sucesso!");
+           echo '<script type="text/JavaScript">alert("Código Atualizado com Sucesso!");
               location.href="vProduto.php?ID=' . $CodAt . '"</script>';
           }
         }
