@@ -171,7 +171,9 @@
       </li>
       <li class="list-group-item">
        <b>Cod. Projetos:</b>
-        <a class="pull-right"><?php echo $C3; ?></a>
+        <a class="pull-right"><?php echo $C3; ?>
+         <button type="button" class="btn bg-orange btn-xs pull-right" data-toggle="modal" data-target="#codProj"><i class="fa fa-refresh"></i> </button>
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Preço:</b>
