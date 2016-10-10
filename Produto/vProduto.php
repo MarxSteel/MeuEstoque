@@ -94,15 +94,21 @@
      <div class="col-md-5 col-xs-12">
       <li class="list-group-item">
        <b>Produto:</b>
-        <a class="pull-right"><?php echo $nomeProduto; ?></a><br />
+        <a class="pull-right"><?php echo $nomeProduto; ?>
+        <button type="button" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#nomeProduto"><i class="fa fa-refresh"></i></button>
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Revisão:</b>
-        <a class="pull-right"><?php echo $Revisao; ?></a><br />
+        <a class="pull-right"><?php echo $Revisao; ?>
+        <button type="button" class="btn bg-teal btn-xs pull-right" data-toggle="modal" data-target="#Revisao"><i class="fa fa-refresh"></i> </button>  
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Categoria:</b>
-        <a class="pull-right"><?php echo $Categoria; ?></a>
+        <a class="pull-right"><?php echo $Categoria; ?>
+        <button type="button" class="btn bg-fuchsia btn-xs pull-right" data-toggle="modal" data-target="#Categoria"><i class="fa fa-refresh"></i> </button>  
+        </a>
       </li>
       <li class="list-group-item">
        BOTÃO DE DOCUMENTO DO PROJETOS
