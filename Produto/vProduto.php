@@ -89,10 +89,9 @@
       <code><?php echo $CodAt; ?></code>
       <strong><?php echo $nomeProduto; ?></strong></h3>
       <small class="pull-right">Data de Cadastro: <?php echo $DataCad; ?></small>
-
      </div>
      <div class="box-body">
-     <div class="col-md-4 col-xs-12">
+     <div class="col-md-5 col-xs-12">
       <li class="list-group-item">
        <b>Produto:</b>
         <a class="pull-right"><?php echo $nomeProduto; ?></a><br />
@@ -105,40 +104,37 @@
        <b>Categoria:</b>
         <a class="pull-right"><?php echo $Categoria; ?></a>
       </li>
-      <button type="button" class="btn btn-default btn-sm btn-block" data-toggle="modal" data-target="#modalFoto">
-      ATUALIZAR FOTO
-      </button>
+      <li class="list-group-item">
+       BOTÃO DE DOCUMENTO DO PROJETOS
+      </li>
      </div>
      <div class="col-md-5 col-xs-12">
       <li class="list-group-item">
        <b>Forn. 1:</b>
-        <a class="pull-right"><?php echo $For1; ?></a><br />
+        <a class="pull-right"><?php echo $For1; ?>
+        <button type="button" class="btn btn-danger btn-xs pull-right" data-toggle="modal" data-target="#For1"><i class="fa fa-refresh"></i> </button> 
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Forn. 2:</b>
-        <a class="pull-right"><?php echo $For2; ?></a><br />
+        <a class="pull-right"><?php echo $For2; ?>
+        <button type="button" class="btn btn-warning btn-xs pull-right" data-toggle="modal" data-target="#For2"><i class="fa fa-refresh"></i> </button> 
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Forn. 3:</b>
-        <a class="pull-right"><?php echo $For3; ?></a>
+        <a class="pull-right"><?php echo $For3; ?>
+        <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#For3"><i class="fa fa-refresh"></i> </button> 
+        </a>
       </li>
       <li class="list-group-item">
-       <div class="col-md-6 col-xs-12">
-        <button type="button" class="btn btn-danger btn-xs btn-block" data-toggle="modal" data-target="#modalFoto">
-        PROJETO
-        </button>
-       </div>
-       <div class="col-md-6 col-xs-12">
-        <button type="button" class="btn btn-danger btn-xs btn-block" data-toggle="modal" data-target="#modalFoto">
-        ENGENHARIA
-        </button>
-       </div><br />
+       BOTÃO DE DOCUMENTO DA ENGENHARIA
       </li>
      </div>
-     <div class="col-md-3 col-xs-12">
+     <div class="col-md-2 col-xs-12">
       <li class="list-group-item">
-       <img class="fancybox" src="imagens/<?php echo $fto; ?>" class="img-responsive" width="100%"  data-big="imagens/<?php echo $fto; ?>" />
-       Clique para Expandir
+      <img src="imagens/<?php echo $fto; ?>" class="img-responsive" width="120" heidth="80%"/>
+       <button type="button" class="btn btn-default btn-block btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">AMPLIAR</button>
       </li>
      </div>
      <div class="col-xs-12"><h4>Lista de Códigos</h4></div>
@@ -190,7 +186,19 @@
       <?php echo $Obs; ?>
       </li>
      </div>
-<?php include_once 'ModalEdita.php'; ?>
+     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+       <div class="modal-content">
+        <div class="col-xs-12">
+        <img src="imagens/<?php echo $fto; ?>" class="img-responsive" width="100%"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    <?php 
+    include_once 'ModalEdita.php'; 
+
+    ?>
     </div>
    </section>
   </div>
@@ -204,26 +212,5 @@
 <script src="../dist/js/app.min.js"></script>
 <script src="../dist/js/demo.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript">
-    $(function($){
-        var addToAll = false;
-        var gallery = true;
-        var titlePosition = 'inside';
-        $(addToAll ? 'img' : 'img.fancybox').each(function(){
-            var $this = $(this);
-            var title = $this.attr('title');
-            var src = $this.attr('data-big') || $this.attr('src');
-            var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
-            $this.wrap(a);
-        });
-        if (gallery)
-            $('a.fancybox').attr('rel', 'fancyboxgallery');
-        $('a.fancybox').fancybox({
-            titlePosition: titlePosition
-        });
-    });
-    $.noConflict();
-</script>
 </body>
 </html>

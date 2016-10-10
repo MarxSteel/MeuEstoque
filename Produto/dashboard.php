@@ -357,7 +357,7 @@ $F3->execute();
 </script>
 <script language="JavaScript">
 function abrir(URL) { 
-  var width = 1100;
+  var width = 1200;
   var height = 650;
   var left = 99;
   var top = 99;
