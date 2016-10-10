@@ -1,7 +1,6 @@
 <?php 
 $server = 'http://localhost:8888/MeuEstoque';
 $endereco = $_SERVER ['REQUEST_URI']; 
-
 ?>
 <ul class="sidebar-menu">
  <li class="header"></li>
