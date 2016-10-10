@@ -33,7 +33,6 @@
        	if ($Valorf) {
        	 $prAnt = number_format($valor, 2, ',', '.');
        	 $prNovo = number_format($Valorf, 2, ',', '.');
-       	 $Det1 = "<strong>Nova Atulização de Preço: </strong><br />";
        	 $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
        	 $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
        	 $Det3 = "Cód. Evento: 301 (Alteração de Preço)";
@@ -84,7 +83,6 @@
      $novoEstoque = $_POST['nest'];
       $atEstoque = $PDO->query("UPDATE cad_estoque SET es_minimo='$novoEstoque'");
        if ($atEstoque) {
-        $Det1 = "<strong>Nova Atulização de Preço: </strong><br />";
        	$Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
        	$Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
        	$Det3 = "Cód. Evento: 302 (Alteração de estoque mínimo)";
@@ -135,7 +133,6 @@
      $novoEng = $_POST['ceng'];
       $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c1='$novoEng'");
        if ($atEstoque) {
-        $Det1 = "<strong>Nova Atulização de Preço: </strong><br />";
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
         $Det3 = "Cód. Evento: 303 (Alterado Código da Engenharia)";
@@ -186,7 +183,6 @@
      $novoAlm = $_POST['calm'];
       $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c2='$novoAlm'");
        if ($atEstoque) {
-        $Det1 = "<strong>Nova Atulização de Preço: </strong><br />";
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
         $Det3 = "Cód. Evento: 304 (Alterado Código do Almoxarifado)";
@@ -237,7 +233,6 @@
      $novoCom = $_POST['calm'];
       $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c4='$novoCom'");
        if ($atEstoque) {
-        $Det1 = "<strong>Nova Atulização de Preço: </strong><br />";
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
         $Det3 = "Cód. Evento: 305 (Alterado Código do Comercial)";
@@ -288,7 +283,6 @@
      $novoProj = $_POST['proj'];
       $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c3='$novoProj'");
        if ($atEstoque) {
-        $Det1 = "<strong>Nova Atulização de Preço: </strong><br />";
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
         $Det3 = "Cód. Evento: 306 (Alterado Código do Projetos)";
@@ -310,6 +304,76 @@
  </div>
 </div>
 <!-- ALTERA CÓDIGO DO COMERCIAL -->
+<!-- ALTERA NOME DO PRODUTO -->
+<div id="nomeProduto" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header bg-green">
+    <button type="button" class="close" data-dismiss="modal">X</button>
+     <h4 class="modal-title">Atualizar Nome</h4>
+   </div>
+   <div class="modal-body">
+    <form name="nnome" id="nnome" method="post" action="" enctype="multipart/form-data">
+     <div class="col-xs-12">
+     <h3>Nome Atual: <br /> <?php echo $nomeProduto; ?></h3>
+     </div>
+      <div class="col-xs-12">
+       <div class="input-group">
+        <span class="input-group-addon"><strong>Novo Nome</strong></span>
+        <input type="text" name="newnome" required="required" class="form-control">
+       </div>
+      </div>
+     <div class="col-xs-12">
+     <h4>Revisão Atual:<br /> <?php echo $Revisao; ?></h4>
+     </div>
+      <div class="col-xs-12">
+       <div class="input-group">
+        <span class="input-group-addon"><strong>Revisão</strong></span>
+        <input type="text" name="novarev" required="required" class="form-control">
+       </div>
+      </div>
+     <div class="pull-right"><br />
+      <input name="nnome" type="submit" class="btn bg-orange btn-flat" id="nnome" value="ATUALIZAR NOME DO PRODUTO"  /> 
+      <button type="button" class="btn btn-danger btn-flat" data-dismiss="modal">FECHAR</button>
+     </div>
+    </form>
+    <?php
+     if(@$_POST["nnome"]){
+     $novoNome = $_POST['newnome'];
+     $novoRev = $_POST['novarev'];
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_nome='$novoNome', es_rev='$novoRev'");
+       if ($atEstoque) {
+        $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
+        $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
+        $Det3 = "Cód. Evento: 307 (Nome+RevisãoAtualizado)";
+        $Det4 = "<strong> Nome Anterior: </strong>" . $nomeProduto . "<br />";
+        $Det5 = "<strong> Novo Nome: </strong>" . $novoNome . "<br />";
+        $Det6 = "<strong> Revisão Anterior: </strong>" . $Revisao . "<br />";
+        $Det7 = "<strong> Revisão Nova: </strong>" . $novoRev . "<br />";
+        
+        $nOb = $Det1 . $Det2 . $Det3 . $Det4 . $Det5 . $Rev6 . $Rev7;
+         $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '307', '$dataAtual', '$nOb')");
+          if ($NovoLog)
+          {
+           echo '<script type="text/JavaScript">alert("NOME ATUALIZADO!");
+              location.href="vProduto.php?ID=' . $CodAt . '"</script>';
+          }
+        }
+       } 
+      ?>
+   </div>
+   <div class="modal-footer"></div>
+  </div>
+ </div>
+</div>
+<!-- ALTERA NOME DO PRODUTO -->
+
+
+
+
+
+
+
 <!-- MODAL DE EXEMPLO -->
 <div id="modalnovo" class="modal fade" role="dialog">
  <div class="modal-dialog">
@@ -327,4 +391,3 @@
  </div>
 </div>
 <!-- MODAL DE EXEMPLO -->
->

@@ -89,76 +89,78 @@
       <code><?php echo $CodAt; ?></code>
       <strong><?php echo $nomeProduto; ?></strong></h3>
       <small class="pull-right">Data de Cadastro: <?php echo $DataCad; ?></small>
-
      </div>
      <div class="box-body">
-     <div class="col-md-4 col-xs-12">
+     <div class="col-md-5 col-xs-12">
       <li class="list-group-item">
        <b>Produto:</b>
-        <a class="pull-right"><?php echo $nomeProduto; ?></a><br />
+        <a class="pull-right"><?php echo $nomeProduto; ?>
+        <button type="button" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#nomeProduto"><i class="fa fa-refresh"></i></button>
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Revisão:</b>
-        <a class="pull-right"><?php echo $Revisao; ?></a><br />
+        <a class="pull-right"><?php echo $Revisao; ?>
+        <button type="button" class="btn bg-teal btn-xs pull-right" data-toggle="modal" data-target="#Revisao"><i class="fa fa-refresh"></i> </button>  
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Categoria:</b>
-        <a class="pull-right"><?php echo $Categoria; ?></a>
+        <a class="pull-right"><?php echo $Categoria; ?>
+        <button type="button" class="btn bg-fuchsia btn-xs pull-right" data-toggle="modal" data-target="#Categoria"><i class="fa fa-refresh"></i> </button>  
+        </a>
       </li>
-      <button type="button" class="btn btn-default btn-sm btn-block" data-toggle="modal" data-target="#modalFoto">
-      ATUALIZAR FOTO
-      </button>
+      <li class="list-group-item">
+       BOTÃO DE DOCUMENTO DO PROJETOS
+      </li>
      </div>
      <div class="col-md-5 col-xs-12">
       <li class="list-group-item">
        <b>Forn. 1:</b>
-        <a class="pull-right"><?php echo $For1; ?></a><br />
+        <a class="pull-right"><?php echo $For1; ?>
+        <button type="button" class="btn btn-danger btn-xs pull-right" data-toggle="modal" data-target="#For1"><i class="fa fa-refresh"></i> </button> 
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Forn. 2:</b>
-        <a class="pull-right"><?php echo $For2; ?></a><br />
+        <a class="pull-right"><?php echo $For2; ?>
+        <button type="button" class="btn btn-warning btn-xs pull-right" data-toggle="modal" data-target="#For2"><i class="fa fa-refresh"></i> </button> 
+        </a><br />
       </li>
       <li class="list-group-item">
        <b>Forn. 3:</b>
-        <a class="pull-right"><?php echo $For3; ?></a>
+        <a class="pull-right"><?php echo $For3; ?>
+        <button type="button" class="btn btn-primary btn-xs pull-right" data-toggle="modal" data-target="#For3"><i class="fa fa-refresh"></i> </button> 
+        </a>
       </li>
       <li class="list-group-item">
-       <div class="col-md-6 col-xs-12">
-        <button type="button" class="btn btn-danger btn-xs btn-block" data-toggle="modal" data-target="#modalFoto">
-        PROJETO
-        </button>
-       </div>
-       <div class="col-md-6 col-xs-12">
-        <button type="button" class="btn btn-danger btn-xs btn-block" data-toggle="modal" data-target="#modalFoto">
-        ENGENHARIA
-        </button>
-       </div><br />
+       BOTÃO DE DOCUMENTO DA ENGENHARIA
       </li>
      </div>
-     <div class="col-md-3 col-xs-12">
+     <div class="col-md-2 col-xs-12">
       <li class="list-group-item">
-       <img class="fancybox" src="imagens/<?php echo $fto; ?>" class="img-responsive" width="100%"  data-big="imagens/<?php echo $fto; ?>" />
-       Clique para Expandir
+      <img src="imagens/<?php echo $fto; ?>" class="img-responsive" width="120" heidth="80%"/>
+       <button type="button" class="btn btn-default btn-block btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">AMPLIAR</button>
       </li>
      </div>
      <div class="col-xs-12"><h4>Lista de Códigos</h4></div>
      <div class="col-xs-12 col-md-6">
       <li class="list-group-item">
-       <b>Cod. Engenharia</b>
+       <b>Cód. Engenharia</b>
         <a class="pull-right"><?php echo $C1; ?>
          <button type="button" class="btn bg-olive btn-xs pull-right" data-toggle="modal" data-target="#codEng"><i class="fa fa-refresh"></i> </button>
+        </a><br />
+      </li>
+      <li class="list-group-item">
+       <b>Cod. Comercial:</b>
+        <a class="pull-right"><?php echo $C3; ?>
+         <button type="button" class="btn bg-maroon btn-xs pull-right" data-toggle="modal" data-target="#codCom"><i class="fa fa-refresh"></i> </button>
         </a><br />
       </li>
       <li class="list-group-item">
        <b>Cod. Almoxarifado:</b>
         <a class="pull-right"><?php echo $C2; ?>
          <button type="button" class="btn bg-purple btn-xs pull-right" data-toggle="modal" data-target="#codAlm"><i class="fa fa-refresh"></i> </button>
-        </a><br />
-      </li>
-      <li class="list-group-item">
-       <b>Cod. Comercial:</b>
-        <a class="pull-right"><?php echo $C4; ?>
-         <button type="button" class="btn bg-maroon btn-xs pull-right" data-toggle="modal" data-target="#codCom"><i class="fa fa-refresh"></i> </button>
         </a><br />
       </li>
      </div>
@@ -172,7 +174,7 @@
       <li class="list-group-item">
        <b>Cod. Projetos:</b>
         <a class="pull-right"><?php echo $C3; ?>
-         <button type="button" class="btn bg-orange btn-xs pull-right" data-toggle="modal" data-target="#codProj"><i class="fa fa-refresh"></i> </button>
+         <button type="button" class="btn bg-maroon btn-xs pull-right" data-toggle="modal" data-target="#codProj"><i class="fa fa-refresh"></i> </button>
         </a><br />
       </li>
       <li class="list-group-item">
@@ -190,105 +192,19 @@
       <?php echo $Obs; ?>
       </li>
      </div>
+     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+       <div class="modal-content">
+        <div class="col-xs-12">
+        <img src="imagens/<?php echo $fto; ?>" class="img-responsive" width="100%"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    <?php 
+    include_once 'ModalEdita.php'; 
 
-<!-- Modal de Cadastro de foto-->
-<div class="modal fade" id="modalFoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">ATUALIZAR FOTO</h4>
-      </div>
-      <div class="modal-body">
-       <div class="col-xs-5">
-        <li class="list-group-item">Foto Atual
-         <img src="imagens/<?php echo $fto; ?>" width="150"/>
-        </li>
-       </div>
-       <div class="col-xs-7">
-       <form method="post" enctype="multipart/form-data" action="">
-       Selecione uma imagem: <input name="arquivo" type="file" />
-        <br />
-          <input name="submit" type="submit" class="btn btn-primary" id="submit" value="Atualizar Foto" />
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </form>
-<?php
-// verifica se foi enviado um arquivo 
-if(isset($_FILES['arquivo']['name']) && $_FILES["arquivo"]["error"] == 0)
-{
-  $arquivo_tmp = $_FILES['arquivo']['tmp_name'];
-  $nome = $_FILES['arquivo']['name'];
-  // Pega a extensao
-  $extensao = strrchr($nome, '.');
-  // Converte a extensao para mimusculo
-  $extensao = strtolower($extensao);
-  // Somente imagens, .jpg;.jpeg;.gif;.png
-  // Aqui eu enfilero as extesões permitidas e separo por ';'
-  // Isso server apenas para eu poder pesquisar dentro desta String
-  if(strstr('.jpg;.jpeg;.gif;.png', $extensao))
-  {
-    // Cria um nome único para esta imagem
-    // Evita que duplique as imagens no servidor.
-    $novoNome = md5(microtime()) . $extensao;
-    
-    // Concatena a pasta com o nome
-    $destino = 'imagens/' . $novoNome; 
-    
-    // tenta mover o arquivo para o destino
-    if( @move_uploaded_file( $arquivo_tmp, $destino  ))
-    {
-      $executa = $PDO->query("UPDATE cad_estoque SET es_img='$novoNome' WHERE id='$CodAt'");
-      if($executa){
-      echo '
-        <script type="text/JavaScript">
-        alert("Atualizado com sucesso!");
-      location.href="vProduto.php?ID=' . $CodAt . '"</script>';
-      }
-    }
-    else
-  echo '
-    <script type="text/JavaScript">
-  alert("Erro! Cod.: 1x02");
-  location.href="vProduto.php?ID=' . $CodAt . '"</script>';
-  }
-  else
-      echo '
-    <script type="text/JavaScript">
-  alert("Você poderá enviar apenas arquivos \"*.jpg;*.jpeg;*.gif;*.png\"<br />");
-  location.href="vProduto.php?ID=' . $CodAt . '"</script>';
-}
-else
-{
-}
-?>
-       </div>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>  
-<!-- Fim do modal de cadastro de foto -->
-<!-- Modal de Cadastro de foto-->
-<div class="modal fade" id="modalDocto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        Novo Documento
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>  
-<!-- Fim do modal de cadastro de foto -->
-<?php include_once 'ModalEdita.php'; ?>
+    ?>
     </div>
    </section>
   </div>
@@ -302,27 +218,5 @@ else
 <script src="../dist/js/app.min.js"></script>
 <script src="../dist/js/demo.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
-<script type="text/javascript">
-    $(function($){
-        var addToAll = false;
-        var gallery = true;
-        var titlePosition = 'inside';
-        $(addToAll ? 'img' : 'img.fancybox').each(function(){
-            var $this = $(this);
-            var title = $this.attr('title');
-            var src = $this.attr('data-big') || $this.attr('src');
-            var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
-            $this.wrap(a);
-        });
-        if (gallery)
-            $('a.fancybox').attr('rel', 'fancyboxgallery');
-        $('a.fancybox').fancybox({
-            titlePosition: titlePosition
-        });
-    });
-    $.noConflict();
-</script>
 </body>
 </html>
