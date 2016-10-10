@@ -46,7 +46,7 @@ $endereco = $_SERVER ['REQUEST_URI'];
     <i class="fa fa-hdd-o"></i> <span>Engenharia</span>
    </a>
   </li>
-  <?php } else{ } ?>
+  <?php } else{ } if ($permProdutos === "PP") { ?>
   <li class="treeview <?php echo $cEstoque; ?>">
    <a href="#">
     <i class="fa fa-industry"></i><span>Estoque & Produtos</span>
@@ -55,33 +55,40 @@ $endereco = $_SERVER ['REQUEST_URI'];
     </span>
    </a>
    <ul class="treeview-menu">
+    <?php if ($permProdutos === "PP") { ?>
     <li class="<?php echo $cContEstoque; ?>">
      <a href="<?php echo $server; ?>/estoque/dashboard.php">
      <i class="fa fa-list"></i> 
       Controle de Estoque
      </a>
     </li>
+    <?php } else { } if ($aProduto === "PP") { ?>
     <li class="<?php echo $cProdutos; ?>">
      <a href="<?php echo $server; ?>/Produto/dashboard.php">
       <i class="fa fa-plus-square"></i>
       Cadastro de Produtos
      </a>
     </li>
+    <?php } else { } if ($vArvore === "PP") { ?>
     <li class="<?php echo $cArvore; ?>">
      <a href="<?php echo $server; ?>/Produto/ArvoreProduto.php">
       <i class="fa fa-puzzle-piece"></i>
       Árvore de Produtos
      </a>
     </li>
+    <?php } else { } ?>
    </ul>
   </li>
+  <?php } else{ } if ($vNota === "PP") { ?>
   <li class="<?php echo $cNotas; ?>">
    <a href="<?php echo $server; ?>/notas/dashboard.php">
     <i class="fa fa-file"></i> <span>Controle de Notas</span>
    </a>
   </li>
+  <?php } else { } if ($vProduto === "PP") { ?>
   <li class="<?php echo $cTabela; ?>">
    <a href="<?php echo $server; ?>/Produto/tabela.php">
     <i class="fa fa-sort-amount-desc"></i> <span>Tabela de Produtos</span>
    </a>
   </li>
+  <?php } else { } ?>
