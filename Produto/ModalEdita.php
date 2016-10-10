@@ -157,7 +157,57 @@
  </div>
 </div>
 <!-- ALTERA CODIGO ENGENHARIA -->
-
+<!-- ALTERA CÓDIGO DO ALMOXARIFADO -->
+<div id="codAlm" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header bg-purple">
+    <button type="button" class="close" data-dismiss="modal">X</button>
+     <h4 class="modal-title">Atualizar Código do Almoxarifado</h4>
+   </div>
+   <div class="modal-body">
+    <form name="trocaAlm" id="name" method="post" action="" enctype="multipart/form-data">
+     <div class="col-xs-12">
+     <h3>Código atual: <?php echo $C2; ?></h3>
+     </div>
+      <div class="col-xs-12">Novo Código
+       <div class="input-group">
+        <span class="input-group-addon"><strong>Código Almoxarifado</strong></span>
+        <input type="text" name="calm" required="required" class="form-control">
+       </div>
+      </div>
+     <div class="pull-right"><br />
+      <input name="trocaAlm" type="submit" class="btn bg-purple btn-flat" id="trocaAlm" value="ATUALIZAR CÓDIGO DO ALMOXARIFADO"  /> 
+      <button type="button" class="btn btn-danger btn-flat" data-dismiss="modal">FECHAR</button>
+     </div>
+    </form>
+    <?php
+     if(@$_POST["trocaAlm"]){
+     $novoAlm = $_POST['calm'];
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c2='$novoAlm'");
+       if ($atEstoque) {
+        $Det1 = "<strong>Nova Atulização de Preço: </strong><br />";
+        $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
+        $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
+        $Det3 = "Cód. Evento: 304 (Alterado Código do Almoxarifado)";
+        $Det4 = "<strong> Código Anterior: </strong>" . $C1 . "<br />";
+        $Det5 = "<strong> Novo Código: </strong>" . $novoAlm . "<br />";
+        $nOb = $Det1 . $Det2 . $Det3 . $Det4 . $Det5;
+         $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '304', '$dataAtual', '$nOb')");
+          if ($NovoLog)
+          {
+           echo '<script type="text/JavaScript">alert("Código Atualizado com Sucesso!");
+              location.href="vProduto.php?ID=' . $CodAt . '"</script>';
+          }
+        }
+       } 
+      ?>
+   </div>
+   <div class="modal-footer"></div>
+  </div>
+ </div>
+</div>
+<!-- ALTERA CÓDIGO DO ALMOXARIFADO -->
 
 <!-- MODAL DE EXEMPLO -->
 <div id="modalnovo" class="modal fade" role="dialog">
