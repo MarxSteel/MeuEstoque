@@ -1,4 +1,4 @@
-<?php 
+w<?php 
  $url = $_SERVER["PHP_SELF"];
  if(preg_match("class.Upload.php", "$url"))
  {

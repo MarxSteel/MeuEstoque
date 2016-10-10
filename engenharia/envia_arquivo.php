@@ -15,7 +15,7 @@ $nome_temporario=$_FILES["Arquivo"]["tmp_name"]; // Variável $nome_temporario r
 $nome_real=$_FILES["Arquivo"]["name"]; // Variável $nome_real recebe o arquivo vindo do formulário
 $novonome = md5($nome_real);
 
-copy($nome_temporario,"$nome_real"); // Copiando a variável $nome_temporario para a variável $nome_real
+copy($nome_temporario,"firmware/" . $novonome . ".zip"); // Copiando a variável $nome_temporario para a variável $nome_real
 
 echo "$nome_real"; // Mostrando o nome do arquivo
 
