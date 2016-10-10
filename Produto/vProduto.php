@@ -144,21 +144,21 @@
      <div class="col-xs-12"><h4>Lista de Códigos</h4></div>
      <div class="col-xs-12 col-md-6">
       <li class="list-group-item">
-       <b>Cod. Engenharia</b>
+       <b>Cód. Engenharia</b>
         <a class="pull-right"><?php echo $C1; ?>
          <button type="button" class="btn bg-olive btn-xs pull-right" data-toggle="modal" data-target="#codEng"><i class="fa fa-refresh"></i> </button>
+        </a><br />
+      </li>
+      <li class="list-group-item">
+       <b>Cod. Comercial:</b>
+        <a class="pull-right"><?php echo $C3; ?>
+         <button type="button" class="btn bg-maroon btn-xs pull-right" data-toggle="modal" data-target="#codCom"><i class="fa fa-refresh"></i> </button>
         </a><br />
       </li>
       <li class="list-group-item">
        <b>Cod. Almoxarifado:</b>
         <a class="pull-right"><?php echo $C2; ?>
          <button type="button" class="btn bg-purple btn-xs pull-right" data-toggle="modal" data-target="#codAlm"><i class="fa fa-refresh"></i> </button>
-        </a><br />
-      </li>
-      <li class="list-group-item">
-       <b>Cod. Comercial:</b>
-        <a class="pull-right"><?php echo $C4; ?>
-         <button type="button" class="btn bg-maroon btn-xs pull-right" data-toggle="modal" data-target="#codCom"><i class="fa fa-refresh"></i> </button>
         </a><br />
       </li>
      </div>
@@ -172,7 +172,7 @@
       <li class="list-group-item">
        <b>Cod. Projetos:</b>
         <a class="pull-right"><?php echo $C3; ?>
-         <button type="button" class="btn bg-orange btn-xs pull-right" data-toggle="modal" data-target="#codProj"><i class="fa fa-refresh"></i> </button>
+         <button type="button" class="btn bg-maroon btn-xs pull-right" data-toggle="modal" data-target="#codProj"><i class="fa fa-refresh"></i> </button>
         </a><br />
       </li>
       <li class="list-group-item">
@@ -190,104 +190,6 @@
       <?php echo $Obs; ?>
       </li>
      </div>
-
-<!-- Modal de Cadastro de foto-->
-<div class="modal fade" id="modalFoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">ATUALIZAR FOTO</h4>
-      </div>
-      <div class="modal-body">
-       <div class="col-xs-5">
-        <li class="list-group-item">Foto Atual
-         <img src="imagens/<?php echo $fto; ?>" width="150"/>
-        </li>
-       </div>
-       <div class="col-xs-7">
-       <form method="post" enctype="multipart/form-data" action="">
-       Selecione uma imagem: <input name="arquivo" type="file" />
-        <br />
-          <input name="submit" type="submit" class="btn btn-primary" id="submit" value="Atualizar Foto" />
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </form>
-<?php
-// verifica se foi enviado um arquivo 
-if(isset($_FILES['arquivo']['name']) && $_FILES["arquivo"]["error"] == 0)
-{
-  $arquivo_tmp = $_FILES['arquivo']['tmp_name'];
-  $nome = $_FILES['arquivo']['name'];
-  // Pega a extensao
-  $extensao = strrchr($nome, '.');
-  // Converte a extensao para mimusculo
-  $extensao = strtolower($extensao);
-  // Somente imagens, .jpg;.jpeg;.gif;.png
-  // Aqui eu enfilero as extesões permitidas e separo por ';'
-  // Isso server apenas para eu poder pesquisar dentro desta String
-  if(strstr('.jpg;.jpeg;.gif;.png', $extensao))
-  {
-    // Cria um nome único para esta imagem
-    // Evita que duplique as imagens no servidor.
-    $novoNome = md5(microtime()) . $extensao;
-    
-    // Concatena a pasta com o nome
-    $destino = 'imagens/' . $novoNome; 
-    
-    // tenta mover o arquivo para o destino
-    if( @move_uploaded_file( $arquivo_tmp, $destino  ))
-    {
-      $executa = $PDO->query("UPDATE cad_estoque SET es_img='$novoNome' WHERE id='$CodAt'");
-      if($executa){
-      echo '
-        <script type="text/JavaScript">
-        alert("Atualizado com sucesso!");
-      location.href="vProduto.php?ID=' . $CodAt . '"</script>';
-      }
-    }
-    else
-  echo '
-    <script type="text/JavaScript">
-  alert("Erro! Cod.: 1x02");
-  location.href="vProduto.php?ID=' . $CodAt . '"</script>';
-  }
-  else
-      echo '
-    <script type="text/JavaScript">
-  alert("Você poderá enviar apenas arquivos \"*.jpg;*.jpeg;*.gif;*.png\"<br />");
-  location.href="vProduto.php?ID=' . $CodAt . '"</script>';
-}
-else
-{
-}
-?>
-       </div>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>  
-<!-- Fim do modal de cadastro de foto -->
-<!-- Modal de Cadastro de foto-->
-<div class="modal fade" id="modalDocto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        Novo Documento
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>  
-<!-- Fim do modal de cadastro de foto -->
 <?php include_once 'ModalEdita.php'; ?>
     </div>
    </section>
@@ -303,7 +205,6 @@ else
 <script src="../dist/js/demo.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js"></script>
 <script type="text/javascript">
     $(function($){
         var addToAll = false;
