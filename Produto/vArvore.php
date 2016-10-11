@@ -41,7 +41,7 @@ word-wrap: break-word;
 }
 </style>
 </head>
-<body class="hold-transition skin-red layout-top-nav">
+<body class="hold-transition <?php echo $cor; ?> layout-top-nav">
 <div class="wrapper">
  <header class="main-header">
   <nav class="navbar navbar-static-top">
@@ -64,18 +64,16 @@ word-wrap: break-word;
  </header>
  <div class="content-wrapper">
   <div class="container">
-   <section class="content-header">
-    <h4>Produtos > Árvore de Produto > Ver Árvore de Produto
-     <small><?php echo $Titulo; ?></small>
-    </h4>
-   </section>
    <section class="content">
     <div class="col-xs-4">
      <div class="box box-default">
       <div class="box-body">
       <img src="imagens/<?php echo $FotoMod; ?>" width="100%"><br />
+      <button type="button" class="btn btn-primary btn-block btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">AMPLIAR</button>
+      <button type="button" class="btn btn-default btn-xs btn-block" data-toggle="modal" data-target="#trocaFoto">
+       TROCAR FOTO
+      </button>
       <h4>
-      <strong>Modelo: </strong><?php echo $NomeMod; ?><br/>
       <strong>Data de Cadastro: </strong><?php echo $DataCadastrado; ?><br/>
       <strong>Observações: </strong><br/>
       </h4>
@@ -90,10 +88,9 @@ word-wrap: break-word;
     <div class="col-xs-8">
      <div class="box box-default">
       <div class="box-header with-border">
-       <h3 class="box-title">Árvore de Produtos</h3>
+       <h3 class="box-title"><?php echo $NomeMod; ?> - Árvore de Produtos</h3>
       </div>
       <div class="box-body">
-      
         <table id="listaArvore" class="table table-bordered table-striped">
          <thead>
          <tr>
@@ -119,6 +116,71 @@ word-wrap: break-word;
       </div>
      </div>
     </div>
+     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+       <div class="modal-content">
+        <div class="col-xs-12">
+        <img src="imagens/<?php echo $FotoMod; ?>" width="100%">
+        </div>
+       </div>
+      </div>
+     </div>
+
+
+<!-- MODAL DE TROCA DE FOTO -->
+<div class="modal fade" id="trocaFoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">TROCANDO FOTO</h4>
+      </div>
+      <div class="modal-body">
+       <div class="col-xs-4">Foto Atual:
+        <li class="list-group-item">
+        <img src="imagens/<?php echo $FotoMod; ?>" width="100%">
+        </li>
+       </div>
+       <div class="col-xs-8">
+        <form action="#" method="POST" enctype="multipart/form-data">
+         <input type="file" name="fileUpload"><br /><br /><br />
+         <input type="submit"  class="btn btn-default" value="ATUALIZAR FOTO">
+       </form>
+       </div>
+       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <?php
+       if(isset($_FILES['fileUpload']))
+       {
+        date_default_timezone_set("Brazil/East"); 
+          $ext = strtolower(substr($_FILES['fileUpload']['name'],-4)); 
+          $novonomi = date("Y.m.d-H.i.s"); 
+          $new_name = md5($novonomi) . $ext;
+          $dir = 'imagens/'; //Diretório para uploads
+          move_uploaded_file($_FILES['fileUpload']['tmp_name'], $dir.$new_name); 
+        
+
+        $NovaFoto = $PDO->query("UPDATE arvore_prod SET img='$new_name' WHERE ap_id='$IDModelo'");
+         if ($NovaFoto) {
+        $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
+        $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
+        $Det3 = "Cód. Evento: 403 (Foto de Produto Atualizada)";
+        $nOb = $Det1 . $Det2 . $Det3;
+         $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '403', '$dataAtual', '$nOb')");
+          if ($NovoLog)
+          {
+           echo '<script type="text/JavaScript">alert("foto atualizada!");
+              location.href="vArvore.php?ID=' . $IDModelo . '"</script>';
+          }
+        }
+      }
+?>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIM DO MODAL DE TROCA DE FOTO -->
    </section>
   </div>
  </div>
