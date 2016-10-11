@@ -50,11 +50,9 @@ $F3->execute();
   <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="../plugins/iCheck/flat/blue.css">
-  <link rel="stylesheet" href="../plugins/morris/morris.css">
-  <link rel="stylesheet" href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-  <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
-  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
-  <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <style>
+  .modalArvore{margin:20px;}
+</style>
 </head>
 <body class="hold-transition <?php echo $cor; ?> fixed sidebar-mini">
  <div class="wrapper">
@@ -207,16 +205,20 @@ $F3->execute();
           while ($VCat = $Catt->fetch(PDO::FETCH_ASSOC)): 
            echo '<tr>';
             echo '<td>' . $VCat['ap_id'] . '</td>';
-            echo '<td>' . $VCat['ap_id'] . '</td>';
-            echo '<td>' . $VCat['ap_id'] . '</td>';
+            echo '<td>' . $VCat['ap_Nome'] . '</td>';
+            echo '<td>' . $VCat['ap_Obs'] . '</td>';
               if ($aArvore === "PP") {
               echo '<td>';
               echo '<a class="btn btn-danger btn-sm" href="';
               echo "javascript:abrir('DelArvore.php?ID=" . $VCat['ap_id'] . "');";
-              echo '"><i class="fa fa-remove"> </i> REMOVER</a> ';
+              echo '"><i class="fa fa-remove"> </i></a> ';
 
               echo '<a href="VerArvore.php?ID=' . $VCat['ap_id'] . '" class="btn btn-sm bg-navy" target="_blank">';
-              echo '<i class="fa fa-search"></i> DETALHES</a>';
+              echo '<i class="fa fa-search"></i></a> ';
+              echo '<a class="btn btn-danger btn-sm" href="';
+              echo "javascript:abrir('adArvore.php?ID=" . $VCat['ap_id'] . "');";
+              echo '"><i class="fa fa-plus"> </i></a> ';
+
               echo '</td>';
               }
               else{
@@ -234,7 +236,9 @@ $F3->execute();
       </div>
      </div>
     </div>
-    <?php } else { ?>
+    <?php 
+    include_once 'modalCadastro.php';
+    } else { ?>
     <div class="col-md-12 col-sm-6 col-xs-12">
      <div class="info-box">
       <a data-toggle="modal" data-target="#myModal"">
@@ -274,6 +278,7 @@ $F3->execute();
 <script>
   $(function () {
     $("#example1").DataTable();
+    $("#arvore").DataTable();
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -293,6 +298,15 @@ function abrir(URL) {
   window.open(URL,'janela', 'width='+width+', height='+height+', top='+top+', left='+left+', scrollbars=yes, status=no, toolbar=no, location=no, directories=no, menubar=no, resizable=no, fullscreen=no');
  
 }
+</script>
+<script type="text/javascript">
+$('#modalArvore').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget)
+  var recipient = button.data('whatever')
+  var modal = $(this)
+  modal.find('.modal-title').text('Novo item para o produto: ' + recipient)
+  modal.find('.modal-valor').val(recipient)
+})
 </script>
 </body>
 </html>
