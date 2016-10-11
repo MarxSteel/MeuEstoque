@@ -140,10 +140,10 @@ require_once 'privilegios.php';
        <div class="info-box-content"><h4>Suporte Técnico</h4></div>
       </div>
      </div>
-     <?php } else { } if ($aEngenharia === "P") { ?>
+     <?php } else { } if ($aEngenharia === "PP") { ?>
      <div class="col-md-4">
       <div class="info-box">
-       <a href="suporte/engenharia.php" >
+       <a href="engenharia/dashboard.php" >
         <span class="info-box-icon bg-olive">
          <i class="fa fa-hdd-o"></i>
         </span>
