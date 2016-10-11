@@ -11,7 +11,7 @@ $PDO = db_connect();
   $NomeUserLogado = $row['Nome'];
   $foto = $row['Foto'];
   require_once '../privilegios.php';
-
+  $dataHoje = date('d/m/Y H:i:s');
 
 
 $dt = date("d/m/Y - H:i:s");
@@ -26,6 +26,12 @@ $QryCategoria = "SELECT * FROM categoria WHERE Status='1'";
 // seleciona os registros
 $stmt4 = $PDO->prepare($QryCategoria);
 $stmt4->execute();
+
+$qryProduto = "SELECT * FROM produto ";
+// seleciona os registros
+$chprod = $PDO->prepare($qryProduto);
+$chprod->execute();
+
 
 
 $ChamaFornecedor = "SELECT * FROM fornecedor";
@@ -122,7 +128,7 @@ $F3->execute();
      <div class="col-md-4">
       <div class="info-box">
       <?php if ($aArvore === "PP") { ?>
-      <a data-toggle="modal" data-target="#myModal"">
+      <a data-toggle="modal" data-target="#add"">
        <span class="info-box-icon btn-danger">
         <i class="fa fa-plus"></i>
        </span>
@@ -184,6 +190,100 @@ $F3->execute();
       </div>
      </div>
     </div>
+
+
+<!-- MODAL DE ADICIONAR NOVA ARVORE DE PRODUTO -->
+<!-- MODAL DE DESABILITAR PÁGINA -->
+<div id="add" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header bg-red">
+    <button type="button" class="close" data-dismiss="modal">X</button>
+     <h4 class="modal-title">DESCONTINUAR EQUIPAMENTO</h4>
+   </div>
+   <div class="modal-body">
+    <form name="nprod" id="name" method="post" action="" enctype="multipart/form-data">
+     <div class="col-xs-8">Produto
+      <select class="form-control" name="cat" required="required">
+      <option value="" selected="selected">SELECIONE</option>
+       <?php while ($pro = $chprod->fetch(PDO::FETCH_ASSOC)): ?>
+      <option value="<?php echo $pro['nome'] ?>"><?php echo $pro['nome'] ?>
+      </option>
+       <?php endwhile; ?>
+      </select>
+     </div>
+     <div class="col-xs-4 form-group">Modelo
+      <input class="form-control" type="text" name="ni" required="required">
+     </div>
+     <div class="col-xs-12">Observações
+      <textarea name="obs" cols="45" rows="3" class="form-control" id="obs"></textarea><hr>
+     </div>
+     <input name="nprod" type="submit" class="btn btn-success btn-block" id="nitem" value="Finalizar Cadastro Inicial"  />
+    </form>
+    <?php
+    if(@$_POST["nprod"])
+    {
+     $produto = $_POST['cat'];          //NOME DO ITEM
+     $modelo = $_POST['ni'];
+     $Mo = $produto . ' ' . $modelo;
+     $Obs = str_replace("\r\n", "<br/>", strip_tags($_POST["obs"]));
+      $CadArvore = $PDO->query("INSERT INTO arvore_prod (ap_Nome, ap_Obs, ap_DataCadastro, Status) VALUES ('$Mo', '$Obs', '$dataHoje', '1')");
+       if($CadArvore)
+        {
+        echo '<script type="text/JavaScript">alert("Modelo Adicionado!");
+              location.href="ArvoreProduto.php"</script>';
+        }
+        else{
+
+        }
+
+    }
+     ?>
+
+
+
+   </div>
+
+
+
+
+
+
+
+
+     <?php
+      if(@$_POST["dec"])
+      {
+    $DataCadastro = date('d/m/Y H:i:s');
+     $desativa = $PDO->query("UPDATE arvore_prod SET Status='2' WHERE ap_id='$IDModelo'");
+      if ($desativa) {
+       $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
+       $Det2 = "Data da Atualização: " . $DataCadastro . "<br/>";
+       $Det3 = "Cód. Evento: 404 (PRODUTO DESCONTINUADO)";
+       $Det4 = "<strong> Modelo </strong>" . $NomeMod . "<br />";
+       $nOb = $Det1 . $Det2 . $Det3 . $Det4; 
+       $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '404', '$dataAtual', '$nOb')");
+       if ($NovoLog)
+       {
+        echo '<script type="text/JavaScript">alert("desativado com sucesso");
+              window.close();</script>';
+       }
+      else
+      {
+      echo '<script type="text/javascript">alert("Não foi possível. Erro: 0x03");</script>';
+      }
+  }
+}
+  ?>
+
+  </div>
+
+
+
+  </div>
+</div>
+<!-- MODAL DE DESABILITAR PÁGINA -->        
+<!-- MODAL DE ADICIONAR NOVA ARVORE DE PRODUTO -->
     <?php
     }
     else{
