@@ -66,48 +66,70 @@
       </div>
 
 
-<!-- MODAL DE INCLUSÃO DE ITEM -->
-<div class="modal fade" id="ModalArvore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+
+
+
+
+
+<div class="modal fade" id="modalArvore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
  <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
    <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="exampleModalLabel">New sss</h4>
+    <h4 class="modal-title" id="exampleModalLabel"></h4>
    </div>
    <div class="modal-body">
    <?php
-   $chamaProd = "SELECT * FROM cad_estoque";
-   $prod = $PDO->prepare($chamaProd);
-   $prod->execute();
+    $chamaProd = "SELECT * FROM cad_estoque";
+     $prod = $PDO->prepare($chamaProd);
+     $prod->execute();
    ?>
-     <table id="arvore" class="table table-bordered table-striped">
-      <thead>
-       <tr>
-        <th style="width: 10px">#</th>
-        <th style="width: 10%">Comercial</th>
-        <th style="width: 10%">Almoxarifado</th>
-        <th>Nome</th>
-        <th style="width: 15px">Quantidade</th>
-        <th style="width: 50px"></th>
-       </tr>
-      </thead>
-      <tbody>
-      <?php while ($vp = $prod->fetch(PDO::FETCH_ASSOC)): 
-           echo '<tr>';
-            echo '<td>' . $vp['id'] . '</td>';
-            echo '<td>' . $VCat['es_c2'] . '</td>';
-            echo '<td>' . $VCat['es_c1'] . '</td>';
-            echo '<td>' . $VCat['es_nome'] . '</td>';
-            echo '<td>' . $VCat['es_cat'] . '</td>';
-           echo '</tr>';
-           endwhile;
-         ?>
-        </tbody>
-        </table>
+    <table id="arvore" class="table table-bordered table-striped">
+     <thead>
+      <tr>
+       <th style="width: 10px">#</th>
+       <th style="width: 10%">Comercial</th>
+       <th style="width: 10%">Almoxarifado</th>
+       <th>Nome</th>
+       <th style="width: 20px">Modelo</th>
+       <th style="width: 50px">Quantidade</th>
+       <th style="width: 50px"></th>
+      </tr>
+     </thead>
+     <tbody>
+     <?php while ($vp = $prod->fetch(PDO::FETCH_ASSOC)): 
+     echo '<tr>';
+     ?>
+      <form name="<?php echo $vp['id']; ?>" id="<?php echo $vp['id']; ?>" method="post" action="" enctype="multipart/form-data">
+      <?php
+      echo '<td><input class="form-control" type="text" name="id" disabled="disabled" value="' . $vp['id'] . '" placeholder="' . $vp['id'] . '"></td>';
+      echo '<td>' . $vp['es_c2'] . '</td>';
+      echo '<td>' . $vp['es_c1'] . '</td>';
+      echo '<td>' . $vp['es_nome'] . '</td>';
 
-
-
-
+      echo '<td><input class="form-control modal-valor" type="text" id="exampleModalLabel" name="mod" value="exampleModalLabel" disabled="disabled"></td>';
+      echo '<td><input class="form-control" type="num" name="qnt" required="required" placeholder="00"></td>';
+      echo '<td><input name="nar" type="submit" class="btn btn-success btn-block" id="nar" value="ADD"  /></td>';
+     echo '</tr>';
+    endwhile;
+    ?>
+    </tbody>
+   </table>
+  </form>
+  <?php
+   if(@$_POST["nar"]){
+   $adQuant = $_POST["qnt"];
+   $adMod = $_POST["exampleModalLabel"];
+    $InsereArvore = $PDO->query("INSERT INTO arvore_lista (nomePeca, quant) VALUES ('$adMod', '$adQuant')");
+    if ($InsereArvore) {
+     echo '<script type="text/JavaScript">alert("Cadastrado com Sucesso");';
+    }
+    else{
+     echo '<script type="text/javascript">alert("Não foi possível. Erro: 0x03");</script>';
+    }
+  }
+  ?>
    </div>
    <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -116,3 +138,6 @@
   </div>
  </div>
 </div>
+
+
+
