@@ -80,11 +80,7 @@
     <h4 class="modal-title" id="exampleModalLabel"></h4>
    </div>
    <div class="modal-body">
-   <?php
-    $chamaProd = "SELECT * FROM cad_estoque";
-     $prod = $PDO->prepare($chamaProd);
-     $prod->execute();
-   ?>
+
     <table id="arvore" class="table table-bordered table-striped">
      <thead>
       <tr>
