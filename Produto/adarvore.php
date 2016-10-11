@@ -8,12 +8,13 @@
    $NomeUserLogado = $row['Nome'];
    $foto = $row['Foto'];
    
-
+   $NomeModelo = $_GET['MOD'];
+   $IDModelo = $_GET['ID'];
 
     $chamaProd = "SELECT * FROM cad_estoque";
      $prod = $PDO->prepare($chamaProd);
      $prod->execute();
-   
+      $dataAgora = date('d/m/Y H:i:s');
 
 ?>
 <!DOCTYPE html>
@@ -29,6 +30,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../plugins/iCheck/flat/blue.css">
 </head>
 <body class="hold-transition <?php echo $cor; ?> layout-top-nav">
 <div class="wrapper">
@@ -64,43 +66,101 @@
       <h3 class="box-title">Cabeçalho</h3>
      </div>
      <div class="box-body">
-       <table id="arvore" class="table table-bordered table-striped">
-        <thead>
-         <tr>
-          <th style="width: 10px">#</th>
+      <table id="arvore" class="table table-bordered table-striped">
+       <thead>
+        <tr>
+         <th style="width: 10px">#</th>
           <th style="width: 10%">Comercial</th>
           <th style="width: 10%">Almoxarifado</th>
           <th>Nome</th>
           <th style="width: 20px">Modelo</th>
-          <th style="width: 10px">Quantidade</th>
+          <th style="width: 50px">Quantidade</th>
           <th style="width: 50px"></th>
-         </tr>
+        </tr>
         </thead>
         <tbody>
-        <?php while ($vp = $prod->fetch(PDO::FETCH_ASSOC)): ?>
-        <form name="<?php echo $vp['es_id']; ?>" id="<?php echo $vp['es_id']; ?>" method="post" action="" enctype="multipart/form-data">
-  
-         <tr>
-          <td><?php echo $vp['es_c2']; ?></td>
-          <td><?php echo $vp['es_c2']; ?></td>
-          <td><?php echo $vp['es_c2']; ?></td>
-          <td><?php echo $vp['es_c2']; ?></td>
-          <td><?php echo $vp['es_c2']; ?></td>
-          <td><input class="form-control" type="num" name="qnt" placeholder="00"></td>
-          <td><input name="t" type="submit" class="btn btn-success btn-block" value="ADD"  /></td>
-         </tr>
-        </form> 
-        <?php
-         if(@$_POST["t"])
-         {
-         $adQuant = $_POST["qnt"];
-         echo '<script type="text/JavaScript">alert(" '. $adQuant . '");';
-         }
-        ?>
-        <?php endwhile; ?>
+         <?php 
+          while ($p = $prod->fetch(PDO::FETCH_ASSOC)): 
+           echo '<tr>';
+            $id = $p['id'];
+            $Nome = $p['es_nome'];
+            $Com = $p['es_c4'];
+            $Comp = $p['es_c2'];
+            echo '<td>' . $id . '</td>';
+            echo '<td>' . $Com . '</td>';
+            echo '<td>' . $Comp . '</td>';
+            echo '<td>' . $Nome . '</td>';
+            echo '<td>' . $Nome . '</td>';
+            echo '<td>' . $p['es_c2'] . '</td>';
+            echo '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="' . $Nome . '" data-idvalue="' . $id . '" data-botao="ADICIONAR PEÇA">ADD</button></td>';
+           echo '</tr>';
+           endwhile;
+         ?>
         </tbody>
-       </table>
-      
+        </table>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+...more buttons...
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+       <form name="adProd" id="adProd" method="post" action="" enctype="multipart/form-data">
+       <div class="col-xs-3">ID
+        <div class="modal-valor">
+         <input type="text" class="form-control" name="IDP" id="modal-valor">
+        </div>
+       </div>
+       <div class="col-xs-6">Nome do item
+        <div class="modal-titulo">
+         <input type="text" class="form-control" name="nome" id="modal-titulo">
+        </div>
+       </div>
+       <div class="col-xs-3">Quantiadade
+         <input type="number" class="form-control" name="quant" required>
+       </div>
+       <br /><br /><br /><br />
+       <div class="modal-botao">
+       <input name="adProd" type="submit" class="btn btn-danger btn-block" id="adProd"></div>
+      </form>
+             <?php
+        if(@$_POST["adProd"])
+        {
+        $nProd = $_POST['nome']; //NOME DO PRODUTO
+        $iProd = $_POST['IDP']; //ID DO PRODUTO
+        $quant = $_POST['quant']; //QUANTIDADE DE PEÇAS
+         $CadLista = $PDO->query("INSERT INTO arvore_lista (nomePeca, idPeca, qt, modelo, idModelo, DataCadastro) VALUES ('$nProd', '$iProd', '$quant', '$NomeModelo', '$IDModelo', '$dataAgora')");
+         if ($CadLista) {
+          $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
+          $Det2 = "Data da Atualização: " . $dataAgora . "<br/>";
+          $Det3 = "Cód. Evento: 401 (Adicionado Item á Lista)";
+          $Det4 = "<strong> Peça: </strong>" . $iProd . " " . $nProd . "<br />";
+          $Det6 = "<strong> Modelo: </strong>" . $NomeModelo . "<br />";
+        
+        $nOb = $Det1 . $Det2 . $Det3 . $Det4 . $Det5 . $Rev6;
+         $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '401', '$dataAtual', '$nOb')");
+          if ($NovoLog)
+          {
+           echo '<script type="text/JavaScript">alert("ADICIONADO!");
+              location.href="adArvore.php?ID=' . $IDModelo . '&MOD=' . $NomeModelo . '"</script>';
+          }
+        }
+        else
+        {
+
+        }
+      }
+        ?>
+      </div>
+    </div>
+  </div>
+</div>    
 
      </div>
     </div>
@@ -131,7 +191,21 @@
     });
   });
 </script>
+<script type="text/javascript">
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever')
+  var idvalor = button.data('idvalue') 
+  var botao = button.data('botao')
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+  modal.find('.modal-valor input').val(idvalor)
+  modal.find('.modal-botao input').val(botao)
+  modal.find('.modal-titulo input').val(recipient)
+})
 
+</script>
 
 </body>
 </html>
