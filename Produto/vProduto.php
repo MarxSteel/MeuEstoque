@@ -86,9 +86,8 @@ word-wrap: break-word;
       <small class="pull-right">Data de Cadastro: <?php echo $DataCad; ?></small>
      </div>
      <div class="box-body">
-     <div class="col-md-5 col-xs-12">
+     <div class="col-md-7 col-xs-12">
       <li class="list-group-item">
-       <b>Produto:</b>
         <a class="pull-right"><?php echo $nomeProduto; ?>
         <button type="button" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#nomeProduto"><i class="fa fa-refresh"></i></button>
         </a><br />
@@ -107,7 +106,7 @@ word-wrap: break-word;
       </li>
       <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">DOWNLOAD DOCUMENTAÇÃO DA ENGENHARIA</button>
      </div>
-     <div class="col-md-5 col-xs-12">
+     <div class="col-md-3 col-xs-12">
       <li class="list-group-item">
        <b>Forn. 1:</b>
         <a class="pull-right"><?php echo $For1; ?>
@@ -198,7 +197,6 @@ word-wrap: break-word;
      </div>
     <?php 
     include_once 'ModalEdita.php'; 
-
     ?>
     </div>
    </section>
