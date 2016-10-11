@@ -273,8 +273,8 @@ $F3->execute();
          <thead>
          <tr>
           <th style="width: 10px">#</th>
-          <th style="width: 10%">Cd. Almox.</th>
-          <th style="width: 10%">Cd. Eng.</th>
+          <th style="width: 10%">Almoxarifado</th>
+          <th style="width: 10%">Comercial</th>
           <th>Nome</th>
           <th>Descrição</th>
           <th style="width: 15px">Categoria</th>
@@ -288,7 +288,7 @@ $F3->execute();
            echo '<tr>';
             echo '<td>' . $VCat['id'] . '</td>';
             echo '<td>' . $VCat['es_c2'] . '</td>';
-            echo '<td>' . $VCat['es_c1'] . '</td>';
+            echo '<td>' . $VCat['es_c4'] . '</td>';
             echo '<td>' . $VCat['es_nome'] . '</td>';
             echo '<td>' . $VCat['es_cat'] . '</td>';
             echo '<td>' . $VCat['es_cat'] . '</td>';
