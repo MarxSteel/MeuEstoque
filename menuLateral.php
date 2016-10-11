@@ -1,5 +1,5 @@
 <?php 
-$server = 'http://localhost:8888/MeuEstoque';
+$server = 'http://192.168.7.1:8888/MeuEstoque';
 $endereco = $_SERVER ['REQUEST_URI']; 
 ?>
 <ul class="sidebar-menu">
