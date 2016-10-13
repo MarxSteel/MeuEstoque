@@ -278,7 +278,6 @@ $F3->execute();
           <th>Nome</th>
           <th>Descrição</th>
           <th style="width: 15px">Categoria</th>
-          <th style="width: 60px">UN</th>
           <th style="width: 50px"></th>
          </tr>
         </thead>
@@ -292,7 +291,6 @@ $F3->execute();
             echo '<td>' . $VCat['es_nome'] . '</td>';
             echo '<td>' . $VCat['es_obs'] . '</td>';
             echo '<td>' . $VCat['es_cat'] . '</td>';
-            echo '<td>' . $VCat['es_un'] . '</td>';
             echo '<td><a class="btn btn-success btn-block btn-xs" href="';
             echo "javascript:abrir('vProduto.php?ID=" . $VCat['id'] . "');";
             echo '"><i class="fa fa-search"> </i></a></td>';
