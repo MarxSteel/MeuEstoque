@@ -94,9 +94,9 @@ word-wrap: break-word;
         <table id="listaArvore" class="table table-bordered table-striped">
          <thead>
          <tr>
-          <th style="width: 5%">#</th>
-          <th style="width: 25%">ID peça</th>
-          <th style="width: 50%">Peça</th>
+          <th style="width: 5%"></th>
+          <th style="width: 5%">ID peça</th>
+          <th style="width: 70%">Peça</th>
           <th style="width: 20%">Quantidade</th>
          </tr>
         </thead>
@@ -125,8 +125,6 @@ word-wrap: break-word;
        </div>
       </div>
      </div>
-
-
 <!-- MODAL DE TROCA DE FOTO -->
 <div class="modal fade" id="trocaFoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -204,13 +202,13 @@ word-wrap: break-word;
 <script>
   $(function () {
     $("#listaArvore").DataTable();
-    $('#example2').DataTable({
+    $('#listaArvores').DataTable({
       "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
+      "lengthChange": true,
+      "searching": true,
+      "ordering": false,
+      "info": false,
+      "autoWidth": true
     });
   });
 </script>
