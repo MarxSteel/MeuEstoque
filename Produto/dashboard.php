@@ -290,7 +290,7 @@ $F3->execute();
             echo '<td>' . $VCat['es_c2'] . '</td>';
             echo '<td>' . $VCat['es_c4'] . '</td>';
             echo '<td>' . $VCat['es_nome'] . '</td>';
-            echo '<td>' . $VCat['es_cat'] . '</td>';
+            echo '<td>' . $VCat['es_obs'] . '</td>';
             echo '<td>' . $VCat['es_cat'] . '</td>';
             echo '<td>' . $VCat['es_un'] . '</td>';
             echo '<td><a class="btn btn-success btn-block btn-xs" href="';
