@@ -606,7 +606,60 @@
  </div>
 </div>
 <!-- TROCA FORNECEDOR 3 -->
+<!-- MODAL DE ATUALIZAR DESCRIÇÃO -->
+<!-- TROCA FORNECEDOR 3 -->
+<div id="obs" class="modal fade" role="dialog">
+ <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+   <div class="modal-header bg-default">
+    <button type="button" class="close" data-dismiss="modal">X</button>
+     <h4 class="modal-title">ATUALIZAR OBSERVAÇÕES</h4>
+   </div>
+   <div class="modal-body">
+    <div class="col-xs-12">Observação Anterior
+     <li class="list-group-item">
+      <i class="texto">
+      <?php echo $Obs; ?>
+      </i>
+     </li>
+    </div>
+    <form name="nobs" id="nnome" method="post" action="" enctype="multipart/form-data">
+     <div class="col-xs-12">Nova Observação
+     <textarea name="obs" cols="45" rows="3" class="form-control" id="obs" required="required"></textarea><hr>
+     </div>
+     <div class="pull-right"><br />
+      <input name="nobs" type="submit" class="btn btn-primary btn-flat" id="nobs" value="ATUALIZAR OBSERVAÇÃO"  /> 
+      <button type="button" class="btn btn-danger btn-flat" data-dismiss="modal">FECHAR</button>
+     </div>
+    </form>
+    <?php
+     if(@$_POST["nobs"]){
+      $nObs = str_replace("\r\n", "<br/>", strip_tags($_POST["obs"]));
 
+      $atObs = $PDO->query("UPDATE cad_estoque SET es_obs='$nObs' WHERE id='$CodAt'");
+       if ($atObs) {
+        $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
+        $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
+        $Det3 = "Cód. Evento: 318 (OBSERVAÇÃO ATUALIZADA)";
+        $Det4 = "<strong> Observação Anterior: </strong>" . $Obs . "<br />";
+        $Det5 = "<strong> Nova Observação: </strong>" . $nObs . "<br />";
+        $nOb = $Det1 . $Det2 . $Det3 . $Det4 . $Det5;
+         $NovoLog = $PDO->query("INSERT INTO sistema_log (Usuario, Evento, Data, Descricao) VALUES ('$NomeUserLogado', '318', '$dataAtual', '$nOb')");
+          if ($NovoLog)
+          {
+           echo '<script type="text/JavaScript">alert("OBSERVAÇÃO ATUALIZADA!");
+              location.href="vProduto.php?ID=' . $CodAt . '"</script>';
+          }
+        }
+       } 
+      ?>
+   </div>
+   <div class="modal-footer"></div>
+  </div>
+ </div>
+</div>
+<!-- TROCA FORNECEDOR 3 -->
+<!-- MODAL DE ATUALIZAR DESCRIÇÃO -->
 
 
 <!-- MODAL DE EXEMPLO -->
