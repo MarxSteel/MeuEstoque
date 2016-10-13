@@ -197,7 +197,7 @@ $F3->execute();
             <option value="<?php echo $ff1['f_id'] ?>"><?php echo $ff1['f_Nome'] ?>
             </option>
             <?php endwhile; ?>
-            <option value="0">Não informado</option>
+            <option value="NÃO INFORMADO">Não informado</option>
            </select>
           </div>
           <div class="col-xs-4">Fornecedor2
@@ -207,7 +207,7 @@ $F3->execute();
             <option value="<?php echo $ff2['f_id'] ?>"><?php echo $ff2['f_Nome'] ?>
             </option>
             <?php endwhile; ?>
-            <option value="0">Não informado</option>
+            <option value="NÃO INFORMADO">Não informado</option>
            </select>
           </div>
           <div class="col-xs-4">Fornecedor Padrão
@@ -217,7 +217,7 @@ $F3->execute();
             <option value="<?php echo $ff3['f_id'] ?>"><?php echo $ff3['f_Nome'] ?>
             </option>
             <?php endwhile; ?>
-            <option value="0">Não informado</option>
+            <option value="NÃO INFORMADO">Não informado</option>
            </select>
           </div>
           <div class="col-xs-12">Observações
