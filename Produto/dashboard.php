@@ -51,6 +51,11 @@ $F3->execute();
   <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<style type="text/css">
+.texto {
+word-wrap: break-word;
+}
+</style>
 </head>
 <body class="hold-transition <?php echo $cor; ?> fixed sidebar-mini">
  <div class="wrapper">
@@ -289,7 +294,7 @@ $F3->execute();
             echo '<td>' . $VCat['es_c2'] . '</td>';
             echo '<td>' . $VCat['es_c4'] . '</td>';
             echo '<td>' . $VCat['es_nome'] . '</td>';
-            echo '<td>' . $VCat['es_obs'] . '</td>';
+            echo '<td class="texto">' . $VCat['es_obs'] . '</td>';
             echo '<td>' . $VCat['es_cat'] . '</td>';
             echo '<td><a class="btn btn-success btn-block btn-xs" href="';
             echo "javascript:abrir('vProduto.php?ID=" . $VCat['id'] . "');";
