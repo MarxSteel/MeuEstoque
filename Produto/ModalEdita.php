@@ -607,7 +607,6 @@
 </div>
 <!-- TROCA FORNECEDOR 3 -->
 <!-- MODAL DE ATUALIZAR DESCRIÇÃO -->
-<!-- TROCA FORNECEDOR 3 -->
 <div id="obs" class="modal fade" role="dialog">
  <div class="modal-dialog modal-lg">
   <div class="modal-content">
@@ -658,7 +657,6 @@
   </div>
  </div>
 </div>
-<!-- TROCA FORNECEDOR 3 -->
 <!-- MODAL DE ATUALIZAR DESCRIÇÃO -->
 
 
