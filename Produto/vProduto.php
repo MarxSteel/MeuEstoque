@@ -178,15 +178,20 @@ word-wrap: break-word;
        <br />
       </li>
      </div>
-     <div class="col-xs-12"><h4>Detalhes do Produto</h4></div>
      <div class="col-xs-12">
-      <li class="list-group-item">
-       <i class="texto">
-      <?php echo $Obs; ?>
-      </i>
-      </li>
-     </div>
-     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="box-header with-border">
+       <h3 class="box-title">Detalhe do Produto: </h3>
+        <small class="pull-right">
+         <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#obs"><i class="fa fa-refresh"></i> ATUALIZAR OBSERRVAÇÃO</button>
+        </small>
+      </div>
+    </div>
+    <div class="col-xs-12">
+     <li class="list-group-item">
+      <i class="texto"><?php echo $Obs; ?></i>
+     </li>
+    </div>
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
       <div class="modal-dialog modal-lg" role="document">
        <div class="modal-content">
         <div class="col-xs-12">

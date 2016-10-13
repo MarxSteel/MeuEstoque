@@ -51,6 +51,11 @@ $F3->execute();
   <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<style type="text/css">
+.texto {
+word-wrap: break-word;
+}
+</style>
 </head>
 <body class="hold-transition <?php echo $cor; ?> fixed sidebar-mini">
  <div class="wrapper">
@@ -197,7 +202,7 @@ $F3->execute();
             <option value="<?php echo $ff1['f_id'] ?>"><?php echo $ff1['f_Nome'] ?>
             </option>
             <?php endwhile; ?>
-            <option value="0">Não informado</option>
+            <option value="NÃO INFORMADO">Não informado</option>
            </select>
           </div>
           <div class="col-xs-4">Fornecedor2
@@ -207,7 +212,7 @@ $F3->execute();
             <option value="<?php echo $ff2['f_id'] ?>"><?php echo $ff2['f_Nome'] ?>
             </option>
             <?php endwhile; ?>
-            <option value="0">Não informado</option>
+            <option value="NÃO INFORMADO">Não informado</option>
            </select>
           </div>
           <div class="col-xs-4">Fornecedor Padrão
@@ -217,7 +222,7 @@ $F3->execute();
             <option value="<?php echo $ff3['f_id'] ?>"><?php echo $ff3['f_Nome'] ?>
             </option>
             <?php endwhile; ?>
-            <option value="0">Não informado</option>
+            <option value="NÃO INFORMADO">Não informado</option>
            </select>
           </div>
           <div class="col-xs-12">Observações
@@ -278,7 +283,6 @@ $F3->execute();
           <th>Nome</th>
           <th>Descrição</th>
           <th style="width: 15px">Categoria</th>
-          <th style="width: 60px">UN</th>
           <th style="width: 50px"></th>
          </tr>
         </thead>
@@ -290,9 +294,8 @@ $F3->execute();
             echo '<td>' . $VCat['es_c2'] . '</td>';
             echo '<td>' . $VCat['es_c4'] . '</td>';
             echo '<td>' . $VCat['es_nome'] . '</td>';
-            echo '<td>' . $VCat['es_obs'] . '</td>';
+            echo '<td class="texto">' . $VCat['es_obs'] . '</td>';
             echo '<td>' . $VCat['es_cat'] . '</td>';
-            echo '<td>' . $VCat['es_un'] . '</td>';
             echo '<td><a class="btn btn-success btn-block btn-xs" href="';
             echo "javascript:abrir('vProduto.php?ID=" . $VCat['id'] . "');";
             echo '"><i class="fa fa-search"> </i></a></td>';
