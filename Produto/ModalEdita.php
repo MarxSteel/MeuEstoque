@@ -29,7 +29,7 @@
        $virgula = ',';
        $result = str_replace($pontos, "", $valor);
        $Valorf = str_replace($virgula, ".", $result);
-       	$AtValor = $PDO->query("UPDATE cad_estoque SET es_preco='$Valorf'");
+       	$AtValor = $PDO->query("UPDATE cad_estoque SET es_preco='$Valorf' WHERE id='$CodAt'");
        	if ($Valorf) {
        	 $prAnt = number_format($valor, 2, ',', '.');
        	 $prNovo = number_format($Valorf, 2, ',', '.');
@@ -81,7 +81,7 @@
     <?php
      if(@$_POST["trocaEstoque"]){
      $novoEstoque = $_POST['nest'];
-      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_minimo='$novoEstoque'");
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_minimo='$novoEstoque' WHERE id='$CodAt'");
        if ($atEstoque) {
        	$Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
        	$Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
@@ -131,7 +131,7 @@
     <?php
      if(@$_POST["codEng"]){
      $novoEng = $_POST['ceng'];
-      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c1='$novoEng'");
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c1='$novoEng' WHERE id='$CodAt'");
        if ($atEstoque) {
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
@@ -181,7 +181,7 @@
     <?php
      if(@$_POST["trocaAlm"]){
      $novoAlm = $_POST['calm'];
-      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c2='$novoAlm'");
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c2='$novoAlm' WHERE id='$CodAt'");
        if ($atEstoque) {
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
@@ -231,7 +231,7 @@
     <?php
      if(@$_POST["codCom"]){
      $novoCom = $_POST['ccom'];
-      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c4='$novoCom'");
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c4='$novoCom' WHERE id='$CodAt'");
        if ($atEstoque) {
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
@@ -281,7 +281,7 @@
     <?php
      if(@$_POST["codProj"]){
      $novoProj = $_POST['proj'];
-      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c3='$novoProj'");
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_c3='$novoProj' WHERE id='$CodAt'");
        if ($atEstoque) {
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
@@ -341,7 +341,7 @@
      if(@$_POST["nnome"]){
      $novoNome = $_POST['newnome'];
      $novoRev = $_POST['novarev'];
-      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_nome='$novoNome', es_rev='$novoRev'");
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_nome='$novoNome', es_rev='$novoRev' WHERE id='$CodAt'");
        if ($atEstoque) {
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
@@ -403,7 +403,7 @@
     <?php
      if(@$_POST["ncat"]){
      $novaCat = $_POST['novaCat'];
-      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_cat='$novaCat'");
+      $atEstoque = $PDO->query("UPDATE cad_estoque SET es_cat='$novaCat' WHERE id='$CodAt'");
        if ($atEstoque) {
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
@@ -465,7 +465,7 @@
     <?php
      if(@$_POST["f1"]){
      $novoF1 = $_POST['for1'];
-      $atFor1 = $PDO->query("UPDATE cad_estoque SET es_f1='$novoF1'");
+      $atFor1 = $PDO->query("UPDATE cad_estoque SET es_f1='$novoF1' WHERE id='$CodAt'");
        if ($atFor1) {
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
@@ -524,7 +524,7 @@
     <?php
      if(@$_POST["f2"]){
      $novoF2 = $_POST['for2'];
-      $atFor2 = $PDO->query("UPDATE cad_estoque SET es_f2='$novoF2'");
+      $atFor2 = $PDO->query("UPDATE cad_estoque SET es_f2='$novoF2' WHERE id='$CodAt'");
        if ($atFor2) {
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
@@ -583,7 +583,7 @@
     <?php
      if(@$_POST["f3"]){
      $novoF3 = $_POST['for3'];
-      $atFor3 = $PDO->query("UPDATE cad_estoque SET es_f3='$novoF3'");
+      $atFor3 = $PDO->query("UPDATE cad_estoque SET es_f3='$novoF3' WHERE id='$CodAt'");
        if ($atFor3) {
         $Det1 = "<strong>Usuário: </strong>" . $NomeUserLogado .  "<br />";
         $Det2 = "Data da Atualização: " . $dataAtual . "<br/>";
